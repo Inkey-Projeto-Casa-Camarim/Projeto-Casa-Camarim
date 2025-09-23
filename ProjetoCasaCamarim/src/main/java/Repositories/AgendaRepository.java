@@ -1,5 +1,9 @@
 package Repositories;
 
-public interface AgendaRepository {
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
+
+@Repository
+public interface AgendaRepository extends JpaRepository<AgendaRepository, Long>{
 
 }
