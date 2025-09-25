@@ -1664,3 +1664,9 @@
 2025-09-25 08:50:03,857 [Worker-19: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 1 resource from src\main\resources to target\classes
 2025-09-25 08:50:03,870 [Worker-19: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 0 resource from src\main\resources to target\classes
 2025-09-25 08:50:03,875 [Worker-19: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - skip non existing resourceDirectory C:\Users\DEV-2D\Documents\GitHub\Projeto-Casa-Camarim\ProjetoCasaCamarim\src\test\resources
+2025-09-25 09:06:52,860 [Worker-23: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 1 resource from src\main\resources to target\classes
+2025-09-25 09:06:52,867 [Worker-23: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 0 resource from src\main\resources to target\classes
+2025-09-25 09:06:52,870 [Worker-23: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - skip non existing resourceDirectory C:\Users\DEV-2D\Documents\GitHub\Projeto-Casa-Camarim\ProjetoCasaCamarim\src\test\resources
+2025-09-25 09:34:42,135 [Worker-14: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 1 resource from src\main\resources to target\classes
+2025-09-25 09:34:42,152 [Worker-14: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 0 resource from src\main\resources to target\classes
+2025-09-25 09:34:42,158 [Worker-14: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - skip non existing resourceDirectory C:\Users\DEV-2D\Documents\GitHub\Projeto-Casa-Camarim\ProjetoCasaCamarim\src\test\resources
