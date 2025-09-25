@@ -13,16 +13,16 @@ public class AgendaService {
 
 	@Autowired
 	private AgendaRepository agendaRepository;
-
+	
 	public Agenda saveAgenda(Agenda agenda) {
 		return agendaRepository.save(agenda);
 	}
 
-	public List<Agenda> getAllagenda() {
+	public List<AgendaRepository> getAllAgenda() {
 		return agendaRepository.findAll();
 	}
 
-	public Agenda getAgendaById(Long id) {
+	public AgendaRepository getAgendaById(Long id) {
 		return agendaRepository.findById(id).orElse(null);
 	}
 
@@ -30,4 +30,3 @@ public class AgendaService {
 		agendaRepository.deleteById(id);
 	}
 }
-	
