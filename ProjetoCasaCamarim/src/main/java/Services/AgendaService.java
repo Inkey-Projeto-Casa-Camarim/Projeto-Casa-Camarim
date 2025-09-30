@@ -18,11 +18,11 @@ public class AgendaService {
 		return agendaRepository.save(agenda);
 	}
 
-	public List<AgendaRepository> getAllAgenda() {
+	public List<Agenda> getAllAgenda() {
 		return agendaRepository.findAll();
 	}
 
-	public AgendaRepository getAgendaById(Long id) {
+	public Agenda getAgendaById(Long id) {
 		return agendaRepository.findById(id).orElse(null);
 	}
 

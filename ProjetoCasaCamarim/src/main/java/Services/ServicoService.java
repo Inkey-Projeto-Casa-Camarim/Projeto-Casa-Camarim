@@ -18,11 +18,11 @@ public class ServicoService {
 		return servicoRepository.save(servico);
 	}
 
-	public List<ServicoRepository> getAllservice() {
+	public List<Servico> getAllservice() {
 		return servicoRepository.findAll();
 	}
 
-	public ServicoRepository getServiceById(Long id) {
+	public Servico getServiceById(Long id) {
 		return servicoRepository.findById(id).orElse(null);
 	}
 

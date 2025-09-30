@@ -3,7 +3,9 @@ package Repositories;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
+import Entities.Tipo;
+
 @Repository
-public interface TipoRepository extends JpaRepository<TipoRepository, Long>{
+public interface TipoRepository extends JpaRepository<Tipo, Long>{
 
 }
