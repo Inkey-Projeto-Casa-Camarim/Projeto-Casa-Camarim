@@ -47,7 +47,7 @@ public class UsuarioController {
             if (usuario != null) {
                 return ResponseEntity.ok(usuario);
             } else {
-                return ResponseEntity.status(404).body("Usuario com CPF " + cpf + "não foi encontrado");
+                return ResponseEntity.status(404).body("Cliente com CPF " + cpf + "não foi encontrado");
             }
         }
 

@@ -19,13 +19,17 @@ public class TipoUsuario {
 	@Column(name = "nome_tipo", nullable = false, length = 100)
 	private String nome_tipo;
 	
+	@Column(name = "cpf", nullable = false)
+	private String cpf;
+	
 	public TipoUsuario() {
 		
 	}
 	
-	public TipoUsuario(Long id_tipo, String nome_tipo) {
+	public TipoUsuario(Long id_tipo, String nome_tipo, String cpf) {
 		this.id_tipo = id_tipo;
 		this.nome_tipo = nome_tipo;
+		this.cpf = cpf;
 	}
 
 	// Getters e Setters
@@ -45,5 +49,14 @@ public class TipoUsuario {
 	public void setNome_tipo(String nome_tipo) {
 		this.nome_tipo = nome_tipo;
 	}
-	
+
+	public String getCpf() {
+		return cpf;
+	}
+
+	public void setCpf(String cpf) {
+		this.cpf = cpf;
+	}
+
 }
+	

@@ -26,6 +26,10 @@ public class TipoUsuarioService {
 			return tipoUsuarioRepository.findById(id).orElse(null);
 		}
 
+		public TipoUsuario buscarTipoUsuarioPorCpf(String cpf) {
+	        return tipoUsuarioRepository.findByCpf(cpf);
+	    }
+		
 		public void deleteTipoUsuario(Long id) {
 			tipoUsuarioRepository.deleteById(id);
 		}

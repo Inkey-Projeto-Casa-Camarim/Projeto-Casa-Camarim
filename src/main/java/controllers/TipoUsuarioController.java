@@ -3,6 +3,7 @@ package controllers;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -38,6 +39,17 @@ public class TipoUsuarioController {
 	public TipoUsuario getTipoUsuarioById(@PathVariable Long id) {
 		return tipoUsuarioService.getTipoUsuarioById(id);
 	}
+	
+	@GetMapping("/cpf/{cpf}")
+    public ResponseEntity<Object> buscarTipoUsuarioPorCpf(@PathVariable String cpf) {
+        TipoUsuario tipoUsuario = tipoUsuarioService.buscarTipoUsuarioPorCpf(cpf);
+
+        if (tipoUsuario != null) {
+            return ResponseEntity.ok(tipoUsuario);
+        } else {
+            return ResponseEntity.status(404).body("Administrador com CPF " + cpf + "não foi encontrado");
+        }
+    }
 
     //Endpoint para deletar um usuário
 	@DeleteMapping("/{id}")
