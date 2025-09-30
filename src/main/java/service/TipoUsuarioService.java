@@ -14,7 +14,7 @@ public class TipoUsuarioService {
 	@Autowired
 	private TipoUsuarioRepository tipoUsuarioRepository;
 		
-		public TipoUsuario saveServico(TipoUsuario tipoUsuario) {
+		public TipoUsuario saveTipoUsuario(TipoUsuario tipoUsuario) {
 			return tipoUsuarioRepository.save(tipoUsuario);
 		}
 
