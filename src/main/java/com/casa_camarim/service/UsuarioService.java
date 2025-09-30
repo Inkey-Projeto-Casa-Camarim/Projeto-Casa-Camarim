@@ -26,8 +26,8 @@ public class UsuarioService {
 			return usuarioRepository.findById(id).orElse(null);
 		}
 		
-		public Usuario buscarUsuarioPorCpf(String cpf) {
-	        return usuarioRepository.findByCpf(cpf);
+		public Usuario buscarUsuarioPorTelefone(String telefone) {
+	        return usuarioRepository.findByTelefone(telefone);
 	    }
 
 		public void deleteUsuario(Long id) {

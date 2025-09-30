@@ -41,13 +41,13 @@ public class UsuarioController {
 	}
 
     	@GetMapping("/cpf/{cpf}")
-        public ResponseEntity<Object> buscarUsuarioPorCpf(@PathVariable String cpf) {
-            Usuario usuario = usuarioService.buscarUsuarioPorCpf(cpf);
+        public ResponseEntity<Object> buscarUsuarioPorTelefone(@PathVariable String telefone) {
+            Usuario usuario = usuarioService.buscarUsuarioPorTelefone(telefone);
 
             if (usuario != null) {
                 return ResponseEntity.ok(usuario);
             } else {
-                return ResponseEntity.status(404).body("Cliente com CPF " + cpf + "não foi encontrado");
+                return ResponseEntity.status(404).body("Cliente com telefone " + telefone + "não foi encontrado");
             }
         }
 

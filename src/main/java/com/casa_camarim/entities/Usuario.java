@@ -22,7 +22,7 @@ public class Usuario {
 	
 	@ManyToOne
 	@JoinColumn(name = "id_tipo", nullable = false)
-	private Long id_tipo;
+	private TipoUsuario tipoUsuario;
 	
 	@Column(name = "nome", nullable = false, length = 100)
 	private String nome;
@@ -36,11 +36,10 @@ public class Usuario {
 		
 	}
 
-	public Usuario(Long id_usuario, Long id_tipo, String nome, String telefone) {
+	public Usuario(Long id_usuario, String nome, String telefone) {
 		this.id_usuario = id_usuario;
 		this.nome = nome;
 		this.telefone = telefone;
-		this.id_tipo = id_tipo;
 	}
 
 	// Getters e Setters
@@ -51,14 +50,6 @@ public class Usuario {
 
 	public void setId_usuario(Long id_usuario) {
 		this.id_usuario = id_usuario;
-	}
-
-	public Long getId_tipo() {
-		return id_tipo;
-	}
-
-	public void setId_tipo(Long id_tipo) {
-		this.id_tipo = id_tipo;
 	}
 
 	public String getNome() {
