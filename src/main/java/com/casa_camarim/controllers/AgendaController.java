@@ -1,4 +1,4 @@
-package controllers;
+package com.casa_camarim.controllers;
 
 import java.util.List;
 
@@ -11,38 +11,38 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import entities.Servico;
-import service.ServicoService;
+import com.casa_camarim.entities.Agenda;
+import com.casa_camarim.service.AgendaService;
 
 @RestController
-@RequestMapping("/servico")
-public class ServicoController {
-	
+@RequestMapping("/agenda")
+public class AgendaController {
+
 	@Autowired
-	private ServicoService servicoService;
+	private AgendaService agendaService;
 
 	//Endpoint para salvar 
 	@PostMapping
-	public Servico saveServico(@RequestBody Servico servico) {
-		return servicoService.saveServico(servico);
+	public Agenda saveAgenda(@RequestBody Agenda agenda) {
+		return agendaService.saveAgenda(agenda);
 	}
 
 	//Endpoint para buscar 
 	@GetMapping
-	public List<Servico> getAllServico() {
-		return servicoService.getAllServico();
+	public List<Agenda> getAllAgenda() {
+		return agendaService.getAllAgenda();
 	}
 
 	//Endpoint para buscar usuário por ID
 	@GetMapping("/{id}")
-	public Servico getServicoById(@PathVariable Long id) {
-		return servicoService.getServicoById(id);
+	public Agenda getAgendaById(@PathVariable Long id) {
+		return agendaService.getAgendaById(id);
 	}
 
     //Endpoint para deletar um usuário
 	@DeleteMapping("/{id}")
-	public void deleteServico(@PathVariable Long id) {
-		servicoService.deleteServico(id);
+	public void deleteAgenda(@PathVariable Long id) {
+		agendaService.deleteAgenda(id);
 	}
 	
 }

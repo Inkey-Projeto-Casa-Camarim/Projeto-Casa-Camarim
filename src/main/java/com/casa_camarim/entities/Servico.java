@@ -1,4 +1,4 @@
-package entities;
+package com.casa_camarim.entities;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;

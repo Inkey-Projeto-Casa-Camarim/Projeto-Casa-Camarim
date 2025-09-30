@@ -1,4 +1,4 @@
-package controllers;
+package com.casa_camarim.controllers;
 
 import java.util.List;
 
@@ -12,8 +12,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import entities.TipoUsuario;
-import service.TipoUsuarioService;
+import com.casa_camarim.entities.TipoUsuario;
+import com.casa_camarim.service.TipoUsuarioService;
 
 @RestController
 @RequestMapping("/tipo_usuario")

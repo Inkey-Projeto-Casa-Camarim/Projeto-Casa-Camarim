@@ -1,12 +1,12 @@
-package service;
+package com.casa_camarim.service;
 
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import entities.Servico;
-import repositories.ServicoRepository;
+import com.casa_camarim.entities.Servico;
+import com.casa_camarim.repositories.ServicoRepository;
 
 @Service
 public class ServicoService {
