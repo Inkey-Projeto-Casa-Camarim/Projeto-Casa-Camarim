@@ -6,10 +6,12 @@
 	</section>
 	<section name="MavenProjectImportWizardPage">
 		<list key="rootDirectory">
+			<item value="C:\Users\DEV-2D\Documents\GitHub\Projeto-Casa-Camarim"/>
 			<item value="C:\Users\DEV-2D\Documents\GitHub\Projeto-Casa-Camarim\ProjetoCasaCamarim"/>
 			<item value="C:\Users\DEV-2D\Documents\GitHub\Projeto-Casa-Camarim\Projeto-casa-camarim"/>
 		</list>
 		<list key="projectNameTemplate">
+			<item value="Casa-Camarim"/>
 			<item value="[artifactId]"/>
 			<item value="[artifactId]-TRUNK"/>
 			<item value="[artifactId]-[version]"/>
