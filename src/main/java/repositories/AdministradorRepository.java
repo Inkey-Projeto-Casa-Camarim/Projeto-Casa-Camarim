@@ -6,4 +6,5 @@ import entities.Administrador;
 
 public interface AdministradorRepository extends JpaRepository<Administrador, Long>{
 
+	Administrador findByCpf(String cpf);
 }
