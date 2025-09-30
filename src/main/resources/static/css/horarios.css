@@ -1,0 +1,409 @@
+* {
+    margin: 0;
+    cursor: none;
+}
+
+body {
+    background-color: #FAF6F4;
+}
+
+/* cursor */
+#circularcursor {
+    background-color: #3E3333;
+    height: 10px;
+    width: 10px;
+    border-radius: 50%;
+    -moz-border-radius: 50%;
+    -webkit-border-radius: 50%;
+    position: absolute;
+    z-index: 999999;
+}
+
+/* botão voltar ao topo */
+#btnTopo {
+    position: fixed;
+    bottom: 20px;
+    left: 20px;
+    width: 50px;
+    height: 50px;
+    border: none;
+    border-radius: 50%;
+    background-color: #5E3F44;
+    color: #FAF6F4;
+    font-size: 20px;
+    box-shadow: rgba(0, 0, 0, 0.2) 0px 4px 12px;
+    z-index: 99999;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(20px);
+    transition: all 0.4s ease;
+}
+
+#btnTopo.show {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+#btnTopo:hover {
+    background-color: #A47E82;
+    transform: scale(1.1);
+}
+
+/* configurações de fonte */
+
+.info h1 {
+    font-size: 1.8rem;
+    font-family: Cormorant;
+    color: #5E3F44;
+}
+
+.info h2 {
+    color: #A47E82;
+    font-size: 1.5rem;
+    font-family: Cormorant;
+}
+
+.info p {
+    color: #A47E82;
+    font-size: 1.25rem;
+    font-family: Cormorant;
+}
+
+/* Responsividade para telas menores das fontes */
+@media (max-width: 1100px) {
+
+    .info h1 {
+        font-size: 1.25rem;
+    }
+
+    .info h2 {
+        font-size: 1rem;
+    }
+
+    .info p {
+        font-size: 0.875rem;
+    }
+
+    .servicos.active {
+        height: 350px;
+    }
+}
+
+/*nav bar*/
+.logo-container {
+    margin-left: 5%;
+    margin-right: 5%;
+    margin-top: 13px;
+
+}
+
+.logo {
+    width: 60px;
+}
+
+nav {
+    width: 100%;
+    margin-top: 3%;
+    align-items: center;
+    justify-content: space-between;
+    transition: .5s;
+}
+
+nav .navigation {
+    position: relative;
+    line-height: 75px;
+    transition: .5s;
+    transition-property: line-height;
+}
+
+nav.sticky .navigation {
+    line-height: 60px;
+}
+
+nav .navigation .menu {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    list-style: none;
+    user-select: none;
+}
+
+.item::after {
+    content: '';
+    position: absolute;
+    height: 2px;
+    left: 0;
+    bottom: 0;
+    width: 0;
+    background: #996663;
+    transition: width .2s;
+}
+
+.item:hover::after {
+    width: 100%;
+}
+
+i.menu-btn,
+i.close-btn {
+    display: none;
+}
+
+.logo-mobile {
+    width: 45px;
+    display: block;
+    position: absolute;
+    top: 15px;
+    margin-bottom: 15%;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 1;
+}
+
+@media(min-width: 700px) {
+    .logo-mobile {
+        display: none;
+    }
+}
+
+@media (max-width:700px) {
+
+    header {
+        margin-top: 15%;
+        margin-bottom: 75px;
+    }
+
+    .item::after {
+        display: none;
+    }
+
+    .logo {
+        display: none;
+    }
+
+    nav .navigation .menu {
+        position: fixed;
+        display: block;
+        background: #F1D8D9;
+        min-width: 200px;
+        height: 100vh;
+        top: 0;
+        right: -100%;
+        padding: 90px 50px;
+        overflow-y: auto;
+        transition: .5s;
+        transition-property: right, visibility;
+        visibility: hidden;
+        z-index: 10;
+    }
+
+    nav.sticky .navigation {
+        line-height: 75px;
+    }
+
+    nav .navigation .menu.active {
+        right: 0;
+        visibility: visible;
+    }
+
+    i.close-btn {
+        position: absolute;
+        color: #996663;
+        font-size: 30px;
+        top: 0;
+        right: 0;
+        margin: 25px;
+        display: block;
+    }
+
+    i.menu-btn {
+        font-size: 30px;
+        color: #996663;
+        display: block;
+        position: absolute;
+        top: 20px;
+        right: 20px;
+        z-index: 1;
+    }
+}
+
+.menu-item a {
+    font-size: 30px;
+    margin: 20px;
+    position: relative;
+    color: #A47E82;
+    font-family: Cormorant;
+    text-decoration: none;
+}
+
+@media (max-width: 300px) {
+    .menu-item a {
+        font-size: 1rem;
+    }
+}
+
+/* fundo do site */
+main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #F7EAEB;
+    margin: 20px;
+    border-radius: 15px;
+    width: calc(100% - 40px);
+    height: 100%;
+    padding-left: 10%;
+    padding-right: 10%;
+    padding-top: 5%;
+    padding-bottom: 5%;
+    box-sizing: border-box;
+}
+
+/* horários e serviços listados */
+.servicos-introducao p {
+    font-family: Avenir;
+    color: #A47E82;
+    font-size: 0.5rem;
+    letter-spacing: 2px;
+    font-size: 100%;
+    font-weight: 550;
+    text-align: center;
+}
+
+.servicos-introducao h1 {
+    color: #5E3F44;
+    font-size: 35px;
+    text-align: center;
+    font-weight: 300;
+    font-family: Misswansa;
+    text-decoration: underline 1px #A47E82;
+    text-underline-offset: 10px;
+}
+
+.servicos {
+    width: 100%;
+    display: grid;
+    margin: 5px;
+    grid-template-columns: repeat(2, 1fr);
+    background-color: #F1D8D9;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    overflow: hidden;
+    transition: height 400ms ease-in-out;
+    position: relative;
+    border-bottom-right-radius: 15px;
+    border-top-left-radius: 15px;
+    height: 50px;
+}
+
+@media (min-width: 1100px) {
+    .servicos {
+        width: 60%;
+        height: 80px;
+    }
+}
+
+.servicos.active {
+    height: 390px;
+}
+
+/* informações de cada serviço */
+.info {
+    justify-self: start;
+}
+
+.agendar {
+    justify-self: end;
+    color: #FAF6F4;
+    letter-spacing: 2px;
+    font-family: Avenir;
+    font-weight: 600;
+    border: none;
+    font-size: 12px;
+    background-color: #A47E82;
+    padding: 12px;
+    transition: all 0.1s ease-in-out;
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
+}
+
+.timer {
+    margin-right: 3%;
+    zoom: 70%;
+}
+
+/* formulário de agendamento */
+form {
+    display: grid;
+    grid-column: span 2;
+    width: 100%;
+    margin-top: 5%;
+}
+
+form input {
+    border: none;
+    padding: 10px;
+    grid-column: span 2;
+    font-family: Avenir;
+    font-weight: 600;
+    opacity: 50%;
+    outline: none;
+    margin-bottom: 10px;
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
+    transition: all 0.1s ease-in-out;
+}
+
+input:focus {
+    box-shadow: 0 0 0 2px rgba(164, 126, 130, 0.3);
+}
+
+select.opcoes {
+    border: none;
+    padding: 10px;
+    grid-column: span 2;
+    font-family: Avenir;
+    font-weight: 650;
+    outline: none;
+    opacity: 60%;
+    color: #797979;
+    margin-bottom: 10px;
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
+    background-color: #FAF6F4;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    background-image: url("data:image/svg+xml;charset=US-ASCII,%3Csvg%20width%3D%2210%22%20height%3D%227%22%20viewBox%3D%220%200%2010%207%22%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%3E%3Cpath%20d%3D%22M0%200l5%207%205-7z%22%20fill%3D%22%235E3F44%22/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 10px center;
+    background-size: 10px 7px;
+    appearance: none;
+}
+
+select.opcoes:focus {
+    box-shadow: 0 0 0 2px rgba(164, 126, 130, 0.3);
+}
+
+@media (max-width: 480px) {
+    select.opcoes {
+        font-size: 0.875rem;
+        padding: 8px;
+    }
+}
+
+.enviar {
+    margin-top: 10px;
+    grid-column: span 2;
+    color: #FAF6F4;
+    letter-spacing: 2px;
+    font-family: Avenir;
+    font-weight: 600;
+    border: none;
+    font-size: 12px;
+    background-color: #5E3F44;
+    padding: 12px;
+    transition: all 0.1s ease-in-out;
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
+}
+
+.enviar:hover {
+    background-color: #A47E82;
+}

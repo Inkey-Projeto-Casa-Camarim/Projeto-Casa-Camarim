@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- links -->
+    <link rel="stylesheet" href="./css/agenda.css">
+
+    <link rel="shortcut icon" href="img/logo.png" type="image/x-icon"> <!-- foto da aba do site -->
+    <link rel="icon" href="img/logo.png" sizes="16x16">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+        integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"
+        integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+    <link href='https://cdn.jsdelivr.net/npm/boxicons@2.0.5/css/boxicons.min.css' rel='stylesheet'>
+
+    <title>Meus agendamentos - Casa Camarim</title>
+</head>
+
+<body>
+    <style>
+        @font-face {
+            font-family: Cormorant;
+            src: url('font/Cormorant-Medium.ttf') format('truetype');
+            font-weight: 700;
+            font-style: normal;
+        }
+
+        @font-face {
+            font-family: Avenir;
+            src: url('font/AvenirLTProBook.otf');
+        }
+
+        @font-face {
+            font-family: Misswansa;
+            src: url('font/Misswansa.ttf');
+        }
+    </style>
+
+    <div id="circularcursor"></div>
+    <button id="btnTopo"><i class="fa-solid fa-arrow-up"></i></button>
+
+    <!-- cabeçalho -->
+    <header>
+        <nav>
+            <div class="navigation">
+                <ul class="menu">
+                    <i class="fa-solid fa-xmark close-btn"></i>
+
+                    <li class="menu-item"><a href="index.html" class="item">Início</a></li>
+
+                    <li class="menu-item"><a class="item">Serviços</a></li>
+
+                    <li class="logo-container">
+                        <img class="logo" src="img/logo.png" alt="Logo">
+                    </li>
+
+                    <li class="menu-item"><a class="item">Contatos</a></li>
+
+                    <li class="menu-item"><a class="item">Agenda</a></li>
+                </ul>
+            </div>
+
+            <img class="logo-mobile" src="img/logo.png" alt="Logo">
+            <!-- ícone menu hamburger -->
+            <i class="fa-solid fa-bars menu-btn"></i>
+        </nav>
+    </header>
+    <main>
+        <h1>Meus agendamentos</h1>
+        <div class="form-wrapper">
+            <form class="procurar">
+                <input type="text" maxlength="11" placeholder="Informe seu CPF"><br>
+                <p>Sem agendamentos? <a href="horarios.html">Agendar</a></p><br>
+                <button type="submit">PROCURAR</button>
+            </form>
+        </div>
+    </main>
+
+    <footer>
+
+    </footer>
+
+    <script src="js-decoracao/scroll-inicio.js"></script>
+    <script src="js-decoracao/cursor.js"></script>
+    <script src="js-decoracao/nav.js"></script>
+    <script src="js-decoracao/horarios.js"></script>
+</body>
+
+</html>
