@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Página com Loading</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+    }
+
+    /* Tela de loading */
+    #loading {
+      position: fixed;
+      width: 100%;
+      height: 100%;
+      background: #ffffff;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 9999;
+      opacity: 1;
+      transition: opacity 0.8s ease;
+    }
+
+    /* Spinner */
+    .spinner {
+      border: 6px solid #f3f3f3;
+      border-top: 6px solid #3498db;
+      border-radius: 50%;
+      width: 60px;
+      height: 60px;
+      animation: spin 1s linear infinite;
+    }
+
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+
+    /* Conteúdo da página */
+    #conteudo {
+      opacity: 0; /* começa invisível */
+      transition: opacity 1s ease; /* animação de entrada */
+      padding: 20px;
+      text-align: center;
+    }
+
+    /* Ativa o fade-in */
+    #conteudo.show {
+      opacity: 1;
+    }
+
+    /* Classe para fade-out */
+    #loading.fade-out {
+      opacity: 0;
+      pointer-events: none;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Tela de loading -->
+  <div id="loading">
+    <div class="spinner"></div>
+  </div>
+
+  <!-- Conteúdo real da página -->
+  <div id="conteudo">
+    <h1>Bem-vindo à minha página!</h1>
+    <p>O carregamento terminou 🚀</p>
+  </div>
+
+  <script>
+    window.addEventListener("load", function() {
+      const loading = document.getElementById("loading");
+      const conteudo = document.getElementById("conteudo");
+
+      // fade-out no loading
+      loading.classList.add("fade-out");
+
+      // depois do fade-out, remove o loading e ativa o fade-in do conteúdo
+      setTimeout(() => {
+        loading.style.display = "none";
+        conteudo.classList.add("show");
+      }, 800); // mesmo tempo da transição do loading
+    });
+  </script>
+</body>
+</html>
