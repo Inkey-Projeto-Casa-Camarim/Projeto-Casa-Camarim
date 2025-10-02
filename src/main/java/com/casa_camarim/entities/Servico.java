@@ -9,11 +9,13 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 
+// Entidade que representa um Serviço no sistema.
+// Na tabela "servico" do banco de dados.
 @Entity
 @Table(name = "servico")
 public class Servico {
 
-	// Atributos
+	// Atributos -> são as características (ou propriedades) de uma classe.
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -26,7 +28,7 @@ public class Servico {
 	@Column(name = "nome_servico", nullable = false)
 	private String nome_servico;
 	
-	// Construtores
+	// Construtores -> serve para inicializar os atributos do objeto (ou seja, dar valores iniciais).
 	
 	public Servico() {
 		
@@ -38,7 +40,9 @@ public class Servico {
 		this.preco = preco;
 	}
 
-	// Getters e Setters
+	// Getters e Setters -> 
+	// Getter: método que retorna (pega) o valor de um atributo.
+	// Setter: método que altera (define) o valor de um atributo.
 	
 	public Long getId_servico() {
 		return id_servico;
