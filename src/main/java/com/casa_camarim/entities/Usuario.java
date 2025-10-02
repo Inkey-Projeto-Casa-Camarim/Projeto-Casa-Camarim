@@ -11,11 +11,13 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 
+//Entidade que representa um Usuário no sistema.
+//Na tabela "tb_usuario" do banco de dados.
 @Entity
 @Table(name = "tb_usuario")
 public class Usuario {
 	
-	// Atributos
+	// Atributos -> são as características (ou propriedades) de uma classe.
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -33,7 +35,7 @@ public class Usuario {
 	@JsonIgnoreProperties("usuarios")
 	private TipoUsuario tipoUsuario;
 	
-	// Construtores
+	// Construtores -> serve para inicializar os atributos do objeto (ou seja, dar valores iniciais).
 	
 	public Usuario() {
 		
@@ -46,7 +48,9 @@ public class Usuario {
 		this.tipoUsuario = tipoUsuario;
 	}
 
-	// Getters e Setters
+	// Getters e Setters -> 
+	// Getter: método que retorna (pega) o valor de um atributo.
+	// Setter: método que altera (define) o valor de um atributo.
 	
 	public Long getId_usuario() {
 		return id_usuario;
