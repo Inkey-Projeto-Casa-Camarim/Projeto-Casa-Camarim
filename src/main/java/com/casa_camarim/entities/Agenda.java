@@ -11,7 +11,7 @@ import jakarta.persistence.Table;
 @Table(name = "tb_agenda")
 public class Agenda {
 
-	//Atributos
+	//Atributos(características)
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -21,7 +21,7 @@ public class Agenda {
 	@Column(name = "data", nullable = false)
 	private String data;
 	
-	// Construtores 
+	// Construtores(método usado para criar objetos)
 	
 	public Agenda() {
 		
@@ -32,7 +32,7 @@ public class Agenda {
 		this.data = data;
 	}
 
-	// Getters e Setters
+	// Getters e Setters( getters -> obtém o valor de um atributo, setters -> altera o valor de um atributo)
 	
 	public Long getId_agenda() {
 		return id_agenda;

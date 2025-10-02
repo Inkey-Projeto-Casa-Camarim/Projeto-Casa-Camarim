@@ -21,30 +21,28 @@ public class AgendaController {
 	@Autowired
 	private AgendaService agendaService;
 
-	//Endpoint para salvar 
+	// Endpoint para salvar a agenda
 	@PostMapping
 	public Agenda saveAgenda(@RequestBody Agenda agenda) {
 		return agendaService.saveAgenda(agenda);
 	}
 
-	//Endpoint para buscar 
+	// Endpoint para buscar a agenda
 	@GetMapping
 	public List<Agenda> getAllAgenda() {
 		return agendaService.getAllAgenda();
 	}
 
-	//Endpoint para buscar usuário por ID
+	// Endpoint para buscar usuário por ID na agenda
 	@GetMapping("/{id}")
 	public Agenda getAgendaById(@PathVariable Long id) {
 		return agendaService.getAgendaById(id);
 	}
 
-    //Endpoint para deletar um usuário
+    // Endpoint para deletar um usuário na agenda
 	@DeleteMapping("/{id}")
 	public void deleteAgenda(@PathVariable Long id) {
 		agendaService.deleteAgenda(id);
 	}
 	
 }
-
-

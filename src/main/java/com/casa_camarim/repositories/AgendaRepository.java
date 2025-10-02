@@ -5,6 +5,8 @@ import org.springframework.stereotype.Repository;
 
 import com.casa_camarim.entities.Agenda;
 
+// Repositório responsável pelo acesso e manipulação dos dados da entidade
+
 @Repository
 public interface AgendaRepository extends JpaRepository<Agenda, Long>{
 
