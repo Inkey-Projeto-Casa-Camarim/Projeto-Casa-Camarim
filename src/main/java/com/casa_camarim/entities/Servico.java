@@ -1,5 +1,7 @@
 package com.casa_camarim.entities;
 
+import java.math.BigDecimal;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -18,8 +20,8 @@ public class Servico {
 	@Column(name = "id_servico", nullable = false)
 	private Long id_servico;
 	
-	@Column(name = "preco", nullable = false)
-	private Double preco;
+	@Column(name = "preco", nullable = false, precision = 10, scale = 2)
+	private BigDecimal preco;
 	
 	@Column(name = "nome_servico", nullable = false)
 	private String nome_servico;
@@ -30,7 +32,7 @@ public class Servico {
 		
 	}
 	
-	public Servico(Long id_servico, Double preco, String nome_servico) {
+	public Servico(Long id_servico, BigDecimal preco, String nome_servico) {
 		this.id_servico = id_servico;
 		this.nome_servico = nome_servico;
 		this.preco = preco;
@@ -46,11 +48,11 @@ public class Servico {
 		this.id_servico = id_servico;
 	}
 
-	public Double getPreco() {
+	public BigDecimal getPreco() {
 		return preco;
 	}
 
-	public void setPreco(Double preco) {
+	public void setPreco(BigDecimal preco) {
 		this.preco = preco;
 	}
 
