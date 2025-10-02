@@ -14,7 +14,7 @@ import jakarta.persistence.Table;
 @Table(name = "TipoUsuario")
 public class TipoUsuario {
 
-	//Atributos
+	//Atributos(características)
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -30,7 +30,7 @@ public class TipoUsuario {
 	@OneToMany(mappedBy = "tipoUsuario")
 	private List<Usuario> usuario;
 	
-	//Construtores
+	//Construtores(método usado para criar objetos)
 	
 	public TipoUsuario() {
 		
@@ -42,7 +42,7 @@ public class TipoUsuario {
 		this.cpf = cpf;
 	}
 
-	// Getters e Setters
+	// Getters e Setters(getters -> obtém o valor de um atributo, setters -> altera o valor de um atributo)
 	
 	public Long getId_tipo() {
 		return id_tipo;

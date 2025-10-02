@@ -32,7 +32,7 @@ public class Agenda {
 		this.data = data;
 	}
 
-	// Getters e Setters( getters -> obtém o valor de um atributo, setters -> altera o valor de um atributo)
+	// Getters e Setters(getters -> obtém o valor de um atributo, setters -> altera o valor de um atributo)
 	
 	public Long getId_agenda() {
 		return id_agenda;
