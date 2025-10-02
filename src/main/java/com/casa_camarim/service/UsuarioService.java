@@ -23,7 +23,7 @@ public class UsuarioService {
 			if(usuario.getTipoUsuario() == null) {
 				TipoUsuario cliente = tipoUsuarioRepository.findById(1L)
 						.orElseThrow(() -> new RuntimeException("Tipo Usuário não encontrado!"));
-				usuario.setTipoUsuario(usuario);
+				usuario.setTipoUsuario(cliente);
 			}
 			return usuarioRepository.save(usuario);
 		}

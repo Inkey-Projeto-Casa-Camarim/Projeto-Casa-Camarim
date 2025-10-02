@@ -39,10 +39,11 @@ public class Usuario {
 		
 	}
 
-	public Usuario(Long id_usuario, String nome, String telefone) {
+	public Usuario(Long id_usuario, String nome, String telefone, TipoUsuario tipoUsuario) {
 		this.id_usuario = id_usuario;
 		this.nome = nome;
 		this.telefone = telefone;
+		this.tipoUsuario = tipoUsuario;
 	}
 
 	// Getters e Setters
@@ -70,5 +71,12 @@ public class Usuario {
 	public void setTelefone(String telefone) {
 		this.telefone = telefone;
 	}
-	
+
+	public TipoUsuario getTipoUsuario() {
+		return tipoUsuario;
+	}
+
+	public void setTipoUsuario(TipoUsuario tipoUsuario) {
+		this.tipoUsuario = tipoUsuario;
+	}
 }
