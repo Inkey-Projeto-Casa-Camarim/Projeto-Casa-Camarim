@@ -1,5 +1,7 @@
 package com.casa_camarim.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -20,15 +22,16 @@ public class Usuario {
 	@Column(name = "id_usuario", nullable = false)
 	private Long id_usuario;
 	
-	@ManyToOne
-	@JoinColumn(name = "id_tipo", nullable = false)
-	private TipoUsuario tipoUsuario;
-	
 	@Column(name = "nome", nullable = false, length = 100)
 	private String nome;
 	
 	@Column(name = "telefone", nullable = false, unique = false)
 	private String telefone;
+	
+	@ManyToOne
+	@JoinColumn(name = "id_tipo", nullable = false)
+	@JsonIgnoreProperties("usuarios")
+	private TipoUsuario tipoUsuario;
 	
 	// Construtores
 	
