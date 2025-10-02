@@ -14,7 +14,7 @@ public class ServicoService {
 
 	 // Injeta automaticamente o repositório do Serviço
 	@Autowired
-private ServicoRepository servicoRepository;
+	private ServicoRepository servicoRepository;
 	
 	// Salva ou atualiza um serviço no banco de dados.
 	public Servico saveServico(Servico servico) {

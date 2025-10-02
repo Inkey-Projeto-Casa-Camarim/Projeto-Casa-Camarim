@@ -16,43 +16,48 @@ import org.springframework.web.bind.annotation.RestController;
 import com.casa_camarim.entities.Usuario;
 import com.casa_camarim.service.UsuarioService;
 
+//Controller REST para gerenciar usuários.
+//Expõe endpoints para criar, listar, buscar por ID e deletar usuários.
 @RestController
 @RequestMapping("/usuario")
 public class UsuarioController {
 
+	// Injeta automaticamente o service do usuário
 	@Autowired
 	private UsuarioService usuarioService;
 
-	//Endpoint para salvar 
+	// Endpoint para salvar um usuário
 	@PostMapping("/register")
 	public ResponseEntity<Usuario> createUsuario(@RequestBody Usuario usuario) {
 		Usuario novoUsuario = usuarioService.saveUsuario(usuario);
 		return ResponseEntity.ok(novoUsuario);
 	}
 
-	//Endpoint para buscar 
+	// Endpoint para buscar um usuário
 	@GetMapping
 	public List<Usuario> getAllUsuario() {
 		return usuarioService.getAllUsuario();
 	}
 
-	//Endpoint para buscar usuário por ID
+	// Endpoint para buscar usuário por ID
 	@GetMapping("/{id}")
 	public Usuario getUsuarioById(@PathVariable Long id) {
 		return usuarioService.getUsuarioById(id);
 	}
 	
+	// Endpoint para editar os usuários
 	@PutMapping
 	public Usuario editusuario(@RequestBody Usuario usuario) {
 		return usuarioService.saveUsuario(usuario);
 	}
 	
-	//Endpoint para deletar um usuário
+	// Endpoint para deletar um usuário
 	@DeleteMapping("/{id}")
 	public void deleteUsuario(@PathVariable Long id) {
 		usuarioService.deleteUsuario(id);
 	}
 
+	// Endpoint para logar o usuário
     	@GetMapping("/login")
         public Usuario login(@RequestBody Usuario loginRequest) {
     		Usuario usuario = usuarioService.getUsuarioByTelefone(loginRequest.getTelefone());
