@@ -13,11 +13,11 @@ body {
     top: 0;
     left: 0;
     width: 100vw;
-    height: 100vh; 
+    height: 100vh;
     background: linear-gradient(to bottom, #FAF6F4, #DDB2B5);
     display: flex;
-    justify-content: center; 
-    align-items: center;  
+    justify-content: center;
+    align-items: center;
     z-index: 999999;
     opacity: 1;
     transition: opacity 0.8s ease;
@@ -38,8 +38,13 @@ body {
 }
 
 @keyframes spin {
-    0%   { transform: rotate(0deg); }
-    100% { transform: rotate(360deg); }
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
 }
 
 /* Conteúdo fade-in */
@@ -100,7 +105,7 @@ body.loaded header {
 /* nav bar e header */
 header h1 {
     color: #5E3F44;
-    font-size: 45px;
+    font-size: 8vh;
     margin-top: 6%;
     margin-left: 5%;
     margin-right: 5%;
@@ -118,7 +123,7 @@ header p {
     color: #A47E82;
     letter-spacing: 2px;
     margin-top: 1%;
-    font-size: 18px;
+    font-size: 22px;
     margin-left: 5%;
     font-family: Avenir;
     font-weight: 600;
@@ -284,14 +289,14 @@ i.close-btn {
 .botao-claro {
     color: #FAF6F4;
     letter-spacing: 2px;
-    font-size: 13px;
+    font-size: 15px;
     font-family: Avenir;
     font-weight: 600;
     background: none;
     border: solid #FAF6F4;
     border-color: #FAF6F4;
     border-width: 2px;
-    padding: 10px;
+    padding: 15px;
     transition: all 0.1s ease-in-out;
     box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
 }
@@ -299,14 +304,14 @@ i.close-btn {
 .botao-escuro-2 {
     color: #5E3F44;
     letter-spacing: 2px;
-    font-size: 13px;
+    font-size: 15px;
     font-family: Avenir;
     font-weight: 600;
     background: none;
     border: solid #5E3F44;
     border-color: #5E3F44;
     border-width: 2px;
-    padding: 10px;
+    padding: 15px;
     transition: all 0.2s;
     box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
 }
@@ -682,4 +687,27 @@ main {
     height: 300px;
     background-color: #A47E82;
     margin: 5%;
+}
+
+/* fontes para dispositivos menores */
+@media (max-width: 1000px) {
+    header p {
+        font-size: 18px;
+    }
+
+    header h1 {
+        font-size: 45px;
+    }
+
+    .botao-escuro,
+    .botao-claro {
+        font-size: 13px;
+        padding: 10px;
+
+    }
+
+    .botao-escuro-2 {
+        font-size: 13px;
+        padding: 10px;
+    }
 }
