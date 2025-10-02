@@ -9,5 +9,5 @@ import com.casa_camarim.entities.TipoUsuario;
 public interface TipoUsuarioRepository extends JpaRepository<TipoUsuario, Long>{
 
 	TipoUsuario findByCpf(String cpf);
-    }
+ }
 

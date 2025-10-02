@@ -3,16 +3,17 @@ package com.casa_camarim.controllers;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.casa_camarim.entities.TipoUsuario;
+import com.casa_camarim.entities.Usuario;
 import com.casa_camarim.service.TipoUsuarioService;
 
 @RestController
@@ -40,21 +41,24 @@ public class TipoUsuarioController {
 		return tipoUsuarioService.getTipoUsuarioById(id);
 	}
 	
-	@GetMapping("/cpf/{cpf}")
-    public ResponseEntity<Object> buscarTipoUsuarioPorCpf(@PathVariable String cpf) {
-        TipoUsuario tipoUsuario = tipoUsuarioService.buscarTipoUsuarioPorCpf(cpf);
-
-        if (tipoUsuario != null) {
-            return ResponseEntity.ok(tipoUsuario);
-        } else {
-            return ResponseEntity.status(404).body("Administrador com CPF " + cpf + "não foi encontrado");
-        }
-    }
+	@PutMapping
+	public TipoUsuario editTipoUsuario(@RequestBody TipoUsuario tipoUsuario) {
+		return tipoUsuarioService.saveTipoUsuario(tipoUsuario);
+	}
 
     //Endpoint para deletar um usuário
 	@DeleteMapping("/{id}")
 	public void deleteTipoUsuario(@PathVariable Long id) {
 		tipoUsuarioService.deleteTipoUsuario(id);
+	}
+	
+	@PostMapping("/login")
+	public TipoUsuario login(@RequestBody TipoUsuario loginRequest) {
+		TipoUsuario tipoUsuario = tipoUsuarioService.autenticarCpf(loginRequest.getCpf());
+		if(tipoUsuario != null) {
+			return tipoUsuario;
+		}
+		return null;	
 	}
 
 }

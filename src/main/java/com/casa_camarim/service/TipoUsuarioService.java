@@ -23,14 +23,19 @@ public class TipoUsuarioService {
 		}
 
 		public TipoUsuario getTipoUsuarioById(Long id) {
-			return tipoUsuarioRepository.findById(id).orElse(null);
+			return tipoUsuarioRepository.findById(id).
+					orElseThrow(() -> new RuntimeException("Tipo Cliente não encontrado"));
 		}
-
-		public TipoUsuario buscarTipoUsuarioPorCpf(String cpf) {
-	        return tipoUsuarioRepository.findByCpf(cpf);
-	    }
 		
 		public void deleteTipoUsuario(Long id) {
 			tipoUsuarioRepository.deleteById(id);
 		}
+		
+		public TipoUsuario autenticarCpf(String cpf) {
+	        TipoUsuario tipoUsuario = tipoUsuarioRepository.findByCpf(cpf);
+	        if(tipoUsuario != null) {
+	        		return tipoUsuario;
+	        }
+	        return null;
+	    }
 }
