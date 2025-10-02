@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.casa_camarim.entities.TipoUsuario;
-import com.casa_camarim.entities.Usuario;
 import com.casa_camarim.service.TipoUsuarioService;
 
 @RestController
