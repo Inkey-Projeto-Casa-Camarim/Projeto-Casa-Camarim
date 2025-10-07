@@ -22,35 +22,37 @@ public class TipoUsuarioController {
 	@Autowired
 	private TipoUsuarioService tipoUsuarioService;
 
-	//Endpoint para salvar 
+	//Endpoint para salvar o TipoUsuario
 	@PostMapping
 	public TipoUsuario saveTipoUsuario(@RequestBody TipoUsuario tipoUsuario) {
 		return tipoUsuarioService.saveTipoUsuario(tipoUsuario);
 	}
 
-	//Endpoint para buscar 
+	//Endpoint para buscar o TipoUsuario
 	@GetMapping
 	public List<TipoUsuario> getAllTipoUsuario() {
 		return tipoUsuarioService.getAllTipoUsuario();
 	}
 
-	//Endpoint para buscar usuário por ID
+	// Endpoint para buscar usuário por ID no TipoUsuario
 	@GetMapping("/{id}")
 	public TipoUsuario getTipoUsuarioById(@PathVariable Long id) {
 		return tipoUsuarioService.getTipoUsuarioById(id);
 	}
 	
+	// Endpoint para editar os TipoUsuario
 	@PutMapping
 	public TipoUsuario editTipoUsuario(@RequestBody TipoUsuario tipoUsuario) {
 		return tipoUsuarioService.saveTipoUsuario(tipoUsuario);
 	}
 
-    //Endpoint para deletar um usuário
+    // Endpoint para deletar um usuário no TipoUsuario
 	@DeleteMapping("/{id}")
 	public void deleteTipoUsuario(@PathVariable Long id) {
 		tipoUsuarioService.deleteTipoUsuario(id);
 	}
 	
+	// Autentica um usuário pelo CPF enviado via POST e retorna o objeto se existir; senão, retorna null.
 	@PostMapping("/login")
 	public TipoUsuario login(@RequestBody TipoUsuario loginRequest) {
 		TipoUsuario tipoUsuario = tipoUsuarioService.autenticarCpf(loginRequest.getCpf());

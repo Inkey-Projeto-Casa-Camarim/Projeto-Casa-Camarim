@@ -44,646 +44,6 @@
             font-family: Misswansa;
             src: url('font/Misswansa.ttf');
         }
-
-        * {
-            margin: 0;
-            cursor: none;
-        }
-
-        body {
-            background-color: #FAF6F4;
-        }
-
-        /* cursor */
-        #circularcursor {
-            background-color: #3E3333;
-            height: 10px;
-            width: 10px;
-            border-radius: 50%;
-            -moz-border-radius: 50%;
-            -webkit-border-radius: 50%;
-            position: absolute;
-            z-index: 999999;
-        }
-
-        /* botão voltar ao topo */
-        #btnTopo {
-            position: fixed;
-            bottom: 20px;
-            left: 20px;
-            width: 50px;
-            height: 50px;
-            border: none;
-            border-radius: 50%;
-            background-color: #5E3F44;
-            color: #FAF6F4;
-            font-size: 20px;
-            box-shadow: rgba(0, 0, 0, 0.2) 0px 4px 12px;
-            z-index: 99999;
-            opacity: 0;
-            visibility: hidden;
-            transform: translateY(20px);
-            transition: all 0.4s ease;
-        }
-
-        #btnTopo.show {
-            opacity: 1;
-            visibility: visible;
-            transform: translateY(0);
-        }
-
-        #btnTopo:hover {
-            background-color: #A47E82;
-            transform: scale(1.1);
-        }
-
-        /* nav bar e header */
-
-        header h1 {
-            color: #5E3F44;
-            font-size: 45px;
-            margin-top: 6%;
-            margin-left: 5%;
-            margin-right: 5%;
-            font-weight: 300;
-            font-family: Misswansa;
-        }
-
-        @media (max-width: 600px) {
-            header h1 {
-                margin-top: 25%;
-            }
-        }
-
-        header p {
-            color: #A47E82;
-            letter-spacing: 2px;
-            margin-top: 1%;
-            font-size: 18px;
-            margin-left: 5%;
-            font-family: Avenir;
-            font-weight: 600;
-        }
-
-        header {
-            height: 350hv;
-            background: linear-gradient(to bottom, #FAF6F4, #DDB2B5);
-        }
-
-        .logo-container {
-            margin-left: 5%;
-            margin-right: 5%;
-            margin-top: 13px;
-        }
-
-        .logo {
-            width: 60px;
-        }
-
-        nav {
-            width: 100%;
-            margin-top: 3%;
-            align-items: center;
-            justify-content: space-between;
-            transition: .5s;
-        }
-
-        nav .navigation {
-            position: relative;
-            line-height: 75px;
-            transition: .5s;
-            transition-property: line-height;
-        }
-
-        nav.sticky .navigation {
-            line-height: 60px;
-        }
-
-        nav .navigation .menu {
-            position: relative;
-            display: flex;
-            justify-content: center;
-            list-style: none;
-            user-select: none;
-        }
-
-        .item::after {
-            content: '';
-            position: absolute;
-            height: 2px;
-            left: 0;
-            bottom: 0;
-            width: 0;
-            background: #996663;
-            transition: width .2s;
-        }
-
-        .item:hover::after {
-            width: 100%;
-        }
-
-        i.menu-btn,
-        i.close-btn {
-            display: none;
-        }
-
-        .logo-mobile {
-            width: 45px;
-            display: block;
-            position: absolute;
-            top: 15px;
-            margin-bottom: 15%;
-            left: 50%;
-            transform: translateX(-50%);
-            z-index: 1;
-        }
-
-        @media(min-width: 900px) {
-            .logo-mobile {
-                display: none;
-            }
-        }
-
-        @media (max-width:900px) {
-
-            header {
-                margin-top: 15%;
-            }
-
-            .item::after {
-                display: none;
-            }
-
-            .logo {
-                display: none;
-            }
-
-            nav .navigation .menu {
-                position: fixed;
-                display: block;
-                background: #F1D8D9;
-                min-width: 200px;
-                height: 100vh;
-                top: 0;
-                right: -100%;
-                padding: 90px 50px;
-                overflow-y: auto;
-                transition: .5s;
-                transition-property: right, visibility;
-                visibility: hidden;
-                z-index: 10;
-            }
-
-            nav.sticky .navigation {
-                line-height: 75px;
-            }
-
-            nav .navigation .menu.active {
-                right: 0;
-                visibility: visible;
-            }
-
-            i.close-btn {
-                position: absolute;
-                color: #996663;
-                font-size: 30px;
-                top: 0;
-                right: 0;
-                margin: 25px;
-                display: block;
-            }
-
-            i.menu-btn {
-                font-size: 30px;
-                color: #996663;
-                display: block;
-                position: absolute;
-                top: 20px;
-                right: 20px;
-                z-index: 1;
-            }
-        }
-
-        .menu-item a {
-            font-size: 30px;
-            margin: 20px;
-            position: relative;
-            color: #A47E82;
-            font-family: Cormorant;
-            text-decoration: none;
-        }
-
-        @media (max-width: 300px) {
-            .menu-item a {
-                font-size: 1rem;
-            }
-        }
-
-        /* botões da header */
-
-        .botao-escuro,
-        .botao-claro {
-            color: #FAF6F4;
-            letter-spacing: 2px;
-            font-size: 13px;
-            font-family: Avenir;
-            font-weight: 600;
-            background: none;
-            border: solid #FAF6F4;
-            border-color: #FAF6F4;
-            border-width: 2px;
-            padding: 10px;
-            transition: all 0.1s ease-in-out;
-            box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
-        }
-
-        .botao-escuro-2 {
-            color: #5E3F44;
-            letter-spacing: 2px;
-            font-size: 13px;
-            font-family: Avenir;
-            font-weight: 600;
-            background: none;
-            border: solid #5E3F44;
-            border-color: #5E3F44;
-            border-width: 2px;
-            padding: 10px;
-            transition: all 0.2s;
-            box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
-        }
-
-        .botao-escuro:hover {
-            background-color: #A47E82;
-        }
-
-        .botao-claro:hover {
-            background-color: #d1b7b9;
-        }
-
-        .botao-escuro-2:hover {
-            transform: scale(90%);
-            transition: all 0.2s;
-        }
-
-        .grid-botoes {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            width: 100%;
-        }
-
-        .esquerda {
-            justify-self: start;
-            margin-left: 10%;
-            margin-bottom: 5%;
-            margin-top: 3%;
-        }
-
-        .direita {
-            justify-self: end;
-            display: grid;
-            margin-right: 5%;
-            grid-template-columns: 1fr 1fr 1fr;
-        }
-
-        @media (max-width: 600px) {
-            .grid-botoes {
-                grid-template-columns: 1fr;
-            }
-
-            .esquerda,
-            .direita {
-                justify-self: start;
-                margin: 5%;
-            }
-        }
-
-        .midia {
-            fill: #5E3F44;
-            transition: all 0.1s ease-in-out;
-        }
-
-        .midia:hover {
-            opacity: 70%;
-        }
-
-        .localizacao {
-            background-color: #FFF3F3;
-            border-radius: 50%;
-            width: 38px;
-            height: 38px;
-            position: relative;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-top: 7px;
-            margin-left: 3px;
-            color: #5E3F44;
-            text-decoration: none;
-            transition: opacity 0.2s ease-in-out;
-        }
-
-        .localizacao:hover {
-            opacity: 70%;
-        }
-
-        /* fundo do site */
-        main {
-            background-color: #F7EAEB;
-            margin: 20px;
-            border-radius: 15px;
-            width: calc(100% - 40px);
-            height: 100%;
-            box-sizing: border-box;
-        }
-
-        /* marcas e horários */
-        .conteudo-topico h1 {
-            font-family: Avenir;
-            color: #FAF6F4;
-            letter-spacing: 2px;
-            font-size: 100%;
-            font-weight: 500;
-            position: relative;
-            z-index: 1;
-            background-color: #A47E82;
-            width: 90%;
-            height: 100%;
-            padding-left: 5%;
-            padding-bottom: 5%;
-            padding-right: 5%;
-            padding-top: 15%;
-            border-bottom-right-radius: 15px;
-            box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
-        }
-
-        .conteudo-topico p {
-            font-weight: 300;
-            font-family: Misswansa;
-            color: #5E3F44;
-            font-size: 25px;
-            position: relative;
-            z-index: 2;
-            left: 40px;
-            top: 25px;
-            width: 35%;
-            justify-content: center;
-            text-align: center;
-            background-color: #F1D8D9;
-            padding: 10px;
-            border-top-left-radius: 15px;
-            border-bottom-right-radius: 15px;
-            box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
-        }
-
-        .grid-topicos {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            padding-left: 15%;
-            padding-right: 15%;
-            padding-top: 5%;
-            margin-bottom: 10%;
-            gap: 5%;
-        }
-
-        @media (max-width: 600px) {
-            .grid-topicos {
-                grid-template-columns: 1fr;
-            }
-        }
-
-        /* sobre o casa camarim e imagem do salão */
-        .introducao-desktop h2 {
-            font-weight: 300;
-            font-size: 1.5em;
-            font-family: Misswansa;
-            color: #FAF6F4;
-            text-decoration: underline 1px #FAF6F4;
-            text-underline-offset: 4px;
-        }
-
-        .introducao-desktop h1 {
-            font-family: Avenir;
-            color: #FAF6F4;
-            letter-spacing: 1px;
-            font-size: 2em;
-            font-weight: 550;
-        }
-
-        .introducao-desktop p {
-            font-family: Avenir;
-            color: #FAF6F4;
-            font-size: 1.6em;
-            font-weight: 500;
-        }
-
-        .desktop {
-            position: relative;
-            width: 100%;
-            max-width: 100%;
-            height: 300px;
-            margin-bottom: 120px;
-        }
-
-        .introducao-desktop h2 {
-            font-weight: 300;
-            font-size: 1.5em;
-            font-family: Misswansa;
-            color: #FAF6F4;
-            text-decoration: underline 1px #FAF6F4;
-            text-underline-offset: 4px;
-        }
-
-        .introducao-desktop {
-            position: absolute;
-            left: -20px;
-            top: 75px;
-            width: 50%;
-            height: 70%;
-            background-color: #5E3F44;
-            border-bottom-right-radius: 20px;
-            z-index: 2;
-            padding: 50px;
-            box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
-        }
-
-        .imagem-desktop {
-            position: absolute;
-            right: -20px;
-            width: 70%;
-            height: 450px;
-            background-color: #B88FA5;
-            z-index: 1;
-            box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
-        }
-
-        .mobile {
-            position: relative;
-            height: 500px;
-            top: 35px;
-        }
-
-        .introducao-mobile h2 {
-            font-weight: 300;
-            font-family: Misswansa;
-            color: #FAF6F4;
-            text-decoration: underline 1px #FAF6F4;
-            text-underline-offset: 4px;
-        }
-
-        .introducao-mobile h1 {
-            font-family: Avenir;
-            color: #FAF6F4;
-            letter-spacing: 1px;
-            font-size: 1.5em;
-            font-weight: 550;
-        }
-
-        .introducao-mobile p {
-            font-family: Avenir;
-            color: #FAF6F4;
-            font-size: 1.2em;
-            font-weight: 500;
-        }
-
-        .introducao-mobile {
-            position: absolute;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 85%;
-            background-color: #5E3F44;
-            border-bottom-right-radius: 20px;
-            z-index: 2;
-            padding: 30px;
-            box-sizing: border-box;
-            color: white;
-            font-family: sans-serif;
-            box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
-        }
-
-        .imagem-mobile {
-            position: relative;
-            width: 100vw;
-            height: 55%;
-            left: -20px;
-            top: 150px;
-            background-color: #B88FA5;
-            z-index: 1;
-            box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
-        }
-
-        .introducao-mobile h2 {
-            font-weight: 300;
-            font-family: Misswansa;
-            color: #FAF6F4;
-            text-decoration: underline 1px #FAF6F4;
-            text-underline-offset: 4px;
-        }
-
-        .introducao-mobile h1 {
-            font-family: Avenir;
-            color: #FAF6F4;
-            letter-spacing: 1px;
-            font-size: 1.5em;
-            font-weight: 550;
-        }
-
-        .introducao-mobile p {
-            font-family: Avenir;
-            color: #FAF6F4;
-            font-size: 1.2em;
-            font-weight: 500;
-        }
-
-        @media(max-width: 600px) {
-            .desktop {
-                display: none;
-            }
-        }
-
-        @media(min-width: 600px) {
-            .mobile {
-                display: none;
-            }
-        }
-
-        /* serviços */
-        .servicos-introducao p {
-            font-family: Avenir;
-            color: #A47E82;
-            letter-spacing: 2px;
-            font-size: 100%;
-            font-weight: 550;
-            text-align: center;
-            text-decoration: underline 1px #A47E82;
-            text-underline-offset: 10px;
-            text-decoration-line: 20px;
-        }
-
-        .servicos-introducao h1 {
-            color: #5E3F44;
-            font-size: 45px;
-            text-align: center;
-            font-weight: 300;
-            font-family: Misswansa;
-            margin-top: 3%;
-        }
-
-        .servico h1 {
-            color: #5E3F44;
-            font-weight: 300;
-            font-family: Misswansa;
-            margin-bottom: 5%;
-            text-decoration: underline 1px #5E3F44;
-            text-underline-offset: 5px;
-            text-decoration-line: 20px;
-        }
-
-        .servico p {
-            color: #A47E82;
-            letter-spacing: 2px;
-            font-family: Avenir;
-            font-weight: 600;
-            margin-bottom: 10%;
-        }
-
-        @media (max-width: 600px) {
-            .servicos-introducao h1 {
-                font-size: 1.5em;
-            }
-        }
-
-        .servicos-introducao {
-            padding-top: 15%;
-        }
-
-        .servicos {
-            display: grid;
-            grid-template-columns: 1fr 1fr 1fr;
-            gap: 2%;
-            padding: 5%;
-        }
-
-        @media (max-width: 600px) {
-            .servicos {
-                grid-template-columns: 1fr;
-                margin: 5%;
-            }
-        }
-
-        .servico {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-        }
-
-        .imagem-servico {
-            width: 100%;
-            height: 300px;
-            background-color: #A47E82;
-            margin: 5%;
-        }
     </style>
 
     <div id="loading">
@@ -699,15 +59,15 @@
                 <ul class="menu">
                     <i class="fa-solid fa-xmark close-btn"></i>
 
-                    <li class="menu-item"><a href="#" class="item">Início</a></li>
+                    <li class="menu-item"><a href="index.html" class="item">Início</a></li>
 
-                    <li class="menu-item"><a href="horarios.html" class="item">Serviços</a></li>
+                    <li class="menu-item"><a href="servicos.html" class="item">Serviços</a></li>
 
                     <li class="logo-container">
                         <img class="logo" src="img/logo.png" alt="Logo">
                     </li>
 
-                    <li class="menu-item"><a class="item">Contatos</a></li>
+                    <li class="menu-item"><a class="item">Sobre nós</a></li>
 
                     <li class="menu-item"><a href="agenda.html" class="item">Agenda</a></li>
                 </ul>
@@ -799,50 +159,74 @@
         </div>
 
         <!-- serviços -->
-
+        <div id="servicos"></div>
         <div class="servicos-introducao">
             <p>SERVIÇOS</p>
-            <h1 id="servicos">Alguns de nossos serviços</h1>
+            <h1>Alguns de nossos serviços</h1>
         </div>
+
         <div class="servicos">
             <div class="servico">
-                <div class="imagem-servico"></div>
+                <div class="imagem-servico"><img src="img/servico-exemplo.PNG" alt=""></div>
                 <h1>Nome </h1>
                 <p>DESCRIÇÃO DOS SERVIÇOS.</p>
                 <button class="botao-escuro-2">VER HORÁRIOS</button>
             </div>
             <div class="servico">
-                <div class="imagem-servico"></div>
+                <div class="imagem-servico"><img src="img/servico-exemplo.PNG" alt=""></div>
                 <h1>Nome </h1>
                 <p>DESCRIÇÃO DOS SERVIÇOS.</p>
                 <button class="botao-escuro-2">VER HORÁRIOS</button>
             </div>
             <div class="servico">
-                <div class="imagem-servico"></div>
-                <h1>Nome </h1>
-                <p>DESCRIÇÃO DOS SERVIÇOS.</p>
-                <button class="botao-escuro-2">VER HORÁRIOS</button>
-            </div>
-            <div class="servico">
-                <div class="imagem-servico"></div>
-                <h1>Nome </h1>
-                <p>DESCRIÇÃO DOS SERVIÇOS.</p>
-                <button class="botao-escuro-2">VER HORÁRIOS</button>
-            </div>
-            <div class="servico">
-                <div class="imagem-servico"></div>
-                <h1>Nome </h1>
-                <p>DESCRIÇÃO DOS SERVIÇOS.</p>
-                <button class="botao-escuro-2">VER HORÁRIOS</button>
-            </div>
-            <div class="servico">
-                <div class="imagem-servico"></div>
+                <div class="imagem-servico"><img src="img/servico-exemplo.PNG" alt=""></div>
                 <h1>Nome </h1>
                 <p>DESCRIÇÃO DOS SERVIÇOS.</p>
                 <button class="botao-escuro-2">VER HORÁRIOS</button>
             </div>
         </div>
+
+        <a class="ver-servicos" href="">VER MAIS SERVIÇOS</a>
+
     </main>
+
+    <footer>
+        <div class="conteudo-footer">
+            <div class="loc">
+                <h1>LOCALIZAÇÃO</h1>
+                <p>Av. Marechal Dutra 635, Jd Embaixador.
+                    Sorocaba, 18040434</p>
+            </div>
+            <div class="cnt">
+                <h1>CONTATO</h1>
+                <p>+55 (15)99113-0620</p>
+                <div class="midias">
+                    <!-- instagram -->
+                    <a href="https://www.instagram.com/casacamarim/">
+                        <?xml version="1.0"?><svg class="midia" xmlns="http://www.w3.org/2000/svg" viewBox="12 -15 3 50"
+                            width="47px" height="47px">
+                            <circle cx="12" cy="13" r="20" fill="#FFF3F3" />
+                            <path
+                                d="M 8 3 C 5.239 3 3 5.239 3 8 L 3 16 C 3 18.761 5.239 21 8 21 L 16 21 C 18.761 21 21 18.761 21 16 L 21 8 C 21 5.239 18.761 3 16 3 L 8 3 z M 18 5 C 18.552 5 19 5.448 19 6 C 19 6.552 18.552 7 18 7 C 17.448 7 17 6.552 17 6 C 17 5.448 17.448 5 18 5 z M 12 7 C 14.761 7 17 9.239 17 12 C 17 14.761 14.761 17 12 17 C 9.239 17 7 14.761 7 12 C 7 9.239 9.239 7 12 7 z M 12 9 A 3 3 0 0 0 9 12 A 3 3 0 0 0 12 15 A 3 3 0 0 0 15 12 A 3 3 0 0 0 12 9 z" />
+                        </svg>
+                    </a>
+                    <!-- facebook -->
+                    <a href="https://www.facebook.com/p/Casa-Camarim-100054493809317/">
+                        <?xml version="1.0"?><svg class="midia" xmlns="http://www.w3.org/2000/svg" viewBox="12 -15 3 50"
+                            width="47px" height="47px">
+                            <circle cx="13" cy="13" r="20" fill="#FFF3F3" />
+                            <path
+                                d="M17.525,9H14V7c0-1.032,0.084-1.682,1.563-1.682h1.868v-3.18C16.522,2.044,15.608,1.998,14.693,2 C11.98,2,10,3.657,10,6.699V9H7v4l3-0.001V22h4v-9.003l3.066-0.001L17.525,9z" />
+                        </svg>
+                    </a>
+                </div>
+            </div>
+            <img src="img/logo.png" alt="">
+        </div>
+        <div class="creditos">
+            <h1>&copy;2025 Inkey</h1>
+        </div>
+    </footer>
 
     <script src="js-decoracao/loadings.js"></script>
     <script src="js-decoracao/scroll-inicio.js"></script>
