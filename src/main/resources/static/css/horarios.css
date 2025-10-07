@@ -13,11 +13,11 @@ body {
     top: 0;
     left: 0;
     width: 100vw;
-    height: 100vh; 
+    height: 100vh;
     background: linear-gradient(to bottom, #FAF6F4, #DDB2B5);
     display: flex;
-    justify-content: center; 
-    align-items: center;  
+    justify-content: center;
+    align-items: center;
     z-index: 999999;
     opacity: 1;
     transition: opacity 0.8s ease;
@@ -38,8 +38,13 @@ body {
 }
 
 @keyframes spin {
-    0%   { transform: rotate(0deg); }
-    100% { transform: rotate(360deg); }
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
 }
 
 /* Conteúdo fade-in */
@@ -97,48 +102,16 @@ body.loaded header {
     transform: scale(1.1);
 }
 
-/* configurações de fonte */
-
-.info h1 {
-    font-size: 1.8rem;
-    font-family: Cormorant;
-    color: #5E3F44;
-}
-
-.info h2 {
-    color: #A47E82;
-    font-size: 1.5rem;
-    font-family: Cormorant;
-}
-
-.info p {
-    color: #A47E82;
-    font-size: 1.25rem;
-    font-family: Cormorant;
-}
-
-/* Responsividade para telas menores das fontes */
-@media (max-width: 900px) {
-
-    .info h1 {
-        font-size: 1.25rem;
-    }
-
-    .info h2 {
-        font-size: 1rem;
-    }
-
-    .info p {
-        font-size: 0.875rem;
-    }
-
-    .servicos.active {
-        height: 350px;
-    }
-
-}
-
 /*nav bar*/
+.menu-item a {
+    font-size: 30px;
+    margin: 20px;
+    position: relative;
+    color: #A47E82;
+    font-family: Cormorant;
+    text-decoration: none;
+}
+
 .logo-container {
     margin-left: 5%;
     margin-right: 5%;
@@ -208,83 +181,6 @@ i.close-btn {
     z-index: 1;
 }
 
-@media(min-width: 700px) {
-    .logo-mobile {
-        display: none;
-    }
-}
-
-@media (max-width:700px) {
-
-    .item::after {
-        display: none;
-    }
-
-    .logo {
-        display: none;
-    }
-
-    nav .navigation .menu {
-        position: fixed;
-        display: block;
-        background: #F1D8D9;
-        min-width: 200px;
-        height: 100vh;
-        top: 0;
-        right: -100%;
-        padding: 90px 50px;
-        overflow-y: auto;
-        transition: .5s;
-        transition-property: right, visibility;
-        visibility: hidden;
-        z-index: 10;
-    }
-
-    nav.sticky .navigation {
-        line-height: 75px;
-    }
-
-    nav .navigation .menu.active {
-        right: 0;
-        visibility: visible;
-    }
-
-    i.close-btn {
-        position: absolute;
-        color: #996663;
-        font-size: 30px;
-        top: 0;
-        right: 0;
-        margin: 25px;
-        display: block;
-    }
-
-    i.menu-btn {
-        font-size: 30px;
-        color: #996663;
-        display: block;
-        position: absolute;
-        top: 20px;
-        right: 20px;
-        z-index: 1;
-    }
-}
-
-.menu-item a {
-    font-size: 30px;
-    margin: 20px;
-    position: relative;
-    color: #A47E82;
-    font-family: Cormorant;
-    text-decoration: none;
-}
-
-@media (max-width: 300px) {
-    .menu-item a {
-        font-size: 1rem;
-    }
-}
-
 /* fundo do site */
 main {
     display: flex;
@@ -301,12 +197,6 @@ main {
     padding-bottom: 5%;
     margin-top: 0;
     box-sizing: border-box;
-}
-
-@media(max-width: 700px) {
-    main {
-        margin-top: 75px;
-    }
 }
 
 /* horários e serviços listados */
@@ -348,13 +238,6 @@ main {
     height: 50px;
 }
 
-@media (min-width: 900px) {
-    .servicos {
-        width: 60%;
-        height: 80px;
-    }
-}
-
 .servicos.active {
     height: 390px;
 }
@@ -362,6 +245,24 @@ main {
 /* informações de cada serviço */
 .info {
     justify-self: start;
+}
+
+.info h1 {
+    font-size: 1.8rem;
+    font-family: Cormorant;
+    color: #5E3F44;
+}
+
+.info h2 {
+    color: #A47E82;
+    font-size: 1.5rem;
+    font-family: Cormorant;
+}
+
+.info p {
+    color: #A47E82;
+    font-size: 1.25rem;
+    font-family: Cormorant;
 }
 
 .agendar {
@@ -378,7 +279,7 @@ main {
     box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
 }
 
-.agendar:hover{
+.agendar:hover {
     background-color: #5E3F44;
 }
 
@@ -437,13 +338,6 @@ select.opcoes:focus {
     box-shadow: 0 0 0 2px rgba(164, 126, 130, 0.3);
 }
 
-@media (max-width: 480px) {
-    select.opcoes {
-        font-size: 0.875rem;
-        padding: 8px;
-    }
-}
-
 .enviar {
     margin-top: 10px;
     grid-column: span 2;
@@ -461,4 +355,115 @@ select.opcoes:focus {
 
 .enviar:hover {
     background-color: #A47E82;
+}
+
+
+/* Responsividade para telas menores das fontes */
+
+/* minímo 700px */
+@media(min-width: 700px) {
+    .logo-mobile {
+        display: none;
+    }
+}
+
+/* minímo 900px */
+@media (min-width: 900px) {
+    .servicos {
+        width: 60%;
+        height: 80px;
+    }
+}
+
+/* máximo 350px */
+
+@media (max-width: 350px) {
+    select.opcoes {
+        font-size: 0.875rem;
+        padding: 8px;
+    }
+
+    .menu-item a {
+        font-size: 1rem;
+    }
+}
+
+/* máximo 700px */
+@media(max-width: 700px) {
+    main {
+        margin-top: 75px;
+    }
+
+    .item::after {
+        display: none;
+    }
+
+    .logo {
+        display: none;
+    }
+
+    nav .navigation .menu {
+        position: fixed;
+        display: block;
+        background: #F1D8D9;
+        min-width: 200px;
+        height: 100vh;
+        top: 0;
+        right: -100%;
+        padding: 90px 50px;
+        overflow-y: auto;
+        transition: .5s;
+        transition-property: right, visibility;
+        visibility: hidden;
+        z-index: 10;
+    }
+
+    nav.sticky .navigation {
+        line-height: 75px;
+    }
+
+    nav .navigation .menu.active {
+        right: 0;
+        visibility: visible;
+    }
+
+    i.close-btn {
+        position: absolute;
+        color: #996663;
+        font-size: 30px;
+        top: 0;
+        right: 0;
+        margin: 25px;
+        display: block;
+    }
+
+    i.menu-btn {
+        font-size: 30px;
+        color: #996663;
+        display: block;
+        position: absolute;
+        top: 20px;
+        right: 20px;
+        z-index: 1;
+    }
+}
+
+/*máximo 900px*/
+@media (max-width: 900px) {
+
+    .info h1 {
+        font-size: 1.25rem;
+    }
+
+    .info h2 {
+        font-size: 1rem;
+    }
+
+    .info p {
+        font-size: 0.875rem;
+    }
+
+    .servicos.active {
+        height: 350px;
+    }
 }
