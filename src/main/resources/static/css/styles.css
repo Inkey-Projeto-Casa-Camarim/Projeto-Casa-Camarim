@@ -75,7 +75,7 @@ body.loaded header {
 #btnTopo {
     position: fixed;
     bottom: 20px;
-    left: 20px;
+    right: 20px;
     width: 50px;
     height: 50px;
     border: none;
@@ -103,20 +103,24 @@ body.loaded header {
 }
 
 /* nav bar e header */
+.menu-item a[href="index.html"]::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background-color: #A47E82;
+}
+
 header h1 {
     color: #5E3F44;
-    font-size: 8vh;
+    font-size: 45px;
+    zoom: 1.4;
     margin-top: 6%;
     margin-left: 5%;
     margin-right: 5%;
     font-weight: 300;
     font-family: Misswansa;
-}
-
-@media (max-width: 600px) {
-    header h1 {
-        margin-top: 25%;
-    }
 }
 
 header p {
@@ -178,7 +182,7 @@ nav .navigation .menu {
     left: 0;
     bottom: 0;
     width: 0;
-    background: #996663;
+    background: #A47E82;
     transition: width .2s;
 }
 
@@ -202,72 +206,6 @@ i.close-btn {
     z-index: 1;
 }
 
-@media(min-width: 900px) {
-    .logo-mobile {
-        display: none;
-    }
-}
-
-@media (max-width:900px) {
-
-    header {
-        margin-top: 15%;
-    }
-
-    .item::after {
-        display: none;
-    }
-
-    .logo {
-        display: none;
-    }
-
-    nav .navigation .menu {
-        position: fixed;
-        display: block;
-        background: #F1D8D9;
-        min-width: 200px;
-        height: 100vh;
-        top: 0;
-        right: -100%;
-        padding: 90px 50px;
-        overflow-y: auto;
-        transition: .5s;
-        transition-property: right, visibility;
-        visibility: hidden;
-        z-index: 10;
-    }
-
-    nav.sticky .navigation {
-        line-height: 75px;
-    }
-
-    nav .navigation .menu.active {
-        right: 0;
-        visibility: visible;
-    }
-
-    i.close-btn {
-        position: absolute;
-        color: #996663;
-        font-size: 30px;
-        top: 0;
-        right: 0;
-        margin: 25px;
-        display: block;
-    }
-
-    i.menu-btn {
-        font-size: 30px;
-        color: #996663;
-        display: block;
-        position: absolute;
-        top: 20px;
-        right: 20px;
-        z-index: 1;
-    }
-}
-
 .menu-item a {
     font-size: 30px;
     margin: 20px;
@@ -275,12 +213,6 @@ i.close-btn {
     color: #A47E82;
     font-family: Cormorant;
     text-decoration: none;
-}
-
-@media (max-width: 300px) {
-    .menu-item a {
-        font-size: 1rem;
-    }
 }
 
 /* botões da header */
@@ -293,9 +225,7 @@ i.close-btn {
     font-family: Avenir;
     font-weight: 600;
     background: none;
-    border: solid #FAF6F4;
-    border-color: #FAF6F4;
-    border-width: 2px;
+    border: solid 2px #FAF6F4;
     padding: 15px;
     transition: all 0.1s ease-in-out;
     box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
@@ -308,9 +238,7 @@ i.close-btn {
     font-family: Avenir;
     font-weight: 600;
     background: none;
-    border: solid #5E3F44;
-    border-color: #5E3F44;
-    border-width: 2px;
+    border: solid 2px #5E3F44;
     padding: 15px;
     transition: all 0.2s;
     box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
@@ -349,21 +277,10 @@ i.close-btn {
     grid-template-columns: 1fr 1fr 1fr;
 }
 
-@media (max-width: 600px) {
-    .grid-botoes {
-        grid-template-columns: 1fr;
-    }
-
-    .esquerda,
-    .direita {
-        justify-self: start;
-        margin: 5%;
-    }
-}
-
 .midia {
     fill: #5E3F44;
     transition: all 0.1s ease-in-out;
+    zoom: 1.2;
 }
 
 .midia:hover {
@@ -374,6 +291,7 @@ i.close-btn {
     background-color: #FFF3F3;
     border-radius: 50%;
     width: 38px;
+    zoom: 1.2;
     height: 38px;
     position: relative;
     display: flex;
@@ -412,9 +330,7 @@ main {
     background-color: #A47E82;
     width: 90%;
     height: 100%;
-    padding-left: 5%;
-    padding-bottom: 5%;
-    padding-right: 5%;
+    padding: 5%;
     padding-top: 15%;
     border-bottom-right-radius: 15px;
     box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
@@ -447,12 +363,7 @@ main {
     padding-top: 5%;
     margin-bottom: 10%;
     gap: 5%;
-}
-
-@media (max-width: 600px) {
-    .grid-topicos {
-        grid-template-columns: 1fr;
-    }
+    zoom: 1.2;
 }
 
 /* sobre o casa camarim e imagem do salão */
@@ -485,6 +396,7 @@ main {
     width: 100%;
     max-width: 100%;
     height: 300px;
+    zoom: 1.2;
     margin-bottom: 120px;
 }
 
@@ -512,7 +424,7 @@ main {
 
 .imagem-desktop {
     position: absolute;
-    right: -20px;
+    right: -15px;
     width: 70%;
     height: 450px;
     background-color: #B88FA5;
@@ -598,19 +510,15 @@ main {
     font-weight: 500;
 }
 
-@media(max-width: 600px) {
-    .desktop {
-        display: none;
-    }
-}
-
-@media(min-width: 600px) {
-    .mobile {
-        display: none;
-    }
-}
-
 /* serviços */
+.servicos-introducao {
+    zoom: 1.2;
+}
+
+.servicos-introducao {
+    padding-top: 15%;
+}
+
 .servicos-introducao p {
     font-family: Avenir;
     color: #A47E82;
@@ -620,7 +528,6 @@ main {
     text-align: center;
     text-decoration: underline 1px #A47E82;
     text-underline-offset: 10px;
-    text-decoration-line: 20px;
 }
 
 .servicos-introducao h1 {
@@ -629,7 +536,7 @@ main {
     text-align: center;
     font-weight: 300;
     font-family: Misswansa;
-    margin-top: 3%;
+    margin-top: 15px;
 }
 
 .servico h1 {
@@ -650,28 +557,11 @@ main {
     margin-bottom: 10%;
 }
 
-@media (max-width: 600px) {
-    .servicos-introducao h1 {
-        font-size: 1.5em;
-    }
-}
-
-.servicos-introducao {
-    padding-top: 15%;
-}
-
 .servicos {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
     gap: 2%;
     padding: 5%;
-}
-
-@media (max-width: 600px) {
-    .servicos {
-        grid-template-columns: 1fr;
-        margin: 5%;
-    }
 }
 
 .servico {
@@ -683,20 +573,250 @@ main {
 }
 
 .imagem-servico {
-    width: 100%;
-    height: 300px;
     background-color: #A47E82;
     margin: 5%;
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
 }
 
-/* fontes para dispositivos menores */
+.imagem-servico img {
+    width: 100%;
+    zoom: 1.5;
+}
+
+.ver-servicos {
+    text-decoration: underline 2px #5E3F44;
+    display: flex;
+    justify-content: center;
+    letter-spacing: 2px;
+    font-family: Avenir;
+    font-weight: 600;
+    color: #5E3F44;
+    border: none;
+    padding: 30px;
+    text-align: center;
+    transition: all 0.2s;
+    zoom: 1.1;
+    text-underline-offset: 3px;
+}
+
+.ver-servicos:hover {
+    color: #996663;
+    text-decoration: underline 2px #996663;
+}
+
+/* footer */
+footer {
+    zoom: 1.2;
+}
+
+.conteudo-footer {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    background: linear-gradient(to bottom, #DDB2B5, #FAF6F4);
+}
+
+.midias {
+    display: block;
+    margin-top: 5px;
+}
+
+.midias a {
+    text-decoration: none;
+}
+
+.loc,
+.cnt {
+    padding: 35px;
+    padding-bottom: 0;
+}
+
+.loc h1,
+.cnt h1 {
+    color: #5E3F44;
+    letter-spacing: 2px;
+    font-size: 15px;
+    font-family: Avenir;
+    font-weight: 800;
+}
+
+.loc p,
+.cnt p {
+    color: #A47E82;
+    letter-spacing: 2px;
+    font-size: 15px;
+    font-family: Avenir;
+    font-weight: 600;
+}
+
+footer img {
+    width: 60px;
+    padding: 35px;
+    display: block;
+    margin: 0 auto;
+    position: relative;
+}
+
+.creditos {
+    width: auto;
+    background-color: #DDB2B5;
+    padding: 10px;
+    padding-left: 35px;
+    margin-top: 15px;
+}
+
+.creditos h1 {
+    color: #FFF3F3;
+    letter-spacing: 2px;
+    font-size: 15px;
+    font-family: Avenir;
+    font-weight: 600;
+}
+
+/* ajuste para telas pequenas */
+@media(min-width: 900px) {
+    .logo-mobile {
+        display: none;
+    }
+}
+
+@media(min-width: 600px) {
+    .mobile {
+        display: none;
+    }
+}
+
+@media (max-width: 300px) {
+    .menu-item a {
+        font-size: 1rem;
+    }
+}
+
+@media (max-width: 600px) {
+    .conteudo-footer {
+        grid-template-columns: 1fr;
+    }
+
+    footer img {
+        display: none;
+    }
+
+    header h1 {
+        margin-top: 25%;
+    }
+
+    .desktop {
+        display: none;
+    }
+
+    .grid-botoes {
+        grid-template-columns: 1fr;
+    }
+
+    .esquerda,
+    .direita {
+        justify-self: start;
+        margin: 5%;
+    }
+
+    .grid-topicos {
+        grid-template-columns: 1fr;
+    }
+
+    .servicos-introducao h1 {
+        font-size: 1.5em;
+    }
+
+    .servicos-introducao {
+        zoom: 1.0;
+    }
+
+    .servicos {
+        grid-template-columns: 1fr;
+        margin: 5%;
+    }
+
+    .ver-servicos {
+        margin-top: 50px;
+        zoom: 1.0;
+    }
+}
+
+@media(max-width: 900px) {
+    header {
+        margin-top: 15%;
+    }
+
+    .item::after {
+        display: none;
+    }
+
+    .logo {
+        display: none;
+    }
+
+    nav .navigation .menu {
+        position: fixed;
+        display: block;
+        background: #F1D8D9;
+        min-width: 200px;
+        height: 100vh;
+        top: 0;
+        right: -100%;
+        padding: 90px 50px;
+        overflow-y: auto;
+        transition: .5s;
+        transition-property: right, visibility;
+        visibility: hidden;
+        z-index: 10;
+    }
+
+    nav.sticky .navigation {
+        line-height: 75px;
+    }
+
+    nav .navigation .menu.active {
+        right: 0;
+        visibility: visible;
+    }
+
+    i.close-btn {
+        position: absolute;
+        color: #996663;
+        font-size: 30px;
+        top: 0;
+        right: 0;
+        margin: 25px;
+        display: block;
+    }
+
+    i.menu-btn {
+        font-size: 30px;
+        color: #996663;
+        display: block;
+        position: absolute;
+        top: 20px;
+        right: 20px;
+        z-index: 1;
+    }
+
+    .conteudo-topico {
+        padding: 2%;
+        padding-top: 15%;
+
+    }
+
+    .conteudo-footer {
+        zoom: 0.9;
+    }
+}
+
 @media (max-width: 1000px) {
     header p {
         font-size: 18px;
     }
 
     header h1 {
-        font-size: 45px;
+        zoom: 1.0;
     }
 
     .botao-escuro,
@@ -709,5 +829,17 @@ main {
     .botao-escuro-2 {
         font-size: 13px;
         padding: 10px;
+    }
+
+    .midia {
+        zoom: 1.0;
+    }
+
+    .localizacao {
+        zoom: 1.0;
+    }
+
+    .grid-topicos {
+        zoom: 1.0;
     }
 }
