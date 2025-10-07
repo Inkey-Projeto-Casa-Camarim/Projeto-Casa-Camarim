@@ -103,6 +103,14 @@ body.loaded header {
 }
 
 /*nav bar*/
+.menu-item a[href="horarios.html"]::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background-color: #A47E82;
+}
 .menu-item a {
     font-size: 30px;
     margin: 20px;
@@ -157,7 +165,7 @@ nav .navigation .menu {
     left: 0;
     bottom: 0;
     width: 0;
-    background: #996663;
+    background: #A47E82;
     transition: width .2s;
 }
 

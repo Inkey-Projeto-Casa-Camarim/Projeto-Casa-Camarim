@@ -595,7 +595,6 @@ main {
     padding: 30px;
     text-align: center;
     transition: all 0.2s;
-    zoom: 1.1;
     text-underline-offset: 3px;
 }
 
@@ -734,6 +733,11 @@ footer img {
         grid-template-columns: 1fr;
         margin: 5%;
     }
+
+    main {
+        padding-bottom: 20%;
+    }
+
 
     .ver-servicos {
         margin-top: 50px;
