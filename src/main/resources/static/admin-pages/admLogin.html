@@ -6,8 +6,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <!-- links -->
-    <link rel="shortcut icon" href="img/logo.png" type="image/x-icon"> <!-- foto da aba do site -->
-    <link rel="icon" href="img/logo.png" sizes="16x16">
+    <link rel="shortcut icon" href="../img/logo.png" type="image/x-icon">
+    <link rel="icon" href="../img/logo.png" sizes="16x16">
+
+    <!-- Google Material Icons -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"
         integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g=="
@@ -20,35 +23,36 @@
     <style>
         @font-face {
             font-family: Cormorant;
-            src: url('font/Cormorant-Medium.ttf') format('truetype');
+            src: url('../font/Cormorant-Medium.ttf') format('truetype');
             font-weight: 700;
             font-style: normal;
         }
 
         @font-face {
             font-family: Avenir;
-            src: url('font/AvenirLTProBook.otf');
+            src: url('../font/AvenirLTProBook.otf');
         }
 
         @font-face {
             font-family: Misswansa;
-            src: url('font/Misswansa.ttf');
+            src: url('../font/Misswansa.ttf');
         }
 
         * {
             margin: 0;
             cursor: none;
+            box-sizing: border-box;
         }
 
         body {
-            background-color: #F1D8D9;
+            background: linear-gradient(to bottom, #FAF6F4, #DDB2B5);
             display: flex;
             justify-content: center;
             align-items: center;
             height: 100vh;
         }
 
-        /* loading*/
+        /* loading */
         #loading {
             position: fixed;
             top: 0;
@@ -88,29 +92,17 @@
             }
         }
 
-        /* Conteúdo fade-in */
-        body main {
-            opacity: 0;
-            transition: opacity 1s ease;
-        }
-
-        body.loaded main {
-            opacity: 1;
-        }
-
         /* cursor */
         #circularcursor {
             background-color: #3E3333;
             height: 10px;
             width: 10px;
             border-radius: 50%;
-            -moz-border-radius: 50%;
-            -webkit-border-radius: 50%;
             position: absolute;
             z-index: 9999;
         }
 
-        /*form*/
+        /* form */
         main {
             background-color: #FAF6F4;
             text-align: center;
@@ -122,13 +114,14 @@
             align-items: center;
             padding: 15px;
             box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 25px;
-
+            zoom: 1.2;
         }
 
         @media (max-width: 600px) {
             main {
                 width: 90%;
                 margin: 5%;
+                zoom: 1.0;
             }
         }
 
@@ -149,6 +142,7 @@
             display: flex;
             flex-direction: column;
             align-items: center;
+            position: relative;
         }
 
         form input {
@@ -159,7 +153,7 @@
             max-width: 250px;
             font-family: Avenir;
             letter-spacing: 1px;
-            font-weight: 500;
+            font-weight: 600;
             font-size: 1.1rem;
             outline: none;
             color: #FAF6F4;
@@ -171,10 +165,36 @@
             color: #FAF6F4;
         }
 
-        button {
+        /* campo da senha + botão */
+        .password-container {
+            position: relative;
+            width: 70%;
+            max-width: 250px;
+        }
+
+        .password-container input {
+            width: 100%;
+            padding-right: 40px;
+        }
+
+        .btn-toggle-senha {
+            position: absolute;
+            right: 10px;
+            top: 25%;
+            background: none;
+            border: none;
+            color: #FAF6F4;
+            font-size: 1.3rem;
+            padding: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .entrar {
             position: relative;
             z-index: 2;
-            top: 53px;
+            top: 50px;
             width: 200px;
             margin-top: 10px;
             color: #FAF6F4;
@@ -186,14 +206,12 @@
             border-top-left-radius: 10px;
             border-bottom-right-radius: 10px;
             background-color: #A47E82;
-            padding: 15px;
-            padding-left: 40px;
-            padding-right: 40px;
+            padding: 15px 40px;
             transition: all 0.1s ease-in-out;
             box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
         }
 
-        button:hover {
+        .entrar:hover {
             background-color: #5E3535;
         }
     </style>
@@ -204,17 +222,37 @@
     <div id="circularcursor"></div>
 
     <main>
-        <img src="img/logo.png" alt="logo">
+        <img src="../img/logo.png" alt="logo">
         <h1>Seja bem-vinda!</h1>
         <form>
             <input type="text" maxlength="100" placeholder="Login"><br>
-            <input type="password" maxlength="100" placeholder="Senha"><br>
-            <button type="submit">ENTRAR</button>
+
+            <div class="password-container">
+                <input type="password" id="senha" maxlength="100" placeholder="Senha">
+                <button type="button" class="btn-toggle-senha" id="toggleSenha">
+                    <span class="material-icons">visibility</span>
+                </button>
+            </div>
+
+            <a href="../confirmacoes/login.html"><button class="entrar" type="submit">ENTRAR</button></a>
         </form>
     </main>
 
-    <script src="js-decoracao/loadings.js"></script>
-    <script src="js-decoracao/cursor.js"></script>
+    <!-- script -->
+    <script>
+        const toggleSenha = document.getElementById('toggleSenha');
+        const inputSenha = document.getElementById('senha');
+        const icon = toggleSenha.querySelector('.material-icons');
+
+        toggleSenha.addEventListener('click', () => {
+            const tipo = inputSenha.getAttribute('type') === 'password' ? 'text' : 'password';
+            inputSenha.setAttribute('type', tipo);
+            icon.textContent = tipo === 'password' ? 'visibility' : 'visibility_off';
+        });
+    </script>
+
+    <script src="../js-decoracao/loadings.js"></script>
+    <script src="../js-decoracao/cursor.js"></script>
 </body>
 
 </html>
