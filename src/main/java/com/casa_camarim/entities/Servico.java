@@ -12,7 +12,7 @@ import jakarta.persistence.Table;
 // Entidade que representa um Serviço no sistema.
 // Na tabela "servico" do banco de dados.
 @Entity
-@Table(name = "servico")
+@Table(name = "tb_servico")
 public class Servico {
 
 	// Atributos -> são as características (ou propriedades) de uma classe.
@@ -28,16 +28,20 @@ public class Servico {
 	@Column(name = "nome_servico", nullable = false)
 	private String nome_servico;
 	
+	@Column(name = "descricao_servico", nullable = false)
+	private String descricao;
+	
 	// Construtores -> serve para inicializar os atributos do objeto (ou seja, dar valores iniciais).
 	
 	public Servico() {
 		
 	}
 	
-	public Servico(Long id_servico, BigDecimal preco, String nome_servico) {
+	public Servico(Long id_servico, BigDecimal preco, String nome_servico, String descricao) {
 		this.id_servico = id_servico;
 		this.nome_servico = nome_servico;
 		this.preco = preco;
+		this.descricao = descricao;
 	}
 
 	// Getters e Setters -> 
@@ -66,6 +70,14 @@ public class Servico {
 
 	public void setNome_servico(String nome_servico) {
 		this.nome_servico = nome_servico;
+	}
+	
+	public String getDescricao() {
+		return descricao;
+	}
+
+	public void setDescricao(String descricao) {
+		this.descricao = descricao;
 	}
 	
 }
