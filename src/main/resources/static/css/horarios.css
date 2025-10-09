@@ -5,6 +5,14 @@
 
 body {
     background-color: #FAF6F4;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+html {
+    height: 100%;
 }
 
 /* loading*/
@@ -111,6 +119,7 @@ body.loaded header {
     height: 2px;
     background-color: #A47E82;
 }
+
 .menu-item a {
     font-size: 30px;
     margin: 20px;
@@ -205,169 +214,79 @@ main {
     padding-bottom: 5%;
     margin-top: 0;
     box-sizing: border-box;
+    flex: 1;
 }
 
-/* horários e serviços listados */
-.servicos-introducao p {
-    font-family: Avenir;
-    color: #A47E82;
-    font-size: 0.5rem;
-    letter-spacing: 2px;
-    font-size: 100%;
-    font-weight: 550;
-    text-align: center;
-    margin: 10%;
+/* footer */
+footer {
+    margin-top: auto;
+    zoom: 1.2;
 }
 
-.servicos-introducao h1 {
+.conteudo-footer {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    background: linear-gradient(to bottom, #DDB2B5, #FAF6F4);
+}
+
+.midias {
+    display: block;
+    margin-top: 5px;
+}
+
+.midias a {
+    text-decoration: none;
+}
+
+.loc,
+.cnt {
+    padding: 35px;
+    padding-bottom: 0;
+}
+
+.loc h1,
+.cnt h1 {
     color: #5E3F44;
-    font-size: 35px;
-    text-align: center;
-    font-weight: 300;
+    font-size: 25px;
+    margin-bottom: 2%;
+    font-weight: 500;
     font-family: Misswansa;
-    text-decoration: underline 1px #A47E82;
-    text-underline-offset: 10px;
 }
 
-.servicos {
-    width: 100%;
-    display: grid;
-    margin: 5px;
-    grid-template-columns: repeat(2, 1fr);
-    background-color: #F1D8D9;
-    align-items: center;
-    justify-content: center;
-    padding: 20px;
-    overflow: hidden;
-    transition: height 400ms ease-in-out;
+.loc p,
+.cnt p {
+    color: #A47E82;
+    letter-spacing: 2px;
+    font-size: 15px;
+    font-family: Avenir;
+    font-weight: 500;
+}
+
+footer img {
+    width: 60px;
+    padding: 35px;
+    display: block;
+    margin: 0 auto;
     position: relative;
-    border-bottom-right-radius: 15px;
-    border-top-left-radius: 15px;
-    height: 50px;
 }
 
-.servicos.active {
-    height: 390px;
-}
-
-/* informações de cada serviço */
-.info {
-    justify-self: start;
-}
-
-.info h1 {
-    font-size: 1.8rem;
-    font-family: Cormorant;
-    color: #5E3F44;
-}
-
-.info h2 {
-    color: #A47E82;
-    font-size: 1.5rem;
-    font-family: Cormorant;
-}
-
-.info p {
-    color: #A47E82;
-    font-size: 1.25rem;
-    font-family: Cormorant;
-}
-
-.agendar {
-    justify-self: end;
-    color: #FAF6F4;
-    letter-spacing: 2px;
-    font-family: Avenir;
-    font-weight: 600;
-    border: none;
-    font-size: 12px;
-    background-color: #A47E82;
-    padding: 12px;
-    transition: all 0.2s;
-    box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
-}
-
-.agendar:hover {
-    background-color: #5E3F44;
-}
-
-.timer {
-    margin-right: 3%;
-    zoom: 70%;
-}
-
-/* formulário de agendamento */
-form {
-    display: grid;
-    grid-column: span 2;
-    width: 100%;
-    margin-top: 5%;
-}
-
-form input {
-    border: none;
+.creditos {
+    width: auto;
+    background-color: #DDB2B5;
     padding: 10px;
-    grid-column: span 2;
-    font-family: Avenir;
-    font-weight: 600;
-    opacity: 50%;
-    outline: none;
-    margin-bottom: 10px;
-    box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
-    transition: all 0.1s ease-in-out;
+    padding-left: 35px;
+    margin-top: 15px;
 }
 
-input:focus {
-    box-shadow: 0 0 0 2px rgba(164, 126, 130, 0.3);
-}
-
-select.opcoes {
-    border: none;
-    padding: 10px;
-    grid-column: span 2;
-    font-family: Avenir;
-    font-weight: 650;
-    outline: none;
-    opacity: 60%;
-    color: #797979;
-    margin-bottom: 10px;
-    box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
-    background-color: #FAF6F4;
-    -webkit-appearance: none;
-    -moz-appearance: none;
-    background-image: url("data:image/svg+xml;charset=US-ASCII,%3Csvg%20width%3D%2210%22%20height%3D%227%22%20viewBox%3D%220%200%2010%207%22%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%3E%3Cpath%20d%3D%22M0%200l5%207%205-7z%22%20fill%3D%22%235E3F44%22/%3E%3C/svg%3E");
-    background-repeat: no-repeat;
-    background-position: right 10px center;
-    background-size: 10px 7px;
-    appearance: none;
-}
-
-select.opcoes:focus {
-    box-shadow: 0 0 0 2px rgba(164, 126, 130, 0.3);
-}
-
-.enviar {
-    margin-top: 10px;
-    grid-column: span 2;
-    color: #FAF6F4;
+.creditos h1 {
+    color: #FFF3F3;
     letter-spacing: 2px;
+    font-size: 15px;
     font-family: Avenir;
     font-weight: 600;
-    border: none;
-    font-size: 12px;
-    background-color: #5E3F44;
-    padding: 12px;
-    transition: all 0.1s ease-in-out;
-    box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
 }
-
-.enviar:hover {
-    background-color: #A47E82;
-}
-
 
 /* Responsividade para telas menores das fontes */
-
 /* minímo 700px */
 @media(min-width: 700px) {
     .logo-mobile {
@@ -375,24 +294,22 @@ select.opcoes:focus {
     }
 }
 
-/* minímo 900px */
-@media (min-width: 900px) {
-    .servicos {
-        width: 60%;
-        height: 80px;
-    }
-}
-
 /* máximo 350px */
 
 @media (max-width: 350px) {
-    select.opcoes {
-        font-size: 0.875rem;
-        padding: 8px;
-    }
-
     .menu-item a {
         font-size: 1rem;
+    }
+}
+
+/*máximo 600px*/
+@media(max-width:600px) {
+    .conteudo-footer {
+        grid-template-columns: 1fr;
+    }
+
+    footer img {
+        display: none;
     }
 }
 
@@ -453,25 +370,5 @@ select.opcoes:focus {
         top: 20px;
         right: 20px;
         z-index: 1;
-    }
-}
-
-/*máximo 900px*/
-@media (max-width: 900px) {
-
-    .info h1 {
-        font-size: 1.25rem;
-    }
-
-    .info h2 {
-        font-size: 1rem;
-    }
-
-    .info p {
-        font-size: 0.875rem;
-    }
-
-    .servicos.active {
-        height: 350px;
     }
 }

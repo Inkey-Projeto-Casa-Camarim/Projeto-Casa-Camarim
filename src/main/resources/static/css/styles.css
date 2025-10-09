@@ -5,6 +5,11 @@
 
 body {
     background-color: #FAF6F4;
+    min-height: 100vh;
+}
+
+html {
+    height: 100%;
 }
 
 /* loading*/
@@ -582,26 +587,6 @@ main {
     zoom: 1.5;
 }
 
-.ver-servicos {
-    text-decoration: underline 2px #5E3F44;
-    display: flex;
-    justify-content: center;
-    letter-spacing: 2px;
-    font-family: Avenir;
-    font-weight: 600;
-    color: #5E3F44;
-    border: none;
-    padding: 30px;
-    text-align: center;
-    transition: all 0.2s;
-    text-underline-offset: 3px;
-}
-
-.ver-servicos:hover {
-    color: #996663;
-    text-decoration: underline 2px #996663;
-}
-
 /* footer */
 footer {
     zoom: 1.2;
@@ -631,10 +616,10 @@ footer {
 .loc h1,
 .cnt h1 {
     color: #5E3F44;
-    letter-spacing: 2px;
-    font-size: 15px;
-    font-family: Avenir;
-    font-weight: 800;
+    font-size: 25px;
+    margin-bottom: 2%;
+    font-weight: 500;
+    font-family: Misswansa;
 }
 
 .loc p,
