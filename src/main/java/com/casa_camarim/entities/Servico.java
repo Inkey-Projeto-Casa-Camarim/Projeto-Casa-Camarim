@@ -29,17 +29,21 @@ public class Servico {
 	@Column(name = "descricao_servico", nullable = false)
 	private String descricao;
 	
+	@Column(name = "tempo_servico", nullable = false)
+	private String tempo;
+	
 	// Construtores -> serve para inicializar os atributos do objeto (ou seja, dar valores iniciais).
 	
 	public Servico() {
 		
 	}
 	
-	public Servico(Long id_servico, String preco, String nome_servico, String descricao) {
+	public Servico(Long id_servico, String preco, String nome_servico, String descricao, String tempo) {
 		this.id_servico = id_servico;
 		this.nome_servico = nome_servico;
 		this.preco = preco;
 		this.descricao = descricao;
+		this.tempo = tempo;
 	}
 
 	// Getters e Setters -> 
@@ -76,6 +80,14 @@ public class Servico {
 
 	public void setDescricao(String descricao) {
 		this.descricao = descricao;
+	}
+
+	public String getTempo() {
+		return tempo;
+	}
+
+	public void setTempo(String tempo) {
+		this.tempo = tempo;
 	}
 	
 }
