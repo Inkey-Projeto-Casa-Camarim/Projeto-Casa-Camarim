@@ -27,6 +27,9 @@ public class TipoUsuario {
 	@Column(name = "cpf", nullable = false)
 	private String cpf;
 	
+	@Column(name = "senha_tipo", nullable = false, length = 100)
+	private String senha;
+	
 	@OneToMany(mappedBy = "tipoUsuario")
 	private List<Usuario> usuario;
 	
