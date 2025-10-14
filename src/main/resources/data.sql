@@ -9,7 +9,7 @@ insert ignore into tb_usuario(id_usuario, nome, telefone)
 values (1, 'Administrador', '15999999999'); -- Valores dos campos inseridos
 
 -- Tabela de serviço com os serviços oferecidos pela casa camarim
-insert ignore into tb_servico(id_servico, preco, nome_servico, descricao)
+insert ignore into tb_servico(id_servico, preco, nome_servico, descricao_servico)
 values (1, 'R$462,00', 'Cronograma Capilar Cabelo Médio', 'Pacote com 6 tratamentos'),
 (2, 'R$535,00', 'Cronograma Capilar Cabelo Longo', 'Pacote com 4 tratamentos'),
 (3, 'R$370,00', 'Pacote com 6 Escovas', 'Cabelo Médio'),
