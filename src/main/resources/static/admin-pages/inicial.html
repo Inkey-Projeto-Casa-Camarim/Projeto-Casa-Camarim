@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- links -->
+    <link rel="stylesheet" href="../css/inicial.css">
+
+    <link rel="shortcut icon" href="../img/logo.png" type="image/x-icon"> <!-- foto da aba do site -->
+    <link rel="icon" href="../img/logo.png" sizes="16x16">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+        integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"
+        integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+    <link href='https://cdn.jsdelivr.net/npm/boxicons@2.0.5/css/boxicons.min.css' rel='stylesheet'>
+
+    <title>Casa Camarim - horários</title>
+</head>
+
+<body>
+    <style>
+        @font-face {
+            font-family: Cormorant;
+            src: url('../font/Cormorant-Medium.ttf') format('truetype');
+            font-weight: 700;
+            font-style: normal;
+        }
+
+        @font-face {
+            font-family: Avenir;
+            src: url('../font/AvenirLTProBook.otf');
+        }
+
+        @font-face {
+            font-family: Misswansa;
+            src: url('../font/Misswansa.ttf');
+        }
+    </style>
+
+    <div id="loading">
+        <div class="spinner"></div>
+    </div>
+    <div id="circularcursor"></div>
+    <button id="btnTopo"><i class="fa-solid fa-arrow-up"></i></button>
+
+    <!-- cabeçalho -->
+    <header>
+        <img class="logo" src="../img/logo.png" alt="Logo">
+    </header>
+
+    <main>
+        <div class="paineis">
+            <div class="marcados">
+                <div class="dia">
+                    <h1></h1>
+                    <i class="expandir">pspsps</i>
+                </div>
+            </div>
+            <div class="edicao">
+                <h1>sajdkasjd</h1>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <h1>&copy;2025 Inkey</h1>
+    </footer>
+
+    <script>
+        // Seleciona todos os serviços e adiciona evento em cada botão
+        document.querySelectorAll(".dia").forEach(servico => {
+            const botao = servico.querySelector(".expandir");
+            botao.addEventListener("click", () => {
+                servico.classList.toggle("active");
+            });
+        }); '1'
+    </script>
+
+    <script src="../js-decoracao/loadings.js"></script>
+    <script src="../js-decoracao/scroll-inicio.js"></script>
+    <script src="../js-decoracao/cursor.js"></script>
+    <script src="../js-decoracao/nav.js"></script>
+    <script src="../js-decoracao/horarios.js"></script>
+</body>
+
+</html>

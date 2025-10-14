@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- links -->
+    <link rel="shortcut icon" href="../img/logo.png" type="image/x-icon">
+    <link rel="icon" href="../img/logo.png" sizes="16x16">
+
+    <!-- Google Material Icons -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"
+        integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+    <title>Agende</title>
+</head>
+
+<body>
+    <style>
+        @font-face {
+            font-family: Cormorant;
+            src: url('../font/Cormorant-Medium.ttf') format('truetype');
+            font-weight: 700;
+            font-style: normal;
+        }
+
+        @font-face {
+            font-family: Avenir;
+            src: url('../font/AvenirLTProBook.otf');
+        }
+
+        @font-face {
+            font-family: Misswansa;
+            src: url('../font/Misswansa.ttf');
+        }
+
+        * {
+            margin: 0;
+            cursor: none;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: linear-gradient(to bottom, #FAF6F4, #DDB2B5);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        /* loading */
+        #loading {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background: linear-gradient(to bottom, #FAF6F4, #DDB2B5);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 999999;
+            opacity: 1;
+            transition: opacity 0.8s ease;
+        }
+
+        #loading.fade-out {
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        .spinner {
+            border: 6px solid #f3f3f3;
+            border-top: 6px solid #A47E82;
+            border-radius: 50%;
+            width: 60px;
+            height: 60px;
+            animation: spin 0.7s linear infinite;
+        }
+
+        @keyframes spin {
+            0% {
+                transform: rotate(0deg);
+            }
+
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+
+        /* cursor */
+        #circularcursor {
+            background-color: #3E3333;
+            height: 10px;
+            width: 10px;
+            border-radius: 50%;
+            position: absolute;
+            z-index: 9999;
+        }
+
+        /* form */
+        main {
+            background-color: #FAF6F4;
+            text-align: center;
+            display: flex;
+            height: 370px;
+            width: 400px;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 15px;
+            box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 25px;
+            zoom: 1.2;
+        }
+
+        @media (max-width: 600px) {
+            main {
+                width: 90%;
+                margin: 5%;
+                zoom: 1.0;
+            }
+        }
+
+        img {
+            width: 60px;
+            margin: 5%;
+        }
+
+        form {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            position: relative;
+        }
+
+        form input {
+            border: none;
+            background-color: #DDB2B5;
+            padding: 10px;
+            width: 70%;
+            max-width: 250px;
+            font-family: Avenir;
+            letter-spacing: 1px;
+            font-weight: 600;
+            font-size: 1.1rem;
+            outline: none;
+            margin: 5px;
+            color: #FAF6F4;
+            box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
+            transition: all 0.1s ease-in-out;
+        }
+
+        form ::placeholder {
+            color: #FAF6F4;
+        }
+
+        select.opcoes {
+            margin: 5px;
+            border: none;
+            padding: 10px;
+            font-family: Avenir;
+            letter-spacing: 1px;
+            font-weight: 600;
+            font-size: 1.1rem;
+            outline: none;
+            width: 70%;
+            max-width: 250px;
+            color: #FAF6F4;
+            box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
+            background-color: #DDB2B5;
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            background-image: url("data:image/svg+xml;charset=US-ASCII,%3Csvg%20width%3D%2210%22%20height%3D%227%22%20viewBox%3D%220%200%2010%207%22%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%3E%3Cpath%20d%3D%22M0%200l5%207%205-7z%22%20fill%3D%22%23FAF6F4%22/%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: right 10px center;
+            background-size: 10px 7px;
+            appearance: none;
+        }
+
+        .entrar {
+            position: relative;
+            z-index: 2;
+            top: 30px;
+            width: 200px;
+            margin-top: 10px;
+            color: #FAF6F4;
+            letter-spacing: 2px;
+            font-family: Avenir;
+            font-weight: 600;
+            border: none;
+            font-size: 1rem;
+            border-top-left-radius: 10px;
+            border-bottom-right-radius: 10px;
+            background-color: #A47E82;
+            padding: 15px 40px;
+            transition: all 0.1s ease-in-out;
+            box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
+        }
+
+        .entrar:hover {
+            background-color: #5E3535;
+        }
+    </style>
+
+    <div id="loading">
+        <div class="spinner"></div>
+    </div>
+    <div id="circularcursor"></div>
+
+    <main>
+        <img src="img/logo.png" alt="logo">
+        <form>
+            <input type="text" maxlength="100" placeholder="Insira seu nome completo">
+            <input type="text" maxlength="11" placeholder="Insira seu telefone">
+            <select id="horario" class="opcoes" name="horario" required>
+                <option value="">Selecione horário...</option>
+                <option value="1">13:00</option>
+                <option value="2">16:00</option>
+            </select>
+            <select id="dia" class="opcoes" name="dia" required>
+                <option value="">Selecione dia...</option>
+                <option value="1">10/10</option>
+                <option value="2">11/10</option>
+            </select>
+            <a href="confirmacoes/enviado.html"><button class="entrar" type="submit">ENVIAR</button></a>
+        </form>
+    </main>
+
+    <script src="../js-decoracao/loadings.js"></script>
+    <script src="../js-decoracao/cursor.js"></script>
+</body>
+
+</html>
