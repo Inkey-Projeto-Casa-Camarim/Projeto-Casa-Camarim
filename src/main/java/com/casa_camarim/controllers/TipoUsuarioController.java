@@ -52,10 +52,10 @@ public class TipoUsuarioController {
 		tipoUsuarioService.deleteTipoUsuario(id);
 	}
 	
-	// Autentica um usuário pelo CPF enviado via POST e retorna o objeto se existir; senão, retorna null.
+	// Autentica um usuário pela Senha enviado via POST e retorna o objeto se existir; senão, retorna null.
 	@PostMapping("/login")
 	public TipoUsuario login(@RequestBody TipoUsuario loginRequest) {
-		TipoUsuario tipoUsuario = tipoUsuarioService.autenticarCpf(loginRequest.getCpf());
+		TipoUsuario tipoUsuario = tipoUsuarioService.autenticarSenha(loginRequest.getSenha());
 		if(tipoUsuario != null) {
 			return tipoUsuario;
 		}

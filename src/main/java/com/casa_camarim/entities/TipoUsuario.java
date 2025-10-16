@@ -24,9 +24,6 @@ public class TipoUsuario {
 	@Column(name = "nome_tipo", nullable = false, length = 100)
 	private String nome_tipo;
 	
-	@Column(name = "cpf", nullable = false)
-	private String cpf;
-	
 	@Column(name = "senha_tipo", nullable = false, length = 100)
 	private String senha;
 	
@@ -39,10 +36,10 @@ public class TipoUsuario {
 		
 	}
 	
-	public TipoUsuario(Long id_tipo, String nome_tipo, String cpf) {
+	public TipoUsuario(Long id_tipo, String nome_tipo, String cpf, String senha) {
 		this.id_tipo = id_tipo;
 		this.nome_tipo = nome_tipo;
-		this.cpf = cpf;
+		this.senha = senha;
 	}
 
 	// Getters e Setters(getters -> obtém o valor de um atributo, setters -> altera o valor de um atributo)
@@ -63,13 +60,12 @@ public class TipoUsuario {
 		this.nome_tipo = nome_tipo;
 	}
 
-	public String getCpf() {
-		return cpf;
+	public String getSenha() {
+		return senha;
 	}
 
-	public void setCpf(String cpf) {
-		this.cpf = cpf;
+	public void setSenha(String senha) {
+		this.senha = senha;
 	}
-
 }
 	

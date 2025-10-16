@@ -35,9 +35,9 @@ public class TipoUsuarioService {
 			tipoUsuarioRepository.deleteById(id);
 		}
 		
-		// Busca um adm ou usuário pelo CPF e retorna o objeto se existir... Caso contrário, retorna null.
-		public TipoUsuario autenticarCpf(String cpf) {
-	        TipoUsuario tipoUsuario = tipoUsuarioRepository.findByCpf(cpf);
+		// Busca um adm ou usuário pela Senha e retorna o objeto se existir... Caso contrário, retorna null.
+		public TipoUsuario autenticarSenha(String senha) {
+	        TipoUsuario tipoUsuario = tipoUsuarioRepository.findBySenha(senha);
 	        if(tipoUsuario != null) {
 	        		return tipoUsuario;
 	        }
