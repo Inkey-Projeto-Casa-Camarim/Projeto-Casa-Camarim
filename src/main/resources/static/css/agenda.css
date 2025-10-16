@@ -55,7 +55,7 @@ html {
     }
 }
 
-/* conteúdo fade-in */
+/* Conteúdo fade-in */
 body main,
 body header {
     opacity: 0;
@@ -82,8 +82,8 @@ body.loaded header {
 /* botão voltar ao topo */
 #btnTopo {
     position: fixed;
-    bottom: 20px;
-    left: 20px;
+    bottom: 50px;
+    right: 20px;
     width: 50px;
     height: 50px;
     border: none;
@@ -207,7 +207,7 @@ main {
     margin: 20px;
     border-radius: 15px;
     width: calc(100% - 40px);
-    height: 100%;
+
     padding-left: 10%;
     padding-right: 10%;
     padding-top: 5%;
@@ -217,22 +217,84 @@ main {
     flex: 1;
 }
 
-/* footer */
-footer {
-    zoom: 1.2;
-    margin-top: auto; 
+/* serviços */
+/*serviços container*/
+.servicos {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    padding: 25px;
+    background-color: #F1D8D9;
+    width: 60%;
+    border-top-left-radius: 15px;
+    border-bottom-right-radius: 15px;
+    margin: 5px;
 }
 
-.conteudo-footer {
+/*informações*/
+.info {
+    justify-self: start;
+}
+
+.info h1 {
+    font-size: 1.7rem;
+    font-family: Cormorant;
+    color: #5E3F44;
+}
+
+.info i {
+    zoom: 0.8;
+}
+
+.info h2 {
+    color: #A47E82;
+    font-size: 1.5rem;
+    font-family: Cormorant;
+}
+
+.info p {
+    color: #A47E82;
+    font-size: 1.3rem;
+    font-family: Cormorant;
+}
+
+/*botão de agendamento*/
+.agendar {
+    justify-self: end;
+    align-self: center;
+}
+
+.agendar button {
+    justify-self: end;
+    color: #FAF6F4;
+    letter-spacing: 2px;
+    font-family: Avenir;
+    font-weight: 600;
+    border: none;
+    font-size: 13px;
+    background-color: #A47E82;
+    padding: 15px;
+    transition: all 0.2s;
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
+}
+
+.agendar button:hover {
+    background-color: #5E3F44;
+}
+
+/* footer */
+footer {
+    margin-top: auto;
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-    background: linear-gradient(to bottom, #DDB2B5, #FAF6F4);
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+    background-color: #DDB2B5;
+    zoom: 1.2;
+    padding: 5px;
 }
 
 .midia {
     fill: #5E3F44;
     transition: all 0.1s ease-in-out;
-    zoom: 1.2;
 }
 
 .midia:hover {
@@ -240,52 +302,19 @@ footer {
 }
 
 .midias {
-    display: block;
-    margin-top: 5px;
+    justify-self: end;
+    display: flex;
+    padding-right: 35px;
+    zoom: 1.0;
 }
 
 .midias a {
     text-decoration: none;
 }
 
-.loc,
-.cnt {
-    padding: 35px;
-    padding-bottom: 0;
-}
-
-.loc h1,
-.cnt h1 {
-    color: #5E3F44;
-    letter-spacing: 2px;
-    font-size: 15px;
-    font-family: Avenir;
-    font-weight: 800;
-}
-
-.loc p,
-.cnt p {
-    color: #A47E82;
-    letter-spacing: 2px;
-    font-size: 15px;
-    font-family: Avenir;
-    font-weight: 500;
-}
-
-footer img {
-    width: 60px;
-    padding: 35px;
-    display: block;
-    margin: 0 auto;
-    position: relative;
-}
-
 .creditos {
-    width: auto;
-    background-color: #DDB2B5;
-    padding: 10px;
     padding-left: 35px;
-    margin-top: 15px;
+    justify-self: start;
 }
 
 .creditos h1 {
@@ -312,14 +341,70 @@ footer img {
     }
 }
 
-/*máximo 600px*/
-@media(max-width:600px) {
-    .conteudo-footer {
-        grid-template-columns: 1fr;
+/* máximo 600px */
+@media(max-width: 600px) {
+
+    /*serviços container*/
+    .servicos {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        padding: 20px;
+        background-color: #F1D8D9;
+        width: 100%;
+        border-top-left-radius: 15px;
+        border-bottom-right-radius: 15px;
+        margin: 5px;
     }
 
-    footer img {
-        display: none;
+    /*informações*/
+    .info {
+        justify-self: start;
+    }
+
+    .info h1 {
+        font-size: 1.4rem;
+        font-family: Cormorant;
+        color: #5E3F44;
+    }
+
+    .info h2 {
+        color: #A47E82;
+        font-size: 1.1rem;
+        font-family: Cormorant;
+    }
+
+    .info i {
+        zoom: 0.8;
+    }
+
+    .info p {
+        color: #A47E82;
+        font-size: 1.1rem;
+        font-family: Cormorant;
+    }
+
+    /*botão de agendamento*/
+    .agendar {
+        justify-self: end;
+        align-self: center;
+    }
+
+    .agendar button {
+        justify-self: end;
+        color: #FAF6F4;
+        letter-spacing: 2px;
+        font-family: Avenir;
+        font-weight: 600;
+        border: none;
+        font-size: 10px;
+        background-color: #A47E82;
+        padding: 12px;
+        transition: all 0.2s;
+        box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
+    }
+
+    .agendar button:hover {
+        background-color: #5E3F44;
     }
 }
 

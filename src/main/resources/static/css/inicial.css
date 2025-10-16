@@ -158,18 +158,17 @@ main {
 }
 
 .dia {
-    width: 95%;
-    display: grid;
+    flex: 1;
+    margin: 5px;
     background-color: #DDB2B5;
-    justify-self: center;
-
     padding: 10px;
     overflow: hidden;
     position: relative;
     border-radius: 10px;
     transition: all 0.3s ease-in-out;
-    height: 50px;
+    height: 25px;
 }
+
 
 .dia.active {
     height: 300px;

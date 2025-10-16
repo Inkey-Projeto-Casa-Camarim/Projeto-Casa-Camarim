@@ -60,11 +60,22 @@
             <div class="marcados">
                 <div class="dia">
                     <h1></h1>
-                    <i class="expandir">pspsps</i>
+                    <button class="expandir"></button>
+                </div>
+                <div class="dia">
+                    <h1></h1>
+                    <button class="expandir"></button>
+                </div>
+                <div class="dia">
+                    <h1></h1>
+                    <button class="expandir"></button>
+                </div>
+                <div class="dia">
+                    <h1></h1>
+                    <button class="expandir"></button>
                 </div>
             </div>
             <div class="edicao">
-                <h1>sajdkasjd</h1>
             </div>
         </div>
     </main>
@@ -74,11 +85,10 @@
     </footer>
 
     <script>
-        // Seleciona todos os serviços e adiciona evento em cada botão
-        document.querySelectorAll(".dia").forEach(servico => {
-            const botao = servico.querySelector(".expandir");
+        document.querySelectorAll(".dia").forEach(dia => {
+            const botao = dia.querySelector(".expandir");
             botao.addEventListener("click", () => {
-                servico.classList.toggle("active");
+                dia.classList.toggle("active");
             });
         }); '1'
     </script>
@@ -87,7 +97,6 @@
     <script src="../js-decoracao/scroll-inicio.js"></script>
     <script src="../js-decoracao/cursor.js"></script>
     <script src="../js-decoracao/nav.js"></script>
-    <script src="../js-decoracao/horarios.js"></script>
 </body>
 
 </html>
