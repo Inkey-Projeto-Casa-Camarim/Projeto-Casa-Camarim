@@ -1,5 +1,5 @@
 -- Insere registros na tabela tipo_usuario, ignorando conflitos de chave primária ou únicos
-insert ignore into tipo_usuario (id_tipo, nome_tipo, senha) 
+insert ignore into tipo_usuario (id_tipo, nome_tipo, senha_tipo) 
 values (1, 'CasaCamarim', '12345'); -- Insere o tipo de usuário "Admin" com CPF fictício
 
 -- Insere um registro na tabela "tb_usuario" com os valores especificados.
