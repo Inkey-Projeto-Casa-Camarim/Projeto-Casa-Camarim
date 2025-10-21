@@ -35,23 +35,34 @@ public class Usuario {
 	@JsonIgnoreProperties("usuarios")
 	private TipoUsuario tipoUsuario;
 	
+	@ManyToOne
+	@JoinColumn(name = "id_agenda", nullable = false)
+	@JsonIgnoreProperties("agendamento")
+	private Agenda agenda;
+	
+	
+	
 	// Construtores -> serve para inicializar os atributos do objeto (ou seja, dar valores iniciais).
 	
 	public Usuario() {
 		
 	}
 
-	public Usuario(Long id_usuario, String nome, String telefone, TipoUsuario tipoUsuario) {
+	public Usuario(Long id_usuario, String nome, String telefone, TipoUsuario tipoUsuario, Agenda agenda) {
+		super();
 		this.id_usuario = id_usuario;
 		this.nome = nome;
 		this.telefone = telefone;
 		this.tipoUsuario = tipoUsuario;
+		this.agenda = agenda;
 	}
+	
 
 	// Getters e Setters -> 
 	// Getter: método que retorna (pega) o valor de um atributo.
 	// Setter: método que altera (define) o valor de um atributo.
 	
+
 	public Long getId_usuario() {
 		return id_usuario;
 	}
@@ -83,4 +94,13 @@ public class Usuario {
 	public void setTipoUsuario(TipoUsuario tipoUsuario) {
 		this.tipoUsuario = tipoUsuario;
 	}
+
+	public Agenda getAgenda() {
+		return agenda;
+	}
+
+	public void setAgenda(Agenda agenda) {
+		this.agenda = agenda;
+	}
+
 }
