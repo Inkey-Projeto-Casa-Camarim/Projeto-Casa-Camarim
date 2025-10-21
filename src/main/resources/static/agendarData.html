@@ -214,26 +214,31 @@
 
     <main>
         <img src="img/logo.png" alt="logo">
-        <form>
-            <input type="text" maxlength="100" placeholder="Insira seu nome completo">
-            <input type="text" maxlength="11" placeholder="Insira seu telefone">
+        <form id="formAgendar">
+            <input type="text" id="nome" maxlength="100" placeholder="Insira seu nome completo">
+
+            <input type="text" id="telefone" maxlength="11" placeholder="Insira seu telefone">
+
             <select id="horario" class="opcoes" name="horario" required>
                 <option value="">Selecione horário...</option>
                 <option value="1">13:00</option>
                 <option value="2">16:00</option>
             </select>
+
             <select id="dia" class="opcoes" name="dia" required>
                 <option value="">Selecione dia...</option>
                 <option value="1">10/10</option>
                 <option value="2">11/10</option>
             </select>
-            <a href="confirmacoes/enviado.html"><button class="entrar" type="submit">ENVIAR</button></a>
+
+            <a href="./confirmacoes/enviado.html"><button class="entrar" type="submit">ENVIAR</button></a>
         </form>
     </main>
 
     <script src="js-decoracao/loadings.js"></script>
     <script src="js-decoracao/scroll-inicio.js"></script>
     <script src="js-decoracao/cursor.js"></script>
+    <script src="js/agendar.js"></script>
 </body>
 
 </html>

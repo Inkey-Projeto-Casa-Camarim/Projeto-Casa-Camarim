@@ -1,4 +1,4 @@
- const btnTopo = document.getElementById("btnTopo");
+/* const btnTopo = document.getElementById("btnTopo");
 
     // Mostrar/esconder botão ao rolar a página
     window.addEventListener("scroll", function () {
@@ -29,4 +29,4 @@
             }
         }
         requestAnimationFrame(animateScroll);
-    });
+    }); */
