@@ -1,0 +1,667 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- links -->
+    <link rel="shortcut icon" href="img/logo.png" type="image/x-icon"> <!-- foto da aba do site -->
+    <link rel="icon" href="img/logo.png" sizes="16x16">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+        integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"
+        integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+    <link href='https://cdn.jsdelivr.net/npm/boxicons@2.0.5/css/boxicons.min.css' rel='stylesheet'>
+
+    <title>Casa Camarim - Meus agendamentos</title>
+</head>
+
+<body>
+    <style>
+        @font-face {
+            font-family: Cormorant;
+            src: url('font/Cormorant-Medium.ttf') format('truetype');
+            font-weight: 700;
+            font-style: normal;
+        }
+
+        @font-face {
+            font-family: Avenir;
+            src: url('font/AvenirLTProBook.otf');
+        }
+
+        @font-face {
+            font-family: Misswansa;
+            src: url('font/Misswansa.ttf');
+        }
+
+        * {
+            margin: 0;
+            cursor: none;
+        }
+
+        body {
+            background-color: #FAF6F4;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        html {
+            height: 100%;
+        }
+
+        /* loading*/
+        #loading {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background: linear-gradient(to bottom, #FAF6F4, #DDB2B5);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 999999;
+            opacity: 1;
+            transition: opacity 0.8s ease;
+        }
+
+        #loading.fade-out {
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        .spinner {
+            border: 6px solid #f3f3f3;
+            border-top: 6px solid #A47E82;
+            border-radius: 50%;
+            width: 60px;
+            height: 60px;
+            animation: spin 0.7s linear infinite;
+        }
+
+        @keyframes spin {
+            0% {
+                transform: rotate(0deg);
+            }
+
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+
+        /* Conteúdo fade-in */
+        body main,
+        body header {
+            opacity: 0;
+            transition: opacity 1s ease;
+        }
+
+        body.loaded main,
+        body.loaded header {
+            opacity: 1;
+        }
+
+        /* cursor */
+        #circularcursor {
+            background-color: #3E3333;
+            height: 10px;
+            width: 10px;
+            border-radius: 50%;
+            -moz-border-radius: 50%;
+            -webkit-border-radius: 50%;
+            position: absolute;
+            z-index: 99999999;
+        }
+
+        /* botão voltar ao topo */
+        #btnTopo {
+            position: fixed;
+            bottom: 50px;
+            right: 20px;
+            width: 50px;
+            height: 50px;
+            border: none;
+            border-radius: 50%;
+            background-color: #5E3F44;
+            color: #FAF6F4;
+            font-size: 20px;
+            box-shadow: rgba(0, 0, 0, 0.2) 0px 4px 12px;
+            z-index: 99999;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(20px);
+            transition: all 0.4s ease;
+        }
+
+        #btnTopo.show {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        #btnTopo:hover {
+            background-color: #A47E82;
+            transform: scale(1.1);
+        }
+
+        /*nav bar*/
+        .menu-item a[href="agenda.html"]::after {
+            content: "";
+            position: absolute;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background-color: #A47E82;
+        }
+
+        .menu-item a {
+            font-size: 30px;
+            margin: 20px;
+            position: relative;
+            color: #A47E82;
+            font-family: Cormorant;
+            text-decoration: none;
+        }
+
+        .logo-container {
+            margin-left: 5%;
+            margin-right: 5%;
+            margin-top: 13px;
+
+        }
+
+        .logo {
+            width: 60px;
+        }
+
+        nav {
+            width: 100%;
+            margin-top: 3%;
+            align-items: center;
+            justify-content: space-between;
+            transition: .5s;
+        }
+
+        nav .navigation {
+            position: relative;
+            line-height: 75px;
+            transition: .5s;
+            transition-property: line-height;
+        }
+
+        nav.sticky .navigation {
+            line-height: 60px;
+        }
+
+        nav .navigation .menu {
+            position: relative;
+            display: flex;
+            justify-content: center;
+            list-style: none;
+            user-select: none;
+        }
+
+        .item::after {
+            content: '';
+            position: absolute;
+            height: 2px;
+            left: 0;
+            bottom: 0;
+            width: 0;
+            background: #A47E82;
+            transition: width .2s;
+        }
+
+        .item:hover::after {
+            width: 100%;
+        }
+
+        i.menu-btn,
+        i.close-btn {
+            display: none;
+        }
+
+        .logo-mobile {
+            width: 45px;
+            display: block;
+            position: absolute;
+            top: 15px;
+            margin-bottom: 15%;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 1;
+        }
+
+        /* fundo do site */
+        main {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background-color: #F7EAEB;
+            margin: 20px;
+            border-radius: 15px;
+            width: calc(100% - 40px);
+
+            padding-left: 10%;
+            padding-right: 10%;
+            padding-top: 5%;
+            padding-bottom: 5%;
+            margin-top: 0;
+            box-sizing: border-box;
+            flex: 1;
+        }
+
+        /* serviços */
+        .servicos {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            padding: 25px;
+            background-color: #F1D8D9;
+            width: 60%;
+            border-top-left-radius: 15px;
+            border-bottom-right-radius: 15px;
+            margin: 5px;
+        }
+
+        /*informações*/
+        .info {
+            justify-self: start;
+        }
+
+        .dia,
+        .horario {
+            justify-self: start;
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .info h1 {
+            width: 100%;
+            font-size: 1.7rem;
+            font-family: Cormorant;
+            color: #5E3F44;
+        }
+
+        .info h2,
+        .info p {
+            color: #A47E82;
+            font-family: Cormorant;
+            margin: 0;
+        }
+
+        .info h2 {
+            font-size: 1.5rem;
+        }
+
+        .info p {
+            font-size: 1.3rem;
+        }
+
+        /*botão de cancelar*/
+        .cancelar {
+            justify-self: end;
+            align-self: center;
+            color: #FAF6F4;
+            letter-spacing: 2px;
+            font-family: Avenir;
+            font-weight: 600;
+            border: none;
+            font-size: 13px;
+            background-color: #A47E82;
+            padding: 15px;
+            transition: all 0.2s;
+            box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
+        }
+
+        .cancelar:hover {
+            background-color: #5E3F44;
+        }
+
+        /* footer */
+        footer {
+            margin-top: auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            align-items: center;
+            background-color: #DDB2B5;
+            zoom: 1.2;
+            padding: 5px;
+        }
+
+        .midia {
+            fill: #5E3F44;
+            transition: all 0.1s ease-in-out;
+        }
+
+        .midia:hover {
+            opacity: 70%;
+        }
+
+        .midias {
+            justify-self: end;
+            display: flex;
+            padding-right: 35px;
+            zoom: 1.0;
+        }
+
+        .midias a {
+            text-decoration: none;
+        }
+
+        .creditos {
+            padding-left: 35px;
+            justify-self: start;
+        }
+
+        .creditos h1 {
+            color: #FFF3F3;
+            letter-spacing: 2px;
+            font-size: 15px;
+            font-family: Avenir;
+            font-weight: 600;
+        }
+
+        .modal-confirmacao {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background-color: rgba(0, 0, 0, 0.4);
+            justify-content: center;
+            align-items: center;
+            z-index: 999999;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .modal-confirmacao.show {
+            display: flex;
+            opacity: 1;
+        }
+
+        .modal-content-confirmacao {
+            background-color: #FAF6F4;
+            padding: 30px;
+            text-align: center;
+            width: 320px;
+            box-shadow: rgba(0, 0, 0, 0.2) 0px 6px 16px;
+            transform: scale(0.8);
+            transition: transform 0.3s ease;
+            font-family: Cormorant;
+        }
+
+        .modal-confirmacao.show .modal-content-confirmacao {
+            transform: scale(1);
+        }
+
+        .modal-content-confirmacao h2 {
+            color: #5E3F44;
+            margin-bottom: 10px;
+            font-size: 1.6rem;
+        }
+
+        .modal-content-confirmacao p {
+            color: #A47E82;
+            margin-bottom: 25px;
+            font-size: 1rem;
+            font-family: Avenir;
+        }
+
+        .modal-btns {
+            display: flex;
+            justify-content: space-around;
+        }
+
+        .btn-sim,
+        .btn-nao {
+            border: none;
+            padding: 10px 20px;
+            font-family: Avenir;
+            font-weight: 600;
+            border-radius: 8px;
+            transition: 0.2s;
+        }
+
+        .btn-sim {
+            background-color: #A47E82;
+            color: #FAF6F4;
+        }
+
+        .btn-sim:hover {
+            background-color: #5E3F44;
+        }
+
+        .btn-nao {
+            background-color: #E4C7C9;
+            color: #5E3F44;
+        }
+
+        .btn-nao:hover {
+            background-color: #D4AEB1;
+        }
+
+        /* Responsividade */
+        @media(min-width: 700px) {
+            .logo-mobile {
+                display: none;
+            }
+        }
+
+        @media (max-width: 350px) {
+            .menu-item a {
+                font-size: 1rem;
+            }
+        }
+
+        @media(max-width: 600px) {
+            .cancelar {
+                font-size: 10px;
+                padding: 12px;
+            }
+
+            .servicos {
+                display: grid;
+                grid-template-columns: 1fr 1fr;
+                padding: 20px;
+                background-color: #F1D8D9;
+                width: 100%;
+                border-top-left-radius: 15px;
+                border-bottom-right-radius: 15px;
+                margin: 5px;
+            }
+        }
+
+        @media(max-width: 700px) {
+            main {
+                margin-top: 75px;
+            }
+
+            .item::after {
+                display: none;
+            }
+
+            .logo {
+                display: none;
+            }
+
+            nav .navigation .menu {
+                position: fixed;
+                display: block;
+                background: #F1D8D9;
+                min-width: 200px;
+                height: 100vh;
+                top: 0;
+                right: -100%;
+                padding: 90px 50px;
+                overflow-y: auto;
+                transition: .5s;
+                transition-property: right, visibility;
+                visibility: hidden;
+                z-index: 10;
+            }
+
+            nav .navigation .menu.active {
+                right: 0;
+                visibility: visible;
+            }
+
+            i.close-btn {
+                position: absolute;
+                color: #996663;
+                font-size: 30px;
+                top: 0;
+                right: 0;
+                margin: 25px;
+                display: block;
+            }
+
+            i.menu-btn {
+                font-size: 30px;
+                color: #996663;
+                display: block;
+                position: absolute;
+                top: 20px;
+                right: 20px;
+                z-index: 1;
+            }
+        }
+    </style>
+
+    <div id="loading">
+        <div class="spinner"></div>
+    </div>
+    <div id="circularcursor"></div>
+    <button id="btnTopo"><i class="fa-solid fa-arrow-up"></i></button>
+
+    <!-- cabeçalho -->
+    <header>
+        <nav>
+            <div class="navigation">
+                <ul class="menu">
+                    <i class="fa-solid fa-xmark close-btn"></i>
+
+                    <li class="menu-item"><a href="index.html" class="item">Início</a></li>
+
+                    <li class="menu-item"><a href="horarios.html" class="item">Horários</a></li>
+
+                    <li class="logo-container">
+                        <img class="logo" src="img/logo.png" alt="Logo">
+                    </li>
+
+                    <li class="menu-item"><a href="" class="item">Contatos</a></li>
+
+                    <li class="menu-item"><a href="agenda.html" class="item">Agenda</a></li>
+                </ul>
+            </div>
+
+            <img class="logo-mobile" src="img/logo.png" alt="Logo">
+            <i class="fa-solid fa-bars menu-btn"></i>
+        </nav>
+    </header>
+
+    <main>
+        <div class="servicos">
+            <div class="info">
+                <h1>Serviço</h1>
+
+                <div class="dia">
+                    <h2>Dia:</h2>
+                    <p>13/11</p>
+                </div>
+                <div class="horario">
+                    <h2>Horário:</h2>
+                    <p>13:00</p>
+                </div>
+            </div>
+            <button class="cancelar" type="submit">CANCELAR</button>
+        </div>
+    </main>
+
+    <footer>
+        <div class="creditos">
+            <h1>&copy;2025 Inkey</h1>
+        </div>
+        <div class="midias">
+            <!-- instagram -->
+            <a href="https://www.instagram.com/casacamarim/">
+                <?xml version="1.0"?><svg class="midia" xmlns="http://www.w3.org/2000/svg" viewBox="12 -15 3 50"
+                    width="47px" height="47px">
+                    <circle cx="12" cy="13" r="20" fill="#FFF3F3" />
+                    <path
+                        d="M 8 3 C 5.239 3 3 5.239 3 8 L 3 16 C 3 18.761 5.239 21 8 21 L 16 21 C 18.761 21 21 18.761 21 16 L 21 8 C 21 5.239 18.761 3 16 3 L 8 3 z M 18 5 C 18.552 5 19 5.448 19 6 C 19 6.552 18.552 7 18 7 C 17.448 7 17 6.552 17 6 C 17 5.448 17.448 5 18 5 z M 12 7 C 14.761 7 17 9.239 17 12 C 17 14.761 14.761 17 12 17 C 9.239 17 7 14.761 7 12 C 7 9.239 9.239 7 12 7 z M 12 9 A 3 3 0 0 0 9 12 A 3 3 0 0 0 12 15 A 3 3 0 0 0 15 12 A 3 3 0 0 0 12 9 z" />
+                </svg>
+            </a>
+            <!-- whatsapp -->
+            <a href="https://api.whatsapp.com/message/ZMHKT6GKQHLRD1?autoload=1&app_absent=0">
+                <?xml version="1.0"?><svg class="midia" xmlns="http://www.w3.org/2000/svg" viewBox="12 -15 3 50"
+                    width="47px" height="47px">
+                    <circle cx="12" cy="13" r="20" fill="#FFF3F3" />
+                    <path
+                        d="M19.077,4.928c-2.082-2.083-4.922-3.134-7.904-2.894C7.164,2.356,3.65,5.144,2.474,8.99 c-0.84,2.748-0.487,5.617,0.881,7.987L2.059,21.28c-0.124,0.413,0.253,0.802,0.67,0.691l4.504-1.207 c1.459,0.796,3.101,1.215,4.773,1.216h0.004c4.195,0,8.071-2.566,9.412-6.541C22.728,11.563,21.762,7.616,19.077,4.928z M16.898,15.554c-0.208,0.583-1.227,1.145-1.685,1.186c-0.458,0.042-0.887,0.207-2.995-0.624c-2.537-1-4.139-3.601-4.263-3.767 c-0.125-0.167-1.019-1.353-1.019-2.581S7.581,7.936,7.81,7.687c0.229-0.25,0.499-0.312,0.666-0.312c0.166,0,0.333,0,0.478,0.006 c0.178,0.007,0.375,0.016,0.562,0.431c0.222,0.494,0.707,1.728,0.769,1.853s0.104,0.271,0.021,0.437s-0.125,0.27-0.249,0.416 c-0.125,0.146-0.262,0.325-0.374,0.437c-0.125,0.124-0.255,0.26-0.11,0.509c0.146,0.25,0.646,1.067,1.388,1.728 c0.954,0.85,1.757,1.113,2.007,1.239c0.25,0.125,0.395,0.104,0.541-0.063c0.146-0.166,0.624-0.728,0.79-0.978 s0.333-0.208,0.562-0.125s1.456,0.687,1.705,0.812c0.25,0.125,0.416,0.187,0.478,0.291 C17.106,14.471,17.106,14.971,16.898,15.554z" />
+                </svg>
+            </a>
+            <!-- facebook -->
+            <a href="https://www.facebook.com/p/Casa-Camarim-100054493809317/">
+                <?xml version="1.0"?><svg class="midia" xmlns="http://www.w3.org/2000/svg" viewBox="12 -15 3 50"
+                    width="47px" height="47px">
+                    <circle cx="13" cy="13" r="20" fill="#FFF3F3" />
+                    <path
+                        d="M17.525,9H14V7c0-1.032,0.084-1.682,1.563-1.682h1.868v-3.18C16.522,2.044,15.608,1.998,14.693,2 C11.98,2,10,3.657,10,6.699V9H7v4l3-0.001V22h4v-9.003l3.066-0.001L17.525,9z" />
+                </svg>
+            </a>
+        </div>
+    </footer>
+
+    <div class="modal-confirmacao" id="modalConfirmacao">
+        <div class="modal-content-confirmacao">
+            <p>Tem certeza que deseja cancelar este agendamento?</p>
+            <div class="modal-btns">
+                <a href="confirmacoes/cancelado.html"> <button class="btn-sim" id="btnSim">Sim</button></a>
+                <button class="btn-nao" id="btnNao">Não</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const cancelarBtn = document.querySelector('.cancelar');
+        const modal = document.getElementById('modalConfirmacao');
+        const btnSim = document.getElementById('btnSim');
+        const btnNao = document.getElementById('btnNao');
+
+        cancelarBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+            modal.classList.add('show');
+        });
+
+        btnNao.addEventListener('click', () => {
+            modal.classList.remove('show');
+        });
+
+        btnSim.addEventListener('click', () => {
+            modal.classList.remove('show');
+            window.location.href = "confirmacoes/cancelado.html";
+        });
+
+        // Fechar clicando fora
+        window.addEventListener('click', (e) => {
+            if (e.target === modal) modal.classList.remove('show');
+        });
+    </script>
+
+    <script src="js-decoracao/loadings.js"></script>
+    <script src="js-decoracao/scroll-inicio.js"></script>
+    <script src="js-decoracao/cursor.js"></script>
+    <script src="js-decoracao/nav.js"></script>
+</body>
+
+</html>

@@ -138,7 +138,6 @@ main {
 }
 
 /* paineis do adm */
-/* paineis do adm */
 .paineis {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -157,6 +156,11 @@ main {
     box-shadow: rgba(155, 155, 155, 0.1) 0px 4px 12px;
 }
 
+.servicos{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+
 .dia {
     flex: 1;
     margin: 5px;
@@ -169,9 +173,29 @@ main {
     height: 25px;
 }
 
-
 .dia.active {
     height: 300px;
+}
+
+.alterar{
+    flex: 1;
+    margin: 5px;
+    background-color: #DDB2B5;
+    padding: 10px;
+    border-radius: 10px;
+    height: 25px;
+}
+
+.alterar a{
+    text-decoration: none;
+}
+
+.alterar h1{
+    color: #FFF3F3;
+    letter-spacing: 2px;
+    font-size: 20px;
+    font-family: Avenir;
+    font-weight: 600;
 }
 
 /* footer */
