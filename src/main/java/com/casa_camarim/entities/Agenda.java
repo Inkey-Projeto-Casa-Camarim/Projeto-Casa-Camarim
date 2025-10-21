@@ -25,6 +25,9 @@ public class Agenda {
 	@Column(name = "data", nullable = false)
 	private String data;
 	
+	@Column(name = "hora", nullable = false)
+	private String hora;
+	
 	@ManyToOne
 	@JoinColumn(name = "id_usuario", nullable = false)
 	@JsonIgnoreProperties("usuarios")
@@ -36,11 +39,12 @@ public class Agenda {
 	}
 
 		
-	public Agenda(Long id_agenda, String data, Usuario usuario) {
+	public Agenda(Long id_agenda, String data, String hora, Usuario usuario) {
 		super();
 		this.id_agenda = id_agenda;
 		this.data = data;
 		this.usuario = usuario;
+		this.data = data;
 	}
 
 	// Getters e Setters(getters -> obtém o valor de um atributo, setters -> altera o valor de um atributo)
@@ -62,6 +66,15 @@ public class Agenda {
 
 	public void setData(String data) {
 		this.data = data;
+	}
+	
+	public String getHora() {
+		return hora;
+	}
+
+
+	public void setHora(String hora) {
+		this.hora = hora;
 	}
 
 
