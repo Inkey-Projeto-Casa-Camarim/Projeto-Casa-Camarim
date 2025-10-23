@@ -219,7 +219,7 @@ main {
 
 /* serviços */
 /*serviços container*/
-.servicos {
+.servico {
     display: grid;
     grid-template-columns: 1fr 1fr;
     padding: 25px;
@@ -345,7 +345,7 @@ footer {
 @media(max-width: 600px) {
 
     /*serviços container*/
-    .servicos {
+    .servico {
         display: grid;
         grid-template-columns: 1fr 1fr;
         padding: 20px;

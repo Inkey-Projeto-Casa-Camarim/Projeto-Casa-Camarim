@@ -26,7 +26,8 @@ public class Agenda {
 	private String data_agenda;
 	
 	@Column(name = "hora", nullable = false)
-	private String hora;
+	private String hora
+	;
 	
 	@ManyToOne
 	@JoinColumn(name = "id_usuario", nullable = false)
