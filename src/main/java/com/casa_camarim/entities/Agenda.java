@@ -22,7 +22,7 @@ public class Agenda {
 	@Column(name = "id_agenda", nullable = false)
 	private Long id_agenda;
 	
-	@Column(name = "data", nullable = false)
+	@Column(name = "data_agenda", nullable = false)
 	private String data_agenda;
 	
 	@Column(name = "hora", nullable = false)
@@ -32,6 +32,11 @@ public class Agenda {
 	@JoinColumn(name = "id_usuario", nullable = false)
 	@JsonIgnoreProperties("usuarios")
 	private Usuario usuario;
+	
+	@ManyToOne
+	@JoinColumn(name = "id_servico", nullable = false)
+	@JsonIgnoreProperties("servico")
+	private Servico servico;
 	
 	// Construtores(método usado para criar objetos)
 	

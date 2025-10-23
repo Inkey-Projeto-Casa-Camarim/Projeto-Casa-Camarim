@@ -1,10 +1,14 @@
 package com.casa_camarim.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 
 // Entidade que representa um Serviço no sistema.
@@ -31,6 +35,11 @@ public class Servico {
 	
 	@Column(name = "tempo_servico", nullable = false)
 	private String tempo;
+	
+	@ManyToOne
+	@JoinColumn(name = "id_agenda", nullable = false)
+	@JsonIgnoreProperties("agenda")
+	private Agenda agenda;
 	
 	// Construtores -> serve para inicializar os atributos do objeto (ou seja, dar valores iniciais).
 	
