@@ -19,7 +19,7 @@ public class Agenda {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "id_agenda", nullable = false)
+	//@Column(name = "id_agenda", nullable = false)
 	private Long id_agenda;
 	
 	@Column(name = "data_agenda", nullable = true)
