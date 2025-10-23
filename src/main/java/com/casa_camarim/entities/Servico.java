@@ -1,7 +1,5 @@
 package com.casa_camarim.entities;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -40,14 +38,13 @@ public class Servico {
 		
 	}
 
-	public Servico(Long id_servico, String preco, String nome_servico, String descricao, String tempo, Agenda agenda) {
+	public Servico(Long id_servico, String preco, String nome_servico, String descricao, String tempo) {
 		super();
 		this.id_servico = id_servico;
 		this.preco = preco;
 		this.nome_servico = nome_servico;
 		this.descricao = descricao;
 		this.tempo = tempo;
-		this.agenda = agenda;
 	}
 	
 	// Getters e Setters -> 
@@ -92,13 +89,5 @@ public class Servico {
 
 	public void setTempo(String tempo) {
 		this.tempo = tempo;
-	}
-
-	public Agenda getAgenda() {
-		return agenda;
-	}
-
-	public void setAgenda(Agenda agenda) {
-		this.agenda = agenda;
 	}
 }
