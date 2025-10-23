@@ -5,7 +5,8 @@ values (1, 'CasaCamarim', '12345'); -- Insere o tipo de usuário "Admin" com CPF
 -- Insere um registro na tabela "tb_usuario" com os valores especificados.
 -- "insert ignore" evita erro caso já exista um registro com o mesmo "id_usuario" (não insere duplicatas).
 insert ignore into tb_usuario(id_usuario, nome, telefone)
-values (1, 'Cliente', '15999999999'); -- Valores dos campos inseridos
+values (1, 'Cliente 1', '15999999999'), -- Valores dos campos inseridos
+values (2, 'Cliente 2', '15888888888');
 
 -- Tabela de serviço com os serviços oferecidos pela casa camarim
 insert ignore into tb_servico(id_servico, preco, nome_servico, descricao_servico, tempo_servico)
