@@ -64,6 +64,6 @@ values (1, 'R$462,00', 'Cronograma Capilar Cabelo Médio', 'Pacote com 6 tratame
 
 -- Tabela de serviço com os serviços oferecidos pela casa camarim
 insert ignore into tb_agenda(id_agenda, data_agenda, hora)
-values (1, '11/10', '13:00'),
-(2, '12/10', '14:00'),
-(3, '13/10', '15:00');
+values (1, '10/10', '13:00'),
+(2, '11/10', '14:00'),
+(3, '11/10', '15:00');
