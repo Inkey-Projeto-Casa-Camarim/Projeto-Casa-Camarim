@@ -36,14 +36,15 @@ public class TipoUsuario {
 		
 	}
 	
-	public TipoUsuario(Long id_tipo, String nome_tipo, String cpf, String senha) {
+	public TipoUsuario(Long id_tipo, String nome_tipo, String senha) {
 		this.id_tipo = id_tipo;
 		this.nome_tipo = nome_tipo;
 		this.senha = senha;
 	}
-
+	
 	// Getters e Setters(getters -> obtém o valor de um atributo, setters -> altera o valor de um atributo)
 	
+
 	public Long getId_tipo() {
 		return id_tipo;
 	}
@@ -68,4 +69,3 @@ public class TipoUsuario {
 		this.senha = senha;
 	}
 }
-	

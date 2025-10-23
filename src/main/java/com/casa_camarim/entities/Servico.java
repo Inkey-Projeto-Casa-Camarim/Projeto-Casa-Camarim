@@ -1,14 +1,10 @@
 package com.casa_camarim.entities;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 
 // Entidade que representa um Serviço no sistema.
@@ -36,29 +32,25 @@ public class Servico {
 	@Column(name = "tempo_servico", nullable = false)
 	private String tempo;
 	
-	@ManyToOne
-	@JoinColumn(name = "id_agenda", nullable = false)
-	@JsonIgnoreProperties("agenda")
-	private Agenda agenda;
-	
 	// Construtores -> serve para inicializar os atributos do objeto (ou seja, dar valores iniciais).
 	
 	public Servico() {
 		
 	}
-	
+
 	public Servico(Long id_servico, String preco, String nome_servico, String descricao, String tempo) {
+		super();
 		this.id_servico = id_servico;
-		this.nome_servico = nome_servico;
 		this.preco = preco;
+		this.nome_servico = nome_servico;
 		this.descricao = descricao;
 		this.tempo = tempo;
 	}
-
-	// Getters e Setters -> 
-	// Getter: método que retorna (pega) o valor de um atributo.
-	// Setter: método que altera (define) o valor de um atributo.
 	
+	// Getters e Setters -> 
+		// Getter: método que retorna (pega) o valor de um atributo.
+		// Setter: método que altera (define) o valor de um atributo.
+
 	public Long getId_servico() {
 		return id_servico;
 	}
@@ -82,7 +74,7 @@ public class Servico {
 	public void setNome_servico(String nome_servico) {
 		this.nome_servico = nome_servico;
 	}
-	
+
 	public String getDescricao() {
 		return descricao;
 	}
@@ -98,5 +90,4 @@ public class Servico {
 	public void setTempo(String tempo) {
 		this.tempo = tempo;
 	}
-	
 }
