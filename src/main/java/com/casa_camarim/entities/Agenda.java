@@ -44,7 +44,6 @@ public class Agenda {
 	}
 
 	public Agenda(Long id_agenda, String data_agenda, String hora, Usuario usuario, Servico servico) {
-		super();
 		this.id_agenda = id_agenda;
 		this.data_agenda = data_agenda;
 		this.hora = hora;

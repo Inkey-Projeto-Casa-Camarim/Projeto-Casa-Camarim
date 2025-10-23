@@ -1,5 +1,7 @@
 package com.casa_camarim.entities;
 
+import java.util.List;
+
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import jakarta.persistence.Column;
@@ -9,6 +11,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
 //Entidade que representa um Usuário no sistema.
@@ -35,12 +38,8 @@ public class Usuario {
 	@JsonIgnoreProperties("usuarios")
 	private TipoUsuario tipoUsuario;
 	
-	@ManyToOne
-	@JoinColumn(name = "id_agenda", nullable = false)
-	@JsonIgnoreProperties("agendamento")
-	private Agenda agenda;
-	
-	
+	@OneToMany(mappedBy = "agenda")
+	private List<Agenda> agenda;
 	
 	// Construtores -> serve para inicializar os atributos do objeto (ou seja, dar valores iniciais).
 	
@@ -48,21 +47,18 @@ public class Usuario {
 		
 	}
 
-	public Usuario(Long id_usuario, String nome, String telefone, TipoUsuario tipoUsuario, Agenda agenda) {
-		super();
+	public Usuario(Long id_usuario, String nome, String telefone, TipoUsuario tipoUsuario, List<Agenda> agenda) {
 		this.id_usuario = id_usuario;
 		this.nome = nome;
 		this.telefone = telefone;
 		this.tipoUsuario = tipoUsuario;
 		this.agenda = agenda;
 	}
-	
 
 	// Getters e Setters -> 
-	// Getter: método que retorna (pega) o valor de um atributo.
-	// Setter: método que altera (define) o valor de um atributo.
+		// Getter: método que retorna (pega) o valor de um atributo.
+		// Setter: método que altera (define) o valor de um atributo.
 	
-
 	public Long getId_usuario() {
 		return id_usuario;
 	}
@@ -95,12 +91,11 @@ public class Usuario {
 		this.tipoUsuario = tipoUsuario;
 	}
 
-	public Agenda getAgenda() {
+	public List<Agenda> getAgenda() {
 		return agenda;
 	}
 
-	public void setAgenda(Agenda agenda) {
+	public void setAgenda(List<Agenda> agenda) {
 		this.agenda = agenda;
 	}
-
 }
