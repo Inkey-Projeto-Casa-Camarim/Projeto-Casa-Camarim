@@ -14,37 +14,38 @@ import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
-//Entidade que representa um Usuário no sistema.
-//Na tabela "tb_usuario" do banco de dados.
+// Entidade que representa um Usuário no sistema.
+// Na tabela "tb_usuario" do banco de dados.
 @Entity
 @Table(name = "tb_usuario")
 public class Usuario {
-	
+
 	// Atributos -> são as características (ou propriedades) de uma classe.
-	
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id_usuario", nullable = false)
 	private Long id_usuario;
-	
+
 	@Column(name = "nome", nullable = false, length = 100)
 	private String nome;
-	
+
 	@Column(name = "telefone", nullable = false, unique = false)
 	private String telefone;
-	
+
 	@ManyToOne
 	@JoinColumn(name = "id_tipo", nullable = false)
 	@JsonIgnoreProperties("usuarios")
 	private TipoUsuario tipoUsuario;
-	
-	@OneToMany(mappedBy = "agenda")
+
+	// ✅ Correção: o mappedBy agora faz referência ao atributo "usuario" da classe Agenda
+	@OneToMany(mappedBy = "usuario")
+	@JsonIgnoreProperties("usuario")
 	private List<Agenda> agenda;
-	
-	// Construtores -> serve para inicializar os atributos do objeto (ou seja, dar valores iniciais).
-	
+
+	// Construtores -> servem para inicializar os atributos do objeto (ou seja, dar valores iniciais).
+
 	public Usuario() {
-		
 	}
 
 	public Usuario(Long id_usuario, String nome, String telefone, TipoUsuario tipoUsuario, List<Agenda> agenda) {
@@ -55,10 +56,8 @@ public class Usuario {
 		this.agenda = agenda;
 	}
 
-	// Getters e Setters -> 
-		// Getter: método que retorna (pega) o valor de um atributo.
-		// Setter: método que altera (define) o valor de um atributo.
-	
+	// Getters e Setters
+
 	public Long getId_usuario() {
 		return id_usuario;
 	}

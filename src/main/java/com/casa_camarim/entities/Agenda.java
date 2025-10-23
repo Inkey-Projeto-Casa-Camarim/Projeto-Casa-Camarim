@@ -15,11 +15,11 @@ import jakarta.persistence.Table;
 @Table(name = "tb_agenda")
 public class Agenda {
 
-	//Atributos(características)
+	// Atributos (características)
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	//@Column(name = "id_agenda", nullable = false)
+	@Column(name = "id_agenda", nullable = false)
 	private Long id_agenda;
 	
 	@Column(name = "data_agenda", nullable = true)
@@ -28,17 +28,18 @@ public class Agenda {
 	@Column(name = "hora", nullable = false)
 	private String hora;
 	
+	// ✅ Correção: relação correta com Usuario
 	@ManyToOne
 	@JoinColumn(name = "id_usuario", nullable = false)
-	@JsonIgnoreProperties("usuarios")
+	@JsonIgnoreProperties("agenda") // evita loop de recursão
 	private Usuario usuario;
 	
 	@ManyToOne
 	@JoinColumn(name = "id_servico", nullable = false)
-	@JsonIgnoreProperties("servico")
+	@JsonIgnoreProperties("agenda")
 	private Servico servico;
 	
-	// Construtores(método usado para criar objetos)
+	// Construtores
 	
 	public Agenda() {
 	}
@@ -51,7 +52,7 @@ public class Agenda {
 		this.servico = servico;
 	}
 
-	// Getters e Setters(getters -> obtém o valor de um atributo, setters -> altera o valor de um atributo)
+	// Getters e Setters
 
 	public Long getId_agenda() {
 		return id_agenda;
