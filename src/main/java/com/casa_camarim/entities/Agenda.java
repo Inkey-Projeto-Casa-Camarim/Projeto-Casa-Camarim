@@ -22,7 +22,7 @@ public class Agenda {
 	@Column(name = "id_agenda", nullable = false)
 	private Long id_agenda;
 	
-	@Column(name = "data_agenda", nullable = false)
+	@Column(name = "data_agenda", nullable = true)
 	private String data_agenda;
 	
 	@Column(name = "hora", nullable = false)

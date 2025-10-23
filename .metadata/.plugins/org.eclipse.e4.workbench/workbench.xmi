@@ -614,7 +614,11 @@
       </children>
       <children xsi:type="menu:ToolBar" xmi:id="_tKsW853zEfC2tuVXhQoZLw" elementId="org.eclipse.ui.workbench.file">
         <tags>Draggable</tags>
+<<<<<<< Updated upstream
         <children xsi:type="menu:HandledToolItem" xmi:id="_EF1BsK_5EfCFdbfJTpBboQ" elementId="print" visible="false" iconURI="platform:/plugin/org.eclipse.ui/icons/full/etool16/print_edit.svg" tooltip="Print" command="_tKsh8J3zEfC2tuVXhQoZLw"/>
+=======
+        <children xsi:type="menu:HandledToolItem" xmi:id="_Ewc-0KU_EfCAXcoVMTWWog" elementId="print" visible="false" iconURI="platform:/plugin/org.eclipse.ui/icons/full/etool16/print_edit.svg" tooltip="Print" command="_tKsh8J3zEfC2tuVXhQoZLw"/>
+>>>>>>> Stashed changes
       </children>
       <children xsi:type="menu:ToolBar" xmi:id="_tKsXAJ3zEfC2tuVXhQoZLw" elementId="group.edit" toBeRendered="false">
         <tags>toolbarSeparator</tags>
@@ -622,8 +626,13 @@
       </children>
       <children xsi:type="menu:ToolBar" xmi:id="_tKsXAp3zEfC2tuVXhQoZLw" elementId="org.eclipse.ui.workbench.edit">
         <tags>Draggable</tags>
+<<<<<<< Updated upstream
         <children xsi:type="menu:HandledToolItem" xmi:id="_EF1Btq_5EfCFdbfJTpBboQ" elementId="undo" iconURI="platform:/plugin/org.eclipse.ui/icons/full/etool16/undo_edit.svg" tooltip="Undo" enabled="false" command="_tKsgKJ3zEfC2tuVXhQoZLw"/>
         <children xsi:type="menu:HandledToolItem" xmi:id="_EF1Bt6_5EfCFdbfJTpBboQ" elementId="redo" iconURI="platform:/plugin/org.eclipse.ui/icons/full/etool16/redo_edit.svg" tooltip="Redo" enabled="false" command="_tKsgpZ3zEfC2tuVXhQoZLw"/>
+=======
+        <children xsi:type="menu:HandledToolItem" xmi:id="_Ewe0AKU_EfCAXcoVMTWWog" elementId="undo" iconURI="platform:/plugin/org.eclipse.ui/icons/full/etool16/undo_edit.svg" tooltip="Undo" enabled="false" command="_tKsgKJ3zEfC2tuVXhQoZLw"/>
+        <children xsi:type="menu:HandledToolItem" xmi:id="_EwfbEKU_EfCAXcoVMTWWog" elementId="redo" iconURI="platform:/plugin/org.eclipse.ui/icons/full/etool16/redo_edit.svg" tooltip="Redo" enabled="false" command="_tKsgpZ3zEfC2tuVXhQoZLw"/>
+>>>>>>> Stashed changes
       </children>
       <children xsi:type="menu:ToolBar" xmi:id="_tKsXBp3zEfC2tuVXhQoZLw" elementId="additions" toBeRendered="false">
         <tags>toolbarSeparator</tags>
@@ -647,7 +656,11 @@
       </children>
       <children xsi:type="menu:ToolBar" xmi:id="_tKsXLp3zEfC2tuVXhQoZLw" elementId="org.eclipse.ui.workbench.navigate">
         <tags>Draggable</tags>
+<<<<<<< Updated upstream
         <children xsi:type="menu:HandledToolItem" xmi:id="_EF1Bva_5EfCFdbfJTpBboQ" elementId="org.eclipse.ui.window.pinEditor" iconURI="platform:/plugin/org.eclipse.ui/icons/full/etool16/pin_editor.svg" tooltip="Pin Editor" enabled="false" type="Check" command="_tKshqZ3zEfC2tuVXhQoZLw"/>
+=======
+        <children xsi:type="menu:HandledToolItem" xmi:id="_EwgpMKU_EfCAXcoVMTWWog" elementId="org.eclipse.ui.window.pinEditor" iconURI="platform:/plugin/org.eclipse.ui/icons/full/etool16/pin_editor.svg" tooltip="Pin Editor" enabled="false" type="Check" command="_tKshqZ3zEfC2tuVXhQoZLw"/>
+>>>>>>> Stashed changes
       </children>
       <children xsi:type="menu:ToolBar" xmi:id="_tKsXOZ3zEfC2tuVXhQoZLw" elementId="group.editor" toBeRendered="false">
         <tags>toolbarSeparator</tags>
