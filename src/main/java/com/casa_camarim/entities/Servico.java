@@ -39,19 +39,21 @@ public class Servico {
 	public Servico() {
 		
 	}
-	
-	public Servico(Long id_servico, String preco, String nome_servico, String descricao, String tempo) {
+
+	public Servico(Long id_servico, String preco, String nome_servico, String descricao, String tempo, Agenda agenda) {
+		super();
 		this.id_servico = id_servico;
-		this.nome_servico = nome_servico;
 		this.preco = preco;
+		this.nome_servico = nome_servico;
 		this.descricao = descricao;
 		this.tempo = tempo;
+		this.agenda = agenda;
 	}
-
-	// Getters e Setters -> 
-	// Getter: método que retorna (pega) o valor de um atributo.
-	// Setter: método que altera (define) o valor de um atributo.
 	
+	// Getters e Setters -> 
+		// Getter: método que retorna (pega) o valor de um atributo.
+		// Setter: método que altera (define) o valor de um atributo.
+
 	public Long getId_servico() {
 		return id_servico;
 	}
@@ -75,7 +77,7 @@ public class Servico {
 	public void setNome_servico(String nome_servico) {
 		this.nome_servico = nome_servico;
 	}
-	
+
 	public String getDescricao() {
 		return descricao;
 	}
@@ -91,5 +93,12 @@ public class Servico {
 	public void setTempo(String tempo) {
 		this.tempo = tempo;
 	}
-	
+
+	public Agenda getAgenda() {
+		return agenda;
+	}
+
+	public void setAgenda(Agenda agenda) {
+		this.agenda = agenda;
+	}
 }
