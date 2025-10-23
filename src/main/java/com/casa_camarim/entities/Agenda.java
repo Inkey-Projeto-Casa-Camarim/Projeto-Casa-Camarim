@@ -23,7 +23,7 @@ public class Agenda {
 	private Long id_agenda;
 	
 	@Column(name = "data", nullable = false)
-	private String data;
+	private String data_agenda;
 	
 	@Column(name = "hora", nullable = false)
 	private String hora;
@@ -39,12 +39,11 @@ public class Agenda {
 	}
 
 		
-	public Agenda(Long id_agenda, String data, String hora, Usuario usuario) {
+	public Agenda(Long id_agenda, String data_agenda, String hora, Usuario usuario) {
 		super();
 		this.id_agenda = id_agenda;
-		this.data = data;
+		this.data_agenda = data_agenda;
 		this.usuario = usuario;
-		this.data = data;
 	}
 
 	// Getters e Setters(getters -> obtém o valor de um atributo, setters -> altera o valor de um atributo)
@@ -60,12 +59,12 @@ public class Agenda {
 
 
 	public String getData() {
-		return data;
+		return data_agenda;
 	}
 
 
 	public void setData(String data) {
-		this.data = data;
+		this.data_agenda = data;
 	}
 	
 	public String getHora() {

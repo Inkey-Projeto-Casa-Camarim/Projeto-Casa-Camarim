@@ -61,3 +61,9 @@ values (1, 'R$462,00', 'Cronograma Capilar Cabelo Médio', 'Pacote com 6 tratame
 (50, 'R$170,00', 'Combo Corte', 'Corte + Hidratação', '30 a 60 min'),
 (51, 'R$270,00', 'Combo Coloração', 'Coloração + Hidratação', '90 a 150 min'),
 (52, 'R$460,00', 'Pacote', '6 secagens + 2 tratamentos(qualquer tamanho de cabelo)', '120 a 180 min por sessão');
+
+-- Tabela de serviço com os serviços oferecidos pela casa camarim
+insert ignore into tb_agenda(id_agenda, data_agenda, hora)
+values (1, '11/10', '13:00'),
+(2, '12/10', '14:00'),
+(3, '13/10', '15:00');
