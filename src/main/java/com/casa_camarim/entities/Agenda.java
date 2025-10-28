@@ -15,7 +15,7 @@ import jakarta.persistence.Table;
 @Table(name = "tb_agenda")
 public class Agenda {
 
-	// Atributos (características)
+	// Atributos 
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -29,7 +29,6 @@ public class Agenda {
 	private String hora
 	;
 	
-	// ✅ Correção: relação correta com Usuario
 	@ManyToOne
 	@JoinColumn(name = "id_usuario", nullable = false)
 	@JsonIgnoreProperties("agenda") // evita loop de recursão
