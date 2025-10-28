@@ -13,7 +13,7 @@ public class TipoUsuario {
 	
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id; // Identificador único do tipo de usuário
+    private Long id_tipoUsuario; // Identificador único do tipo de usuário
 
     @Column(nullable = false, unique = true)
     private String nome; // Nome do tipo de usuário (ex: administrador)
@@ -27,18 +27,35 @@ public class TipoUsuario {
     }
     
     // Construtor completo para criar um TipoUsuario com nome e senha
-    public TipoUsuario(String nome, String senha) {
-        this.nome = nome;
+    public TipoUsuario(Long id_tipoUsuario, String nome, String senha) {
+        this.id_tipoUsuario = id_tipoUsuario;
+    	this.nome = nome;
         this.senha = senha;
     }
 
     // Getters e Setters: métodos para acessar e alterar os atributos
-    public Long getId() { return id; }
-    public void setId(Long id) { this.id = id; }
+    
+	public Long getId_tipoUsuario() {
+		return id_tipoUsuario;
+	}
 
-    public String getNome() { return nome; }
-    public void setNome(String nome) { this.nome = nome; }
+	public void setId_tipoUsuario(Long id_tipoUsuario) {
+		this.id_tipoUsuario = id_tipoUsuario;
+	}
 
-    public String getSenha() { return senha; }
-    public void setSenha(String senha) { this.senha = senha; }
+	public String getNome() {
+		return nome;
+	}
+
+	public void setNome(String nome) {
+		this.nome = nome;
+	}
+
+	public String getSenha() {
+		return senha;
+	}
+
+	public void setSenha(String senha) {
+		this.senha = senha;
+	}
 }

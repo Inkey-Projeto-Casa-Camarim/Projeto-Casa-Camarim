@@ -16,7 +16,7 @@ public class Servico {
 	
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id; // Identificador único do serviço
+    private Long id_servico; // Identificador único do serviço
 
     @NotBlank
     @Column(nullable = false)
@@ -32,22 +32,44 @@ public class Servico {
     public Servico() { }
     
     // Construtor completo para criar um serviço com todos os atributos
-    public Servico(String nome, BigDecimal preco, Integer tempoMinutos) {
-        this.nome = nome;
+    public Servico(Long id_servico, String nome, BigDecimal preco, Integer tempoMinutos) {
+        this.id_servico = id_servico;
+    	this.nome = nome;
         this.preco = preco;
         this.tempoMinutos = tempoMinutos;
     }
 
     // Getters e Setters: métodos para acessar e alterar os atributos
-    public Long getId() { return id; }
-    public void setId(Long id) { this.id = id; }
+    
+	public Long getId_servico() {
+		return id_servico;
+	}
 
-    public String getNome() { return nome; }
-    public void setNome(String nome) { this.nome = nome; }
+	public void setId_servico(Long id_servico) {
+		this.id_servico = id_servico;
+	}
 
-    public BigDecimal getPreco() { return preco; }
-    public void setPreco(BigDecimal preco) { this.preco = preco; }
+	public String getNome() {
+		return nome;
+	}
 
-    public Integer getTempoMinutos() { return tempoMinutos; }
-    public void setTempoMinutos(Integer tempoMinutos) { this.tempoMinutos = tempoMinutos; }
+	public void setNome(String nome) {
+		this.nome = nome;
+	}
+
+	public BigDecimal getPreco() {
+		return preco;
+	}
+
+	public void setPreco(BigDecimal preco) {
+		this.preco = preco;
+	}
+
+	public Integer getTempoMinutos() {
+		return tempoMinutos;
+	}
+
+	public void setTempoMinutos(Integer tempoMinutos) {
+		this.tempoMinutos = tempoMinutos;
+	}
 }

@@ -17,7 +17,7 @@ public class Agenda {
 	
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id; // Identificador único da agenda
+    private Long id_agenda; // Identificador único da agenda
 
     @ManyToOne(optional = false)
     @JoinColumn(name = "usuario_id")
@@ -39,52 +39,53 @@ public class Agenda {
     }
 
     // Construtor completo para criar uma agenda com todos os atributos
-    public Agenda(Usuario usuario, Servico servico, LocalDateTime dataHora, String observacao) {
-        this.usuario = usuario;
+    public Agenda(Long id_agenda, Usuario usuario, Servico servico, LocalDateTime dataHora, String observacao) {
+        this.id_agenda = id_agenda;
+    	this.usuario = usuario;
         this.servico = servico;
         this.dataHora = dataHora;
         this.observacao = observacao;
     }
-
+    
     // Getters e Setters: métodos para acessar e alterar os atributos
 
-    public Long getId() { 
-    	return id;
-    }
-    
-    public void setId(Long id) {
-    	this.id = id;
-    }
+	public Long getId_agenda() {
+		return id_agenda;
+	}
 
-    public Usuario getUsuario() {
-    	return usuario; 
-    }
-    
-    public void setUsuario(Usuario usuario) {
-    	this.usuario = usuario;
-    }
+	public void setId_agenda(Long id_agenda) {
+		this.id_agenda = id_agenda;
+	}
 
-    public Servico getServico() {
-    	return servico;
-    }
-    
-    public void setServico(Servico servico) {
-    	this.servico = servico;
-    }
+	public Usuario getUsuario() {
+		return usuario;
+	}
 
-    public LocalDateTime getDataHora() {
-    	return dataHora;
-    }
-    
-    public void setDataHora(LocalDateTime dataHora) {
-    	this.dataHora = dataHora;
-    }
+	public void setUsuario(Usuario usuario) {
+		this.usuario = usuario;
+	}
 
-    public String getObservacao() {
-    	return observacao;
-    }
-    
-    public void setObservacao(String observacao) {
-    	this.observacao = observacao;
-    }
+	public Servico getServico() {
+		return servico;
+	}
+
+	public void setServico(Servico servico) {
+		this.servico = servico;
+	}
+
+	public LocalDateTime getDataHora() {
+		return dataHora;
+	}
+
+	public void setDataHora(LocalDateTime dataHora) {
+		this.dataHora = dataHora;
+	}
+
+	public String getObservacao() {
+		return observacao;
+	}
+
+	public void setObservacao(String observacao) {
+		this.observacao = observacao;
+	}
 }

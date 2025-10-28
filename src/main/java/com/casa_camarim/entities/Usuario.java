@@ -14,7 +14,7 @@ public class Usuario {
 	
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id; // Identificador único do usuário
+    private Long id_usuario; // Identificador único do usuário
 
     @NotBlank
     @Column(nullable = false)
@@ -28,18 +28,35 @@ public class Usuario {
     public Usuario() { }
     
     // Construtor completo para criar um usuário com nome e telefone
-    public Usuario(String nome, String telefone) {
-        this.nome = nome;
+    public Usuario(Long id_usuario, String nome, String telefone) {
+        this.id_usuario = id_usuario;
+    	this.nome = nome;
         this.telefone = telefone;
     }
 
     // Getters e Setters: métodos para acessar e alterar os atributos
-    public Long getId() { return id; }
-    public void setId(Long id) { this.id = id; }
+    
+	public Long getId_usuario() {
+		return id_usuario;
+	}
 
-    public String getNome() { return nome; }
-    public void setNome(String nome) { this.nome = nome; }
+	public void setId_usuario(Long id_usuario) {
+		this.id_usuario = id_usuario;
+	}
 
-    public String getTelefone() { return telefone; }
-    public void setTelefone(String telefone) { this.telefone = telefone; }
-}
+	public String getNome() {
+		return nome;
+	}
+
+	public void setNome(String nome) {
+		this.nome = nome;
+	}
+
+	public String getTelefone() {
+		return telefone;
+	}
+
+	public void setTelefone(String telefone) {
+		this.telefone = telefone;
+	}
+} 
