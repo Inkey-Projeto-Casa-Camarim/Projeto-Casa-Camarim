@@ -14,47 +14,32 @@ public class Usuario {
 	
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Long id; // Identificador único do usuário
 
     @NotBlank
     @Column(nullable = false)
-    private String nome;
+    private String nome; // Nome do usuário
 
     @NotBlank
     @Column(nullable = false, unique = true)
-    private String telefone; // sugerido formato: +55DDDNNNNNNN
+    private String telefone; // Telefone do usuário
 
-    public Usuario() {
-    	
-    }
+    // Construtor padrão (necessário para o JPA)
+    public Usuario() { }
     
+    // Construtor completo para criar um usuário com nome e telefone
     public Usuario(String nome, String telefone) {
         this.nome = nome;
         this.telefone = telefone;
     }
 
-    // getters e setters
-    public Long getId() { 
-    	return id;
-    	}
-    
-    public void setId(Long id) { 
-    	this.id = id; 
-    	}
+    // Getters e Setters: métodos para acessar e alterar os atributos
+    public Long getId() { return id; }
+    public void setId(Long id) { this.id = id; }
 
-    public String getNome() { 
-    	return nome; 
-    	}
-    
-    public void setNome(String nome) {
-    	this.nome = nome;
-    	}
+    public String getNome() { return nome; }
+    public void setNome(String nome) { this.nome = nome; }
 
-    public String getTelefone() {
-    	return telefone;
-    	}
-    
-    public void setTelefone(String telefone) {
-    	this.telefone = telefone;
-    	}
+    public String getTelefone() { return telefone; }
+    public void setTelefone(String telefone) { this.telefone = telefone; }
 }

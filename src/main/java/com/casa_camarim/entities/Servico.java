@@ -16,58 +16,38 @@ public class Servico {
 	
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Long id; // Identificador único do serviço
 
     @NotBlank
     @Column(nullable = false)
-    private String nome;
+    private String nome; // Nome do serviço
 
     @Column(nullable = false, precision = 10, scale = 2)
-    private BigDecimal preco;
+    private BigDecimal preco; // Preço do serviço
 
     @Column(nullable = false)
-    private Integer tempoMinutos; // duração em minutos
+    private Integer tempoMinutos; // Duração do serviço em minutos
 
-    public Servico() {
-    	
-    }
+    // Construtor padrão (necessário para o JPA)
+    public Servico() { }
     
+    // Construtor completo para criar um serviço com todos os atributos
     public Servico(String nome, BigDecimal preco, Integer tempoMinutos) {
         this.nome = nome;
         this.preco = preco;
         this.tempoMinutos = tempoMinutos;
     }
 
-    // getters e setters
-    public Long getId() {
-    	return id;
-    	}
-    
-    public void setId(Long id) {
-    	this.id = id;
-    	}
+    // Getters e Setters: métodos para acessar e alterar os atributos
+    public Long getId() { return id; }
+    public void setId(Long id) { this.id = id; }
 
-    public String getNome() {
-    	return nome;
-    	}
-    
-    public void setNome(String nome) {
-    	this.nome = nome;
-    	}
+    public String getNome() { return nome; }
+    public void setNome(String nome) { this.nome = nome; }
 
-    public BigDecimal getPreco() {
-    	return preco;
-    	}
-    
-    public void setPreco(BigDecimal preco) {
-    	this.preco = preco;
-    	}
+    public BigDecimal getPreco() { return preco; }
+    public void setPreco(BigDecimal preco) { this.preco = preco; }
 
-    public Integer getTempoMinutos() {
-    	return tempoMinutos;
-    	}
-    
-    public void setTempoMinutos(Integer tempoMinutos) { 
-    	this.tempoMinutos = tempoMinutos;
-    	}
+    public Integer getTempoMinutos() { return tempoMinutos; }
+    public void setTempoMinutos(Integer tempoMinutos) { this.tempoMinutos = tempoMinutos; }
 }
