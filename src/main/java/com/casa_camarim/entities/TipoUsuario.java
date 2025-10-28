@@ -8,7 +8,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 
 @Entity
-@Table(name = "tipo_usuario")
+@Table(name = "tb_tipoUsuario")
 public class TipoUsuario {
 	
     @Id
@@ -16,25 +16,27 @@ public class TipoUsuario {
     private Long id_tipoUsuario; // Identificador único do tipo de usuário
 
     @Column(nullable = false, unique = true)
-    private String nome; // Nome do tipo de usuário (ex: administrador)
+    private String nome_tipo; // Nome do tipo de usuário (ex: administrador, cliente)
 
     @Column(nullable = false)
-    private String senha; // Senha do usuário (em prod, use hashing)
+    private String senha; // Senha do usuário (em produção, use hashing)
 
-    // Construtor padrão (necessário para o JPA)
+    @Column(nullable = false, unique = true, length = 11)
+    private String cpf; // CPF do usuário (usado para login)
+
+    // Construtores
     public TipoUsuario() {
-    	
     }
     
-    // Construtor completo para criar um TipoUsuario com nome e senha
-    public TipoUsuario(Long id_tipoUsuario, String nome, String senha) {
+    // Construtor completo para criar um TipoUsuario com todos os campos
+    public TipoUsuario(Long id_tipoUsuario, String nome_tipo, String senha, String cpf) {
         this.id_tipoUsuario = id_tipoUsuario;
-    	this.nome = nome;
+    	this.nome_tipo = nome_tipo;
         this.senha = senha;
+        this.cpf = cpf;
     }
 
     // Getters e Setters: métodos para acessar e alterar os atributos
-    
 	public Long getId_tipoUsuario() {
 		return id_tipoUsuario;
 	}
@@ -44,11 +46,11 @@ public class TipoUsuario {
 	}
 
 	public String getNome() {
-		return nome;
+		return nome_tipo;
 	}
 
 	public void setNome(String nome) {
-		this.nome = nome;
+		this.nome_tipo = nome;
 	}
 
 	public String getSenha() {
@@ -57,5 +59,13 @@ public class TipoUsuario {
 
 	public void setSenha(String senha) {
 		this.senha = senha;
+	}
+
+	public String getCpf() {
+		return cpf;
+	}
+
+	public void setCpf(String cpf) {
+		this.cpf = cpf;
 	}
 }
