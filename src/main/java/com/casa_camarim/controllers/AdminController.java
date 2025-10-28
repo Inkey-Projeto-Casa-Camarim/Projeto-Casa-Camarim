@@ -1,49 +1,44 @@
 package com.casa_camarim.controllers;
 
-import java.net.URLEncoder;
-import java.nio.charset.StandardCharsets;
-import java.util.List;
-import java.util.Optional;
-import java.util.stream.Collectors;
-
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.casa_camarim.dto.AgendaAdminDto;
-import com.casa_camarim.entities.Agenda;
-import com.casa_camarim.entities.TipoUsuario;
-import com.casa_camarim.repositories.AgendaRepository;
-import com.casa_camarim.repositories.TipoUsuarioRepository;
+import com.casa_camarim.entities.Servico;
+import com.casa_camarim.entities.Usuario;
+import com.casa_camarim.service.ServicoService;
+import com.casa_camarim.service.UsuarioService;
 
 @RestController
-@RequestMapping("/api/admin")
+@RequestMapping("/admin")
 public class AdminController {
-	
-    private final TipoUsuarioRepository tipoRepo;
-    private final AgendaRepository agendaRepo;
 
-    public AdminController(TipoUsuarioRepository tipoRepo, AgendaRepository agendaRepo) {
-        this.tipoRepo = tipoRepo;
-        this.agendaRepo = agendaRepo;
+    private final ServicoService servicoService;
+    private final UsuarioService usuarioService;
+
+    public AdminController(ServicoService servicoService, UsuarioService usuarioService) {
+        this.servicoService = servicoService;
+        this.usuarioService = usuarioService;
     }
 
-    @GetMapping("/atendimentos")
-    public ResponseEntity<?> listarAtendimentos(@RequestParam String nome, @RequestParam String senha) {
-        Optional<TipoUsuario> tu = tipoRepo.findByNomeAndSenha(nome, senha);
-        if (tu.isEmpty()) return ResponseEntity.status(401).body("Acesso negado");
+    // Serviços
+    @PostMapping("/servicos")
+    public Servico criarServico(@RequestBody Servico s) { return servicoService.save(s); }
 
-        List<Agenda> lista = agendaRepo.findAllByOrderByDataHoraAsc();
+    @DeleteMapping("/servicos/{id}")
+    public void deletarServico(@PathVariable Long id) { servicoService.delete(id); }
 
-        List<AgendaAdminDto> dto = lista.stream().map(a -> {
-            String telefone = a.getUsuario().getTelefone(); // +55...
-            String texto = "Olá " + a.getUsuario().getNome() + ". Confirmando seu horário em " + a.getDataHora().toString();
-            String encoded = URLEncoder.encode(texto, StandardCharsets.UTF_8);
+    // Usuários
+    @PostMapping("/usuarios")
+    public Usuario criarUsuario(@RequestBody Usuario u) { return usuarioService.save(u); }
+
             String whats = "https://api.whatsapp.com/send?phone=" + telefone + "&text=" + encoded;
+
             return new AgendaAdminDto(
-                    a.getId(),
+                    a.getId_agenda(),
                     a.getUsuario().getNome(),
                     telefone,
                     a.getServico().getNome(),
@@ -51,6 +46,7 @@ public class AdminController {
                     whats
             );
         }).collect(Collectors.toList());
+
 
         return ResponseEntity.ok(dto);
     }

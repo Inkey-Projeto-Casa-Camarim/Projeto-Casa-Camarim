@@ -3,7 +3,6 @@ package com.casa_camarim.service;
 import java.util.Optional;
 
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 import com.casa_camarim.entities.Usuario;
 import com.casa_camarim.repositories.UsuarioRepository;
@@ -11,23 +10,9 @@ import com.casa_camarim.repositories.UsuarioRepository;
 @Service
 public class UsuarioService {
 	
-    private final UsuarioRepository repo;
-    public UsuarioService(UsuarioRepository repo) { this.repo = repo; }
+	 private final UsuarioRepository repo;
+	    public UsuarioService(UsuarioRepository repo) { this.repo = repo; }
+	    public Usuario save(Usuario u) { return repo.save(u); }
+	    public Optional<Usuario> findById(Long id) { return repo.findById(id); }
+	}
 
-    @Transactional
-    public Usuario findOrCreate(String nome, String telefone) {
-        Optional<Usuario> op = repo.findByTelefone(telefone);
-        if (op.isPresent()) {
-            Usuario u = op.get();
-            // atualiza nome se diferente
-            if (!u.getNome().equals(nome)) {
-                u.setNome(nome);
-                repo.save(u);
-            }
-            return u;
-        } else {
-            Usuario novo = new Usuario(nome, telefone);
-            return repo.save(novo);
-        }
-    }
-}

@@ -8,7 +8,6 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
-import jakarta.validation.constraints.NotBlank;
 
 @Entity
 @Table(name = "servicos")
@@ -18,7 +17,6 @@ public class Servico {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id_servico; // Identificador único do serviço
 
-    @NotBlank
     @Column(nullable = false)
     private String nome; // Nome do serviço
 
@@ -26,13 +24,13 @@ public class Servico {
     private BigDecimal preco; // Preço do serviço
 
     @Column(nullable = false)
-    private Integer tempoMinutos; // Duração do serviço em minutos
+    private int tempoMinutos; // Duração do serviço em minutos
 
     // Construtor padrão (necessário para o JPA)
     public Servico() { }
     
     // Construtor completo para criar um serviço com todos os atributos
-    public Servico(Long id_servico, String nome, BigDecimal preco, Integer tempoMinutos) {
+    public Servico(Long id_servico, String nome, BigDecimal preco, int tempoMinutos) {
         this.id_servico = id_servico;
     	this.nome = nome;
         this.preco = preco;
@@ -65,11 +63,11 @@ public class Servico {
 		this.preco = preco;
 	}
 
-	public Integer getTempoMinutos() {
+	public int getTempoMinutos() {
 		return tempoMinutos;
 	}
 
-	public void setTempoMinutos(Integer tempoMinutos) {
+	public void setTempoMinutos(int tempoMinutos) {
 		this.tempoMinutos = tempoMinutos;
 	}
 }

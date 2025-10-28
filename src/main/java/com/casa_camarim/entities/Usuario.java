@@ -6,7 +6,6 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
-import jakarta.validation.constraints.NotBlank;
 
 @Entity
 @Table(name = "usuarios")
@@ -16,16 +15,16 @@ public class Usuario {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id_usuario; // Identificador único do usuário
 
-    @NotBlank
     @Column(nullable = false)
     private String nome; // Nome do usuário
 
-    @NotBlank
     @Column(nullable = false, unique = true)
     private String telefone; // Telefone do usuário
 
     // Construtor padrão (necessário para o JPA)
-    public Usuario() { }
+    public Usuario() { 
+    	
+    }
     
     // Construtor completo para criar um usuário com nome e telefone
     public Usuario(Long id_usuario, String nome, String telefone) {
