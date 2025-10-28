@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.casa_camarim.entities.Usuario;
+import com.casa_camarim.repositories.UsuarioRepository;
 
 @Service
 public class UsuarioService {

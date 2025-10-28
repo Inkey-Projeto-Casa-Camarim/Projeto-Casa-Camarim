@@ -9,6 +9,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.casa_camarim.entities.Agenda;
 import com.casa_camarim.entities.Servico;
 import com.casa_camarim.entities.Usuario;
+import com.casa_camarim.repositories.AgendaRepository;
 
 @Service
 public class AgendaService {
