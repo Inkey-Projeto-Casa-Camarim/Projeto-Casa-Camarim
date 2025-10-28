@@ -7,6 +7,8 @@ import org.springframework.stereotype.Component;
 
 import com.casa_camarim.entities.Servico;
 import com.casa_camarim.entities.TipoUsuario;
+import com.casa_camarim.repositories.ServicoRepository;
+import com.casa_camarim.repositories.TipoUsuarioRepository;
 
 @Component
 public class DataLoader implements CommandLineRunner {

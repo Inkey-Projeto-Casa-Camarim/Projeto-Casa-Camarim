@@ -6,6 +6,7 @@ import java.util.Optional;
 import org.springframework.stereotype.Service;
 
 import com.casa_camarim.entities.Servico;
+import com.casa_camarim.repositories.ServicoRepository;
 
 @Service
 public class ServicoService {

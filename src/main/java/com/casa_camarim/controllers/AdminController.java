@@ -15,6 +15,8 @@ import org.springframework.web.bind.annotation.RestController;
 import com.casa_camarim.dto.AgendaAdminDto;
 import com.casa_camarim.entities.Agenda;
 import com.casa_camarim.entities.TipoUsuario;
+import com.casa_camarim.repositories.AgendaRepository;
+import com.casa_camarim.repositories.TipoUsuarioRepository;
 
 @RestController
 @RequestMapping("/api/admin")
