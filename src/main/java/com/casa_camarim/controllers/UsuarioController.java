@@ -19,7 +19,7 @@ import com.casa_camarim.service.UsuarioService;
 //Controller REST para gerenciar usuários.
 //Expõe endpoints para criar, listar, buscar por ID e deletar usuários.
 @RestController
-@RequestMapping("/tb_usuario")
+@RequestMapping("/usuario")
 public class UsuarioController {
 
 	// Injeta automaticamente o service do usuário

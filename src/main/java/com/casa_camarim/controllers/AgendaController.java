@@ -16,7 +16,7 @@ import com.casa_camarim.entities.Agenda;
 import com.casa_camarim.service.AgendaService;
 
 @RestController
-@RequestMapping("/tb_agenda")
+@RequestMapping("/agenda")
 public class AgendaController {
 
 	@Autowired

@@ -1,5 +1,7 @@
 package com.casa_camarim.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -9,40 +11,47 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 
+//Entidade que representa um Usuário no sistema.
+//Na tabela "tb_usuario" do banco de dados.
 @Entity
-@Table(name = "usuarios")
+@Table(name = "tb_usuario")
 public class Usuario {
 	
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id_usuario; // Identificador único do usuário
+	// Atributos -> são as características (ou propriedades) de uma classe.
+	
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "id_usuario", nullable = false)
+	private Long id_usuario;
+	
+	@Column(name = "nome", nullable = false, length = 100)
+	private String nome;
+	
+	@Column(name = "telefone", nullable = false, unique = false)
+	private String telefone;
+	
+	@ManyToOne
+	@JoinColumn(name = "id_tipo", nullable = false)
+	@JsonIgnoreProperties("usuarios")
+	private TipoUsuario tipoUsuario;
+	
+	// Construtores -> serve para inicializar os atributos do objeto (ou seja, dar valores iniciais).
+	
+	public Usuario() {
+		
+	}
 
-    @Column(nullable = false)
-    private String nome; // Nome do usuário
+	public Usuario(Long id_usuario, String nome, String telefone, TipoUsuario tipoUsuario) {
+		this.id_usuario = id_usuario;
+		this.nome = nome;
+		this.telefone = telefone;
+		this.tipoUsuario = tipoUsuario;
+	}
 
-    @Column(nullable = false, unique = true)
-    private String telefone; // Telefone do usuário
-
-    // 🔹 Relacionamento: Muitos usuários podem ter um mesmo tipo de usuário (ex: cliente, administrador)
-    @ManyToOne
-    @JoinColumn(name = "tipo_usuario_id", nullable = false) // Chave estrangeira que liga ao TipoUsuario
-    private TipoUsuario tipoUsuario;
-
-    // Construtor padrão (necessário para o JPA)
-    public Usuario() { 
-    	
-    }
-    
-    // Construtor completo para criar um usuário com nome, telefone e tipo de usuário
-    public Usuario(Long id_usuario, String nome, String telefone, TipoUsuario tipoUsuario) {
-        this.id_usuario = id_usuario;
-    	this.nome = nome;
-        this.telefone = telefone;
-        this.tipoUsuario = tipoUsuario;
-    }
-
-    // Getters e Setters: métodos para acessar e alterar os atributos
-    
+	// Getters e Setters -> 
+	// Getter: método que retorna (pega) o valor de um atributo.
+	// Setter: método que altera (define) o valor de um atributo.
+	
 	public Long getId_usuario() {
 		return id_usuario;
 	}
@@ -67,7 +76,6 @@ public class Usuario {
 		this.telefone = telefone;
 	}
 
-    // 🔹 Getters e Setters do relacionamento com TipoUsuario
 	public TipoUsuario getTipoUsuario() {
 		return tipoUsuario;
 	}

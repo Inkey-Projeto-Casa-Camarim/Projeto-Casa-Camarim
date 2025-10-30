@@ -1,7 +1,5 @@
 package com.casa_camarim.entities;
 
-import java.math.BigDecimal;
-
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -9,36 +7,49 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 
+// Entidade que representa um Serviço no sistema.
+// Na tabela "servico" do banco de dados.
 @Entity
-@Table(name = "servicos")
+@Table(name = "tb_servico")
 public class Servico {
+
+	// Atributos -> são as características (ou propriedades) de uma classe.
 	
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id_servico; // Identificador único do serviço
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "id_servico", nullable = false)
+	private Long id_servico;
+	
+	@Column(name = "preco", nullable = false, precision = 10, scale = 2)
+	private String preco;
+	
+	@Column(name = "nome_servico", nullable = false)
+	private String nome_servico;
+	
+	@Column(name = "descricao_servico", nullable = false)
+	private String descricao;
+	
+	@Column(name = "tempo_servico", nullable = false)
+	private String tempo;
+	
+	// Construtores -> serve para inicializar os atributos do objeto (ou seja, dar valores iniciais).
+	
+	public Servico() {
+		
+	}
+	
+	public Servico(Long id_servico, String preco, String nome_servico, String descricao, String tempo) {
+		this.id_servico = id_servico;
+		this.nome_servico = nome_servico;
+		this.preco = preco;
+		this.descricao = descricao;
+		this.tempo = tempo;
+	}
 
-    @Column(nullable = false)
-    private String nome; // Nome do serviço
-
-    @Column(nullable = false, precision = 10, scale = 2)
-    private BigDecimal preco; // Preço do serviço
-
-    @Column(nullable = false)
-    private int tempoMinutos; // Duração do serviço em minutos
-
-    // Construtor padrão (necessário para o JPA)
-    public Servico() { }
-    
-    // Construtor completo para criar um serviço com todos os atributos
-    public Servico(Long id_servico, String nome, BigDecimal preco, int tempoMinutos) {
-        this.id_servico = id_servico;
-    	this.nome = nome;
-        this.preco = preco;
-        this.tempoMinutos = tempoMinutos;
-    }
-
-    // Getters e Setters: métodos para acessar e alterar os atributos
-    
+	// Getters e Setters -> 
+	// Getter: método que retorna (pega) o valor de um atributo.
+	// Setter: método que altera (define) o valor de um atributo.
+	
 	public Long getId_servico() {
 		return id_servico;
 	}
@@ -47,27 +58,36 @@ public class Servico {
 		this.id_servico = id_servico;
 	}
 
-	public String getNome() {
-		return nome;
-	}
-
-	public void setNome(String nome) {
-		this.nome = nome;
-	}
-
-	public BigDecimal getPreco() {
+	public String getPreco() {
 		return preco;
 	}
 
-	public void setPreco(BigDecimal preco) {
+	public void setPreco(String preco) {
 		this.preco = preco;
 	}
 
-	public int getTempoMinutos() {
-		return tempoMinutos;
+	public String getNome_servico() {
+		return nome_servico;
 	}
 
-	public void setTempoMinutos(int tempoMinutos) {
-		this.tempoMinutos = tempoMinutos;
+	public void setNome_servico(String nome_servico) {
+		this.nome_servico = nome_servico;
 	}
+	
+	public String getDescricao() {
+		return descricao;
+	}
+
+	public void setDescricao(String descricao) {
+		this.descricao = descricao;
+	}
+
+	public String getTempo() {
+		return tempo;
+	}
+
+	public void setTempo(String tempo) {
+		this.tempo = tempo;
+	}
+	
 }

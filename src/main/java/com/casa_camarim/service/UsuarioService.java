@@ -10,46 +10,50 @@ import com.casa_camarim.entities.Usuario;
 import com.casa_camarim.repositories.TipoUsuarioRepository;
 import com.casa_camarim.repositories.UsuarioRepository;
 
+//Indica ao Spring que esta classe é um serviço e deve ser gerenciada pelo container
 @Service
 public class UsuarioService {
 
-    @Autowired
-    private UsuarioRepository usuarioRepository;
+	// Injeta automaticamente o repositório do Serviço
+	@Autowired
+	private UsuarioRepository usuarioRepository;
+	
+	@Autowired
+	private TipoUsuarioRepository tipoUsuarioRepository;
+		
+	// Salva ou atualiza um usuário no banco de dados.
+		public Usuario saveUsuario(Usuario usuario) {
+			if(usuario.getTipoUsuario() == null) {
+				TipoUsuario cliente = tipoUsuarioRepository.findById(1L)
+						.orElseThrow(() -> new RuntimeException("Tipo Usuário não encontrado!"));
+				usuario.setTipoUsuario(cliente);
+			}
+			return usuarioRepository.save(usuario);
+		}
 
-    @Autowired
-    private TipoUsuarioRepository tipoUsuarioRepository;
+		// Retorna todos os usuários cadastrados.
+		public List<Usuario> getAllUsuario() {
+			return usuarioRepository.findAll();
+		}
 
-    // Salva ou atualiza um usuário no banco de dados.
-    public Usuario saveUsuario(Usuario usuario) {
-        // Garante que o usuário tenha um tipo associado
-        if (usuario.getTipoUsuario() == null) {
-            TipoUsuario cliente = tipoUsuarioRepository.findById(1L)
-                    .orElseThrow(() -> new RuntimeException("Tipo de usuário padrão (ID=1) não encontrado!"));
-            usuario.setTipoUsuario(cliente);
-        }
+		// Busca um usuário pelo seu ID.
+		public Usuario getUsuarioById(Long id) {
+			return usuarioRepository.findById(id).
+					orElseThrow(() -> new RuntimeException("Usuário não encontrado!"));
+		}
+		
+		// Exclui um usuário pelo ID.
+		public void deleteUsuario(Long id) {
+			usuarioRepository.deleteById(id);
+		}
+		
+		// Busca o usuário pelo telefone
+		public Usuario getUsuarioByTelefone(String telefone) {
+	        Usuario usuario = usuarioRepository.findByTelefone(telefone);
+	        if(usuario != null) {
+	        		return usuario;
+	        }
+	        return usuario;
+	    }
 
-        return usuarioRepository.save(usuario);
-    }
-
-    // Retorna todos os usuários cadastrados.
-    public List<Usuario> getAllUsuario() {
-        return usuarioRepository.findAll();
-    }
-
-    // Busca um usuário pelo seu ID.
-    public Usuario getUsuarioById(Long id) {
-        return usuarioRepository.findById(id)
-                .orElseThrow(() -> new RuntimeException("Usuário não encontrado!"));
-    }
-
-    // Exclui um usuário pelo ID.
-    public void deleteUsuario(Long id) {
-        usuarioRepository.deleteById(id);
-    }
-
-    // Busca o usuário pelo telefone.
-    public Usuario getUsuarioByTelefone(String telefone) {
-        return usuarioRepository.findByTelefone(telefone)
-                .orElse(null); // ou .orElseThrow(...) se preferir lançar erro
-    }
 }
