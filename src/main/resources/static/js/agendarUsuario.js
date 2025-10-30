@@ -1,4 +1,3 @@
-// agendarUsuario.js
 document.addEventListener('DOMContentLoaded', () => {
     const serviceId = sessionStorage.getItem('serviceId');
     const data = sessionStorage.getItem('selectedData');
@@ -7,28 +6,23 @@ document.addEventListener('DOMContentLoaded', () => {
     document.getElementById('formAgendar').addEventListener('submit', e => {
         e.preventDefault();
 
-        const nomeCliente = document.getElementById('nome').value;
+        const nome = document.getElementById('nome').value;
         const telefone = document.getElementById('telefone').value;
 
-        if(!nomeCliente || !telefone){
-            alert('Preencha todos os campos.');
-            return;
-        }
-
-        fetch('http://localhost:8080/agenda', { // endpoint corrigido
+        fetch('http://localhost:8080/api/agendar', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({
                 serviceId,
-                nomeCliente,
+                nome,
                 telefone,
                 data,
-                hora: horario
+                horario
             })
         })
         .then(res => res.json())
         .then(response => {
-            if(response && response.id != null){ // sucesso: recebeu agenda criada
+            if(response.success){
                 window.location.href = './confirmacoes/enviado.html';
             } else {
                 alert('Erro ao agendar. Tente novamente.');

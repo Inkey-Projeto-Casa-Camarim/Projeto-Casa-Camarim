@@ -35,6 +35,8 @@ public class Usuario {
 	@JsonIgnoreProperties("usuarios")
 	private TipoUsuario tipoUsuario;
 	
+	//Acrescentar uma tabela manytomany para agenda
+	
 	// Construtores -> serve para inicializar os atributos do objeto (ou seja, dar valores iniciais).
 	
 	public Usuario() {

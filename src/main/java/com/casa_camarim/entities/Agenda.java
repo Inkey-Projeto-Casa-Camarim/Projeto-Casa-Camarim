@@ -1,10 +1,15 @@
 package com.casa_camarim.entities;
 
+import java.util.List;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.JoinTable;
+import jakarta.persistence.ManyToMany;
 import jakarta.persistence.Table;
 
 @Entity
@@ -16,26 +21,37 @@ public class Agenda {
     @Column(name = "id_agenda", nullable = false)
     private Long id_agenda;
 
-    @Column(name = "nome_cliente", nullable = false, length = 150)
-    private String nomeCliente;
-
-    @Column(name = "telefone", nullable = false, length = 30)
-    private String telefone;
-
     @Column(name = "data_agendamento", nullable = false, length = 20)
-    private String data; // você pode trocar para LocalDate se preferir tipos de data reais
+    private String data;
 
     @Column(name = "hora_agendamento", nullable = false, length = 20)
-    private String hora; // idem — LocalTime seria mais apropriado em produção
+    private String hora;
+
+    // 🔗 Relacionamento ManyToMany com Servico
+    @ManyToMany
+    @JoinTable(
+        name = "tb_agenda_servico",
+        joinColumns = @JoinColumn(name = "id_agenda"),
+        inverseJoinColumns = @JoinColumn(name = "id_servico")
+    )
+    private String servico;
+    
+    //tabela de cliente
+    @ManyToMany
+    @JoinTable (
+    		name = "tb_usuario",
+    		joinColumns= @JoinColumn(name = "id_agenda"), 
+    		inverseJoinColumns = @JoinColumn(name = "nome")
+    )
+    private String cliente;   
+    
+    private List<Servico> servicos;
 
     // Construtores
-    public Agenda() {
-    }
+    public Agenda() {}
 
-    public Agenda(Long id_agenda, String nomeCliente, String telefone, String data, String hora) {
+    public Agenda(Long id_agenda, String data, String hora) {
         this.id_agenda = id_agenda;
-        this.nomeCliente = nomeCliente;
-        this.telefone = telefone;
         this.data = data;
         this.hora = hora;
     }
@@ -47,22 +63,6 @@ public class Agenda {
 
     public void setId_agenda(Long id_agenda) {
         this.id_agenda = id_agenda;
-    }
-
-    public String getNomeCliente() {
-        return nomeCliente;
-    }
-
-    public void setNomeCliente(String nomeCliente) {
-        this.nomeCliente = nomeCliente;
-    }
-
-    public String getTelefone() {
-        return telefone;
-    }
-
-    public void setTelefone(String telefone) {
-        this.telefone = telefone;
     }
 
     public String getData() {
@@ -79,5 +79,13 @@ public class Agenda {
 
     public void setHora(String hora) {
         this.hora = hora;
+    }
+
+    public List<Servico> getServicos() {
+        return servicos;
+    }
+
+    public void setServicos(List<Servico> servicos) {
+        this.servicos = servicos;
     }
 }
