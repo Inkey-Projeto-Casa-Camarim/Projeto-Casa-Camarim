@@ -3,6 +3,7 @@ package com.casa_camarim.entities;
 import java.time.LocalDate;
 import java.time.LocalTime;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -19,6 +20,7 @@ public class Agendamento {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id_agendamento;
     
+    @Column(name = "hora")
     private LocalTime hora;
     
     private LocalDate data;
