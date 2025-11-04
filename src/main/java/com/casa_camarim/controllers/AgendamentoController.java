@@ -6,53 +6,63 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
 
-import com.casa_camarim.entities.Agenda;
-import com.casa_camarim.service.AgendaService;
+import com.casa_camarim.entities.Agendamento;
+import com.casa_camarim.entities.Cliente;
+import com.casa_camarim.service.AgendamentoService;
 
 @RestController
 @RequestMapping("/api/agenda") // corrigido para coincidir com front-end
 @CrossOrigin(origins = "*") // permite requisições do front
-public class AgendaController {
+public class AgendamentoController {
 
     @Autowired
-    private AgendaService agendaService;
+    private AgendamentoService agendamentoService;
 
     // Criar um novo agendamento
     @PostMapping
-    public Agenda saveAgenda(@RequestBody Agenda agenda) {
-        return agendaService.saveAgenda(agenda);
+    public Agendamento saveAgendamento(@RequestBody Agendamento agendamento) {
+        return agendamentoService.saveAgendamento(agendamento);
     }
 
     // Listar todos os agendamentos (para admin)
     @GetMapping
-    public List<Agenda> getAllAgenda() {
-        return agendaService.getAllAgenda();
+    public List<Agendamento> getAllAgendamento() {
+        return agendamentoService.getAllAgendamento();
     }
 
     // Buscar agendamento por ID
     @GetMapping("/{id}")
-    public Agenda getAgendaById(@PathVariable Long id) {
-        return agendaService.getAgendaById(id);
+    public Agendamento getAgendamentoById(@PathVariable Long id) {
+        return agendamentoService.getAgendamentoById(id);
     }
 
     // Editar um agendamento
     @PutMapping
-    public Agenda editAgenda(@RequestBody Agenda agenda) {
-        return agendaService.saveAgenda(agenda);
+    public Agendamento editAgendamento(@RequestBody Agendamento agendamento) {
+        return agendamentoService.saveAgendamento(agendamento);
     }
 
     // Deletar um agendamento por ID
     @DeleteMapping("/{id}")
-    public void deleteAgenda(@PathVariable Long id) {
-        agendaService.deleteAgenda(id);
+    public void deleteAgendamento(@PathVariable Long id) {
+    	agendamentoService.deleteAgendamento(id);
     }
 
-    // Buscar todos os agendamentos de um cliente pelo telefone
-    @GetMapping("/telefone/{telefone}")
-    public List<Agenda> getAgendaByTelefone(@PathVariable String telefone) {
-        return agendaService.getAgendaByTelefone(telefone);
+    // Buscar todos os agendamentos de um cliente pelo id
+    @GetMapping("/id/{id}")
+    public List<Agendamento> getAgendamentoByCliente(@PathVariable Cliente cliente) {
+        return agendamentoService.getAgendamentoByCliente(cliente);
     }
 
     // Listar datas disponíveis para um serviço

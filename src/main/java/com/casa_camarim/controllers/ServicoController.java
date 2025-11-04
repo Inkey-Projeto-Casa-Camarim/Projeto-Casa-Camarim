@@ -18,7 +18,7 @@ import com.casa_camarim.service.ServicoService;
 // Controller REST para gerenciar Serviços.
 // Expõe endpoints para criar, listar, buscar por ID e deletar serviços.
 @RestController
-@RequestMapping("/servico")
+@RequestMapping("/api/servico")
 public class ServicoController {
 	
 	// Injeta automaticamente o service do Serviço

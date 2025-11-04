@@ -2,45 +2,46 @@ package com.casa_camarim.entities;
 
 import java.util.List;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
-import jakarta.persistence.Table;
 
 @Entity
-@Table(name = "tb_servico")
-public class Servico {
-
+public class Cliente {
+	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long id_servico;
+	@Column(name = "id_cliente", nullable = false)
+	private Long id;
 
 	private String nome;
 
-	private String preco;
-	
-	@OneToMany(mappedBy = "servico")
+	private String telefone;
+
+	@OneToMany(mappedBy = "cliente")
 	private List<Agendamento> agendamentos;
 
-	public Servico() {
-		
+	public Cliente() {
+
 	}
 
-	public Servico(Long id_servico, String nome, String preco, List<Agendamento> agendamentos) {
-		this.id_servico = id_servico;
+	public Cliente(Long id, String nome, String telefone, List<Agendamento> agendamentos) {
+
+		this.id = id;
 		this.nome = nome;
-		this.preco = preco;
+		this.telefone = telefone;
 		this.agendamentos = agendamentos;
 	}
 
-	public Long getId_servico() {
-		return id_servico;
+	public Long getId() {
+		return id;
 	}
 
-	public void setId_servico(Long id_servico) {
-		this.id_servico = id_servico;
+	public void setId(Long id) {
+		this.id = id;
 	}
 
 	public String getNome() {
@@ -51,12 +52,12 @@ public class Servico {
 		this.nome = nome;
 	}
 
-	public String getPreco() {
-		return preco;
+	public String getTelefone() {
+		return telefone;
 	}
 
-	public void setPreço(String preco) {
-		this.preco = preco;
+	public void setTelefone(String telefone) {
+		this.telefone = telefone;
 	}
 
 	public List<Agendamento> getAgendamentos() {
@@ -66,13 +67,5 @@ public class Servico {
 	public void setAgendamentos(List<Agendamento> agendamentos) {
 		this.agendamentos = agendamentos;
 	}
-	
-	
-	
-	
-	
-	
-	
-	
-	
+
 }
