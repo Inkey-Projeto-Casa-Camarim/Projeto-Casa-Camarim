@@ -1,38 +1,46 @@
+<!-- Configuração principal do projeto Maven -->
 <project xmlns="http://maven.apache.org/POM/4.0.0"
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 
+    <!-- Modelo -->
     <modelVersion>4.0.0</modelVersion>
 
+    <!-- Herda as configurações do Spring Boot -->
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
-        <version>3.3.4</version> <!-- versão estável -->
+        <version>3.3.4</version>
         <relativePath/>
     </parent>
 
-    <groupId>com.example</groupId>
+    <!-- Informações do projeto -->
+    <groupId>com.casa_camarim</groupId>
     <artifactId>Projeto-Casa-Camarim</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <name>Projeto-Casa-Camarim</name>
-    <description>Salão de Beleza</description>
+    <description>Aplicação para gestão de salão de beleza</description>
 
+    <!-- Configurações -->
     <properties>
         <java.version>17</java.version>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
     </properties>
 
+    <!-- Dependências -->
     <dependencies>
+
+        <!-- Web -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+        </dependency>
 
         <!-- JPA -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-data-jpa</artifactId>
-        </dependency>
-
-        <!-- WEB -->
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-web</artifactId>
         </dependency>
 
         <!-- MySQL -->
@@ -50,7 +58,7 @@
             <optional>true</optional>
         </dependency>
 
-        <!-- Test -->
+        <!-- Testes -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-test</artifactId>
@@ -59,8 +67,17 @@
 
     </dependencies>
 
+    <!-- Build -->
     <build>
+        <resources>
+            <resource>
+                <directory>src/main/resources</directory>
+                <filtering>false</filtering> <!-- evita erro de codificação -->
+            </resource>
+        </resources>
+
         <plugins>
+            <!-- Plugin do Spring Boot -->
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
