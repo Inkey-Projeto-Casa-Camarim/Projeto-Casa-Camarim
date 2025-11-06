@@ -1,29 +1,38 @@
 package com.casa_camarim.service;
 
 import java.util.List;
-import java.util.Optional;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.casa_camarim.entities.Servico;
+import com.casa_camarim.repositories.ServicoRepository;
 
-// Classe de serviço responsável pelas regras de negócio
-// relacionadas aos serviços oferecidos no sistema.
+//Indica ao Spring que esta classe é um serviço e deve ser gerenciada pelo container
 @Service 
-public interface ServicoService {
+public class ServicoService {
 
-	// Retorna todos os serviços cadastrados
-	List<Servico> getAllServicos();
+	 // Injeta automaticamente o repositório do Serviço
+	@Autowired
+	private ServicoRepository servicoRepository;
 	
-	// Busca um serviço específico pelo ID
-	Optional<Servico> getServicoById(Long id);
-	
-	// Salva (cria ou atualiza) um serviço no banco de dados
-	Servico saveServico(Servico servico);
-	
-	// Atualiza as informações de um serviço existente
-	Servico updateServico(Long id, Servico servico);
-	
-	// Exclui um serviço pelo ID
-	void deleteServico(Long id);
+	// Salva ou atualiza um serviço no banco de dados.
+	public Servico saveServico(Servico servico) {
+		return servicoRepository.save(servico);
+	}
+
+	// Retorna todos os serviços cadastrados.
+	public List<Servico> getAllServico() {
+		return servicoRepository.findAll();
+	}
+
+	// Busca um serviço pelo seu ID.
+	public Servico getServicoById(Long id) {
+		return servicoRepository.findById(id).orElse(null);
+	}
+
+	// Exclui um serviço pelo ID.
+	public void deleteServico(Long id) {
+		servicoRepository.deleteById(id);
+	}
 }

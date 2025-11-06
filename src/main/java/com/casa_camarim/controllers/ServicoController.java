@@ -1,11 +1,8 @@
 package com.casa_camarim.controllers;
 
 import java.util.List;
-import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -18,54 +15,44 @@ import org.springframework.web.bind.annotation.RestController;
 import com.casa_camarim.entities.Servico;
 import com.casa_camarim.service.ServicoService;
 
-// Controller responsável por gerenciar os endpoints relacionados aos serviços
+// Controller REST para gerenciar Serviços.
+// Expõe endpoints para criar, listar, buscar por ID e deletar serviços.
 @RestController
-@RequestMapping("/api/servico") // Define o caminho base dos endpoints
-@CrossOrigin(origins = "*") // Permite chamadas do front-end
+@RequestMapping("/api/servico")
 public class ServicoController {
 	
-    // Injeta automaticamente o serviço responsável pela lógica de negócio dos serviços
-    @Autowired
-    private ServicoService servicoService;
+	// Injeta automaticamente o service do Serviço
+	@Autowired
+	private ServicoService servicoService;
 
-    // Cria um novo serviço e salva no banco de dados
-    @PostMapping
-    public Servico saveServico(@RequestBody Servico servico) {
-        return servicoService.saveServico(servico);
-    }
+	//Endpoint para salvar o serviço
+	@PostMapping
+	public Servico saveServico(@RequestBody Servico servico) {
+		return servicoService.saveServico(servico);
+	}
 
-    // Retorna a lista de todos os serviços cadastrados
-    @GetMapping
-    public List<Servico> getAllServicos() {
-        return servicoService.getAllServicos();
-    }
+	//Endpoint para buscar o serviço
+	@GetMapping
+	public List<Servico> getAllServico() {
+		return servicoService.getAllServico();
+	}
 
-    // Busca um serviço específico pelo ID
-    @GetMapping("/{id}")
-    public ResponseEntity<Servico> getServicoById(@PathVariable Long id) {
-        Optional<Servico> servico = servicoService.getServicoById(id);
-        return servico.map(ResponseEntity::ok).orElse(ResponseEntity.notFound().build());
-    }
+	//Endpoint para buscar serviço por ID
+	@GetMapping("/{id}")
+	public Servico getServicoById(@PathVariable Long id) {
+		return servicoService.getServicoById(id);
+	}
+	
+	// Endpoint para editar os serviços
+	@PutMapping
+	public Servico editServico(@RequestBody Servico servico) {
+		return servicoService.saveServico(servico);
+	}
 
-    // Atualiza os dados de um serviço existente
-    @PutMapping("/{id}")
-    public ResponseEntity<Servico> editServico(@PathVariable Long id, @RequestBody Servico servico) {
-        Servico servicoAtualizado = servicoService.updateServico(id, servico);
-        if (servicoAtualizado != null) {
-            return ResponseEntity.ok(servicoAtualizado);
-        } else {
-            return ResponseEntity.notFound().build();
-        }
-    }
-
-    // Deleta um serviço do banco de dados pelo ID
-    @DeleteMapping("/{id}")
-    public ResponseEntity<Void> deleteServico(@PathVariable Long id) {
-        if (servicoService.getServicoById(id).isPresent()) {
-            servicoService.deleteServico(id);
-            return ResponseEntity.ok().build();
-        } else {
-            return ResponseEntity.notFound().build();
-        }
-    }
+    //Endpoint para deletar um serviço
+	@DeleteMapping("/{id}")
+	public void deleteServico(@PathVariable Long id) {
+		servicoService.deleteServico(id);
+	}
+	
 }
