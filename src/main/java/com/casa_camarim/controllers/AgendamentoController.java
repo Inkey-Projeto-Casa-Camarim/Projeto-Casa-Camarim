@@ -1,11 +1,10 @@
 package com.casa_camarim.controllers;
 
-import java.time.LocalDate;
-import java.time.LocalTime;
 import java.util.List;
-import java.util.stream.Collectors;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -14,11 +13,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.casa_camarim.entities.Agendamento;
-import com.casa_camarim.entities.Cliente;
 import com.casa_camarim.service.AgendamentoService;
 
 @RestController
@@ -29,48 +26,64 @@ public class AgendamentoController {
     @Autowired
     private AgendamentoService agendamentoService;
 
-    // Criar um novo agendamento
     @PostMapping
-    public Agendamento saveAgendamento(@RequestBody Agendamento agendamento) {
-        return agendamentoService.saveAgendamento(agendamento);
+    public ResponseEntity<Agendamento> criarAgendamento(@RequestBody Agendamento agendamento) {
+        try {
+        	Agendamento agendamentoSalvo = agendamentoService.saveAgendamento(agendamento);
+            return ResponseEntity.ok(agendamentoSalvo);
+        } catch (Exception e) {
+            return ResponseEntity.badRequest().build();
+        }
+    }
+    
+    @PostMapping("/usuario/{usuarioId}")
+    public ResponseEntity<Agendamento> criarAgendamentoComUsuario(@RequestBody Agendamento agendamento, @PathVariable Long clienteId) {
+        try {
+        	Agendamento agendamentoSalvo = agendamentoService.criarAgendamentoComCliente(agendamento, clienteId);
+            return ResponseEntity.ok(agendamentoSalvo);
+        } catch (Exception e) {
+            return ResponseEntity.badRequest().build();
+        }
     }
 
-    // Listar todos os agendamentos (para admin)
     @GetMapping
-    public List<Agendamento> getAllAgendamento() {
-        return agendamentoService.getAllAgendamento();
+    public List<Agendamento> getAllAgendamentos() {
+        return agendamentoService.getAllAgendamentos();
     }
 
-    // Buscar agendamento por ID
     @GetMapping("/{id}")
-    public Agendamento getAgendamentoById(@PathVariable Long id) {
-        return agendamentoService.getAgendamentoById(id);
+    public ResponseEntity<Agendamento> getAgendamentoById(@PathVariable Long id) {
+        Optional<Agendamento> agendamento = agendamentoService.getAgendamentoById(id);
+        return agendamento.map(ResponseEntity::ok).orElse(ResponseEntity.notFound().build());
     }
 
-    // Editar um agendamento
-    @PutMapping
-    public Agendamento editAgendamento(@RequestBody Agendamento agendamento) {
-        return agendamentoService.saveAgendamento(agendamento);
+    @PutMapping("/{id}")
+    public ResponseEntity<Agendamento> editarAgendamento(@PathVariable Long id, @RequestBody Agendamento agendamento) {
+    	Agendamento agendamentoAtualizada = agendamentoService.updateAgendamento(id, agendamento);
+        if (agendamentoAtualizada != null) {
+            return ResponseEntity.ok(agendamentoAtualizada);
+        } else {
+            return ResponseEntity.notFound().build();
+        }
     }
 
-    // Deletar um agendamento por ID
     @DeleteMapping("/{id}")
-    public void deleteAgendamento(@PathVariable Long id) {
-    	agendamentoService.deleteAgendamento(id);
+    public ResponseEntity<Void> deletarAgendamento(@PathVariable Long id) {
+        if (agendamentoService.getAgendamentoById(id).isPresent()) {
+        	agendamentoService.deleteAgendamento(id);
+            return ResponseEntity.ok().build();
+        } else {
+            return ResponseEntity.notFound().build();
+        }
     }
 
-    // Buscar todos os agendamentos de um cliente pelo id
-    @GetMapping("/id/{id}")
-    public List<Agendamento> getAgendamentoByCliente(@PathVariable Cliente cliente) {
-        return agendamentoService.getAgendamentoByCliente(cliente);
+    @GetMapping("/telefone/{telefone}")
+    public List<Agendamento> getAgendamentoByTelefone(@PathVariable String telefone) {
+        return agendamentoService.getAgendamentosByTelefone(telefone);
     }
-
-    // Listar datas disponíveis para um serviço
-    @GetMapping("/datas")
-    public List<String> getDatasDisponiveis(@RequestParam Long serviceId) {
-        // Exemplo simples: retornar os próximos 7 dias como strings
-        return LocalDate.now().datesUntil(LocalDate.now().plusDays(7))
-                .map(LocalDate::toString)
-                .collect(Collectors.toList());
-    }  
+    
+    @GetMapping("/usuario/{usuarioId}")
+    public List<Agendamento> getAgendamentoByUsuario(@PathVariable Long clienteId) {
+        return agendamentoService.getAgendamentosByClienteId(clienteId);
+    }
 }

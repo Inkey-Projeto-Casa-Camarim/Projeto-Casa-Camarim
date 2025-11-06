@@ -22,11 +22,11 @@ public interface AgendamentoService {
 	    
 	    List<Agendamento> getAgendamentosByTelefone(String telefone);
 	    
-	    List<Agendamento> getAgendamentosByUsuarioId(Long clienteId);
+	    List<Agendamento> getAgendamentosByClienteId(Long clienteId);
 	    
-	    List<Agendamento> getAgendamentosByUsuarioIdOrTelefone(Long clienteId, String telefone);
+	    List<Agendamento> getAgendamentosByClienteIdOrTelefone(Long clienteId, String telefone);
 	    
-	    Agendamento criarAgendamentoComUsuario(Agendamento agendamento, Long clienteId);
+	    Agendamento criarAgendamentoComCliente(Agendamento agendamento, Long clienteId);
 	    
 	    List<Agendamento> getAgendamentosByStatus(String status);
 }
