@@ -18,50 +18,54 @@ import org.springframework.web.bind.annotation.RestController;
 import com.casa_camarim.entities.Servico;
 import com.casa_camarim.service.ServicoService;
 
-// Controller REST para gerenciar Serviços.
-// Expõe endpoints para criar, listar, buscar por ID e deletar serviços.
+// Controller responsável por gerenciar os endpoints relacionados aos serviços
 @RestController
-@RequestMapping("/api/servico")
-@CrossOrigin(origins = "*")
+@RequestMapping("/api/servico") // Define o caminho base dos endpoints
+@CrossOrigin(origins = "*") // Permite chamadas do front-end
 public class ServicoController {
 	
-		// Injeta automaticamente o service do Serviço
-		@Autowired
-		private ServicoService servicoService;
+    // Injeta automaticamente o serviço responsável pela lógica de negócio dos serviços
+    @Autowired
+    private ServicoService servicoService;
 
-		@PostMapping
-	    public Servico saveServico(@RequestBody Servico servico) {
-	        return servicoService.saveServico(servico);
-	    }
+    // Cria um novo serviço e salva no banco de dados
+    @PostMapping
+    public Servico saveServico(@RequestBody Servico servico) {
+        return servicoService.saveServico(servico);
+    }
 
-	    @GetMapping
-	    public List<Servico> getAllServicos() {
-	        return servicoService.getAllServicos();
-	    }
+    // Retorna a lista de todos os serviços cadastrados
+    @GetMapping
+    public List<Servico> getAllServicos() {
+        return servicoService.getAllServicos();
+    }
 
-	    @GetMapping("/{id}")
-	    public ResponseEntity<Servico> getServicoById(@PathVariable Long id) {
-	        Optional<Servico> servico = servicoService.getServicoById(id);
-	        return servico.map(ResponseEntity::ok).orElse(ResponseEntity.notFound().build());
-	    }
-	    
-	    @PutMapping("/{id}")
-	    public ResponseEntity<Servico> editServico(@PathVariable Long id, @RequestBody Servico servico) {
-	        Servico servicoAtualizado = servicoService.updateServico(id, servico);
-	        if (servicoAtualizado != null) {
-	            return ResponseEntity.ok(servicoAtualizado);
-	        } else {
-	            return ResponseEntity.notFound().build();
-	        }
-	    }
+    // Busca um serviço específico pelo ID
+    @GetMapping("/{id}")
+    public ResponseEntity<Servico> getServicoById(@PathVariable Long id) {
+        Optional<Servico> servico = servicoService.getServicoById(id);
+        return servico.map(ResponseEntity::ok).orElse(ResponseEntity.notFound().build());
+    }
 
-	    @DeleteMapping("/{id}")
-	    public ResponseEntity<Void> deleteServico(@PathVariable Long id) {
-	        if (servicoService.getServicoById(id).isPresent()) {
-	            servicoService.deleteServico(id);
-	            return ResponseEntity.ok().build();
-	        } else {
-	            return ResponseEntity.notFound().build();
-	        }
-	    }
-	}
+    // Atualiza os dados de um serviço existente
+    @PutMapping("/{id}")
+    public ResponseEntity<Servico> editServico(@PathVariable Long id, @RequestBody Servico servico) {
+        Servico servicoAtualizado = servicoService.updateServico(id, servico);
+        if (servicoAtualizado != null) {
+            return ResponseEntity.ok(servicoAtualizado);
+        } else {
+            return ResponseEntity.notFound().build();
+        }
+    }
+
+    // Deleta um serviço do banco de dados pelo ID
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> deleteServico(@PathVariable Long id) {
+        if (servicoService.getServicoById(id).isPresent()) {
+            servicoService.deleteServico(id);
+            return ResponseEntity.ok().build();
+        } else {
+            return ResponseEntity.notFound().build();
+        }
+    }
+}
