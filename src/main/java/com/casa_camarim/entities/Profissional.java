@@ -12,10 +12,12 @@ import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
+// Classe que representa uma entidade (tabela) no banco de dados
 @Entity
 @Table(name = "tb_profissional")
 public class Profissional {
 
+	// ID: chave primária gerada automaticamente (auto incremento)
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id_profissional;
@@ -34,20 +36,20 @@ public class Profissional {
 
 	@Column(name = "especialidade", nullable = false)
 	private String especialidade;
-	
+
+	 // Enum TipoAcesso: Representa tipos fixos de acesso (ex: Comum, Administrador).
 	@Enumerated(EnumType.STRING)
 	@Column(name = "tipo_acesso", nullable = false)
 	private TipoAcesso tipoacesso = TipoAcesso.Comum;
 	
+	// Um profissional pode ter vários agendamentos
 	@OneToMany(mappedBy = "profissional")
 	private List<Agendamento> agendamentos;
 	
+	// Construtor padrão
+	public Profissional() {}
 	
-	public Profissional() {
-		
-	}
-
-
+	// Construtor completo
 	public Profissional(Long id_profissional, String cpf, String telefone, String senha, String nome,
 			String especialidade, TipoAcesso tipoacesso, List<Agendamento> agendamentos) {
 		super();
@@ -61,81 +63,66 @@ public class Profissional {
 		this.agendamentos = agendamentos;
 	}
 
-
+	// Getters e Setters
 	public Long getId_profissional() {
 		return id_profissional;
 	}
-
 
 	public void setId_profissional(Long id_profissional) {
 		this.id_profissional = id_profissional;
 	}
 
-
 	public String getCpf() {
 		return cpf;
 	}
-
 
 	public void setCpf(String cpf) {
 		this.cpf = cpf;
 	}
 
-
 	public String getTelefone() {
 		return telefone;
 	}
-
 
 	public void setTelefone(String telefone) {
 		this.telefone = telefone;
 	}
 
-
 	public String getSenha() {
 		return senha;
 	}
-
 
 	public void setSenha(String senha) {
 		this.senha = senha;
 	}
 
-
 	public String getNome() {
 		return nome;
 	}
-
 
 	public void setNome(String nome) {
 		this.nome = nome;
 	}
 
-
 	public String getEspecialidade() {
 		return especialidade;
 	}
-
 
 	public void setEspecialidade(String especialidade) {
 		this.especialidade = especialidade;
 	}
 
-
 	public TipoAcesso getTipoacesso() {
 		return tipoacesso;
 	}
-
 
 	public void setTipoacesso(TipoAcesso tipoacesso) {
 		this.tipoacesso = tipoacesso;
 	}
 
-
 	public List<Agendamento> getAgendamentos() {
 		return agendamentos;
 	}
-
 
 	public void setAgendamentos(List<Agendamento> agendamentos) {
 		this.agendamentos = agendamentos;

@@ -12,10 +12,12 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 
+// Classe que representa uma entidade (tabela) no banco de dados
 @Entity
 @Table(name = "tb_agenda")
 public class Agendamento {
 
+    // ID: chave primária da tabela, gerada automaticamente pelo banco (auto incremento)
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id_agendamento;
@@ -35,6 +37,7 @@ public class Agendamento {
     @Column(name = "status", length = 20)
     private String status = "AGENDADO";
     
+    // Relacionamentos: vários agendamentos podem ter o mesmo cliente, serviço e profissional
     @ManyToOne
     @JoinColumn(name="id_cliente")
     private Cliente cliente;
@@ -47,10 +50,12 @@ public class Agendamento {
     @JoinColumn(name="id_profissional")
     private Profissional profissional;
     
+    // Construtor padrão: usado pelo JPA para criar o objeto sem precisar de parâmetros
     public Agendamento() {
     	
     }
     
+    // Construtor completo: cria o agendamento com cliente e serviço definidos
     public Agendamento(Long id_agendamento, LocalTime hora, LocalDate data, Cliente cliente, Servico servico) {
     	this.id_agendamento = id_agendamento;
     	this.hora = hora;
@@ -61,6 +66,7 @@ public class Agendamento {
         this.telefone = cliente.getTelefone();
     }
     
+    // Construtor alternativo: cria o agendamento com dados básicos, sem cliente vinculado
     public Agendamento(LocalTime hora, LocalDate data, Servico servico, String pessoa, String telefone) {
         this.hora = hora;
         this.data = data;
@@ -68,6 +74,8 @@ public class Agendamento {
         this.pessoa = pessoa;
         this.telefone = telefone;
     }
+
+    // Getters e Setters: permitem acessar e modificar os atributos da classe
 
 	public Long getId_agendamento() {
 		return id_agendamento;
@@ -99,6 +107,7 @@ public class Agendamento {
 
 	public void setCliente(Cliente cliente) {
 		this.cliente = cliente;
+        // Atualiza nome e telefone automaticamente ao definir o cliente
         if(cliente != null) {
             this.pessoa = cliente.getNome();
             this.telefone = cliente.getTelefone();

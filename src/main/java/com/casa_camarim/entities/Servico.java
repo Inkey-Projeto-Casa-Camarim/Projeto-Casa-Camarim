@@ -10,12 +10,15 @@ import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
+// Classe que representa uma entidade (tabela) no banco de dados
 @Entity
 @Table(name = "tb_servico")
 public class Servico {
-
+	
+	// ID: chave primária da tabela, gerada automaticamente pelo banco (auto incremento)
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "id_servico", nullable = false)
 	private Long id_servico;
 
 	@Column(name = "nome_servico", nullable = false)
@@ -33,10 +36,10 @@ public class Servico {
 	@OneToMany(mappedBy = "servico")
 	private List<Agendamento> agendamentos;
 
-	public Servico() {
-		
-	}
+	// Construtor padrão: usado pelo JPA para criar instâncias vazias
+	public Servico() {}
 
+	// Construtor completo: permite criar o serviço já com todos os atributos definidos
 	public Servico(Long id_servico, String nome, String preco, List<Agendamento> agendamentos, String descricaoServico, String tempoServico) {
 		this.id_servico = id_servico;
 		this.nome = nome;
@@ -45,6 +48,8 @@ public class Servico {
 		this.descricaoServico = descricaoServico;
 		this.tempoServico = tempoServico;
 	}
+
+	// Getters e Setters: permitem acessar e modificar os atributos da classe
 
 	public Long getId_servico() {
 		return id_servico;
@@ -66,7 +71,7 @@ public class Servico {
 		return preco;
 	}
 
-	public void setPreço(String preco) {
+	public void setPreco(String preco) {
 		this.preco = preco;
 	}
 

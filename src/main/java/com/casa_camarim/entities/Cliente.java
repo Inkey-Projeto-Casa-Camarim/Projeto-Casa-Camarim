@@ -11,10 +11,12 @@ import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
+// Classe que representa uma entidade (tabela) no banco de dados
 @Entity
 @Table(name = "tb_cliente")
 public class Cliente {
 	
+	// ID: chave primária da tabela, gerada automaticamente pelo banco (auto incremento)
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id_cliente", nullable = false)
@@ -32,10 +34,12 @@ public class Cliente {
 	@OneToMany(mappedBy = "cliente")
 	private List<Agendamento> agendamentos;
 
+	// Construtor padrão: cria o cliente e define a data de criação como o momento atual
 	public Cliente() {
 		this.dataCriacao = LocalDateTime.now();
 	}
 
+	// Construtor completo: permite criar o cliente já com todos os atributos definidos
 	public Cliente(Long id, String nome, String telefone, List<Agendamento> agendamentos, LocalDateTime dataCriacao) {
 		this.id = id;
 		this.nome = nome;
@@ -43,6 +47,8 @@ public class Cliente {
 		this.agendamentos = agendamentos;
 		this.dataCriacao = LocalDateTime.now();
 	}
+
+	// Getters e Setters: permitem acessar e modificar os atributos da classe
 
 	public Long getId() {
 		return id;

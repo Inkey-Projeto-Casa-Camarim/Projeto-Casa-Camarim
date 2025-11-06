@@ -7,9 +7,11 @@ import org.springframework.stereotype.Repository;
 
 import com.casa_camarim.entities.Profissional;
 
+// Classe responsável por acessar e manipular os dados da entidade Profissional no banco de dados
 @Repository
-public interface ProfissionalRepository extends JpaRepository<Profissional, Long>{
+public interface ProfissionalRepository extends JpaRepository<Profissional, Long> {
 
+    // Consulta personalizada (JPQL) que busca um profissional pelo CPF informado
     @Query("SELECT t FROM Profissional t WHERE t.cpf = :cpf")
-    Profissional findByCpf(@Param("nomeTipo") String cpf);
+    Profissional findByCpf(@Param("cpf") String cpf);
 }
