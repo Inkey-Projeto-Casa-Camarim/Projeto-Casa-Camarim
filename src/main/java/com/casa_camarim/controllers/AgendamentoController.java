@@ -72,24 +72,5 @@ public class AgendamentoController {
         return LocalDate.now().datesUntil(LocalDate.now().plusDays(7))
                 .map(LocalDate::toString)
                 .collect(Collectors.toList());
-    }
-
-    // Listar horários disponíveis para um serviço em determinado dia
-    @GetMapping("/horarios")
-    public List<String> getHorariosDisponiveis(@RequestParam Long serviceId, @RequestParam String dia) {
-        LocalDate data = LocalDate.parse(dia); // converte string para LocalDate
-        // Exemplo simples: horários fixos
-        List<LocalTime> horarios = List.of(
-                LocalTime.of(8, 0),
-                LocalTime.of(9, 0),
-                LocalTime.of(10, 0),
-                LocalTime.of(11, 0),
-                LocalTime.of(14, 0),
-                LocalTime.of(15, 0),
-                LocalTime.of(16, 0)
-        );
-        return horarios.stream()
-                .map(LocalTime::toString)
-                .collect(Collectors.toList());
-    }
+    }  
 }
