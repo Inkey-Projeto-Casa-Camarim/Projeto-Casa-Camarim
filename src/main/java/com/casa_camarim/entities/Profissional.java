@@ -20,14 +20,19 @@ public class Profissional {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id_profissional;
 
+	@Column(name = "cpf", nullable = false, length = 11)
 	private String cpf;
 	
+	@Column(name = "telefone_profissional", nullable = false, length = 11)
 	private String telefone;
 	
+	@Column(name = "senha", nullable = false)
 	private String senha;
 	
+	@Column(name = "nome_profissional", nullable = false)
 	private String nome;
 
+	@Column(name = "especialidade", nullable = false)
 	private String especialidade;
 	
 	@Enumerated(EnumType.STRING)

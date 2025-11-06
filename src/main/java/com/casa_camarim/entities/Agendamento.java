@@ -20,9 +20,10 @@ public class Agendamento {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id_agendamento;
     
-    @Column(name = "hora")
+    @Column(name = "hora", nullable = false)
     private LocalTime hora;
     
+    @Column(name = "data", nullable = false)
     private LocalDate data;
     
     @ManyToOne

@@ -19,8 +19,10 @@ public class Cliente {
 	@Column(name = "id_cliente", nullable = false)
 	private Long id;
 
+	@Column(name = "nome_cliente", nullable = false, length = 100)
 	private String nome;
 
+	@Column(name = "telefone_cliente", nullable = false, length = 11)
 	private String telefone;
 
 	@OneToMany(mappedBy = "cliente")

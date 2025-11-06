@@ -2,6 +2,7 @@ package com.casa_camarim.entities;
 
 import java.util.List;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -17,8 +18,10 @@ public class Servico {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id_servico;
 
+	@Column(name = "nome_servico", nullable = false)
 	private String nome;
 
+	@Column(name = "preco_servico", nullable = false)
 	private String preco;
 	
 	@OneToMany(mappedBy = "servico")
