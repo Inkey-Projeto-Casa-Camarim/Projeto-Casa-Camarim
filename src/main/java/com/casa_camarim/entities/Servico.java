@@ -69,13 +69,4 @@ public class Servico {
 	public void setAgendamentos(List<Agendamento> agendamentos) {
 		this.agendamentos = agendamentos;
 	}
-	
-	
-	
-	
-	
-	
-	
-	
-	
 }

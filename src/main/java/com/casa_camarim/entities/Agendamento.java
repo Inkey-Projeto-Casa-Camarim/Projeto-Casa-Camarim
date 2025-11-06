@@ -20,11 +20,20 @@ public class Agendamento {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id_agendamento;
     
-    @Column(name = "hora", nullable = false)
+    @Column(name = "hora_agenda", nullable = false)
     private LocalTime hora;
     
-    @Column(name = "data", nullable = false)
+    @Column(name = "data_agenda", nullable = false)
     private LocalDate data;
+    
+    @Column(name = "cliente_nome", length = 100)
+    private String pessoa;
+    
+    @Column(name = "telefone_cliente", length = 20)
+    private String telefone;
+    
+    @Column(name = "status", length = 20)
+    private String status = "AGENDADO";
     
     @ManyToOne
     @JoinColumn(name="id_cliente")
@@ -48,6 +57,16 @@ public class Agendamento {
     	this.data = data;
     	this.cliente = cliente;
     	this.servico = servico;
+    	this.pessoa = cliente.getNome();
+        this.telefone = cliente.getTelefone();
+    }
+    
+    public Agendamento(LocalTime hora, LocalDate data, Servico servico, String pessoa, String telefone) {
+        this.hora = hora;
+        this.data = data;
+        this.servico = servico;
+        this.pessoa = pessoa;
+        this.telefone = telefone;
     }
 
 	public Long getId_agendamento() {
@@ -80,7 +99,11 @@ public class Agendamento {
 
 	public void setCliente(Cliente cliente) {
 		this.cliente = cliente;
-	}
+        if(cliente != null) {
+            this.pessoa = cliente.getNome();
+            this.telefone = cliente.getTelefone();
+        }
+    }
 
 	public Servico getServico() {
 		return servico;
@@ -88,5 +111,37 @@ public class Agendamento {
 
 	public void setServico(Servico servico) {
 		this.servico = servico;
+	}
+
+	public String getPessoa() {
+		return pessoa;
+	}
+
+	public void setPessoa(String pessoa) {
+		this.pessoa = pessoa;
+	}
+
+	public String getTelefone() {
+		return telefone;
+	}
+
+	public void setTelefone(String telefone) {
+		this.telefone = telefone;
+	}
+
+	public String getStatus() {
+		return status;
+	}
+
+	public void setStatus(String status) {
+		this.status = status;
+	}
+
+	public Profissional getProfissional() {
+		return profissional;
+	}
+
+	public void setProfissional(Profissional profissional) {
+		this.profissional = profissional;
 	}
 }

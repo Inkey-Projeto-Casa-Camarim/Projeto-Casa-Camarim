@@ -140,15 +140,4 @@ public class Profissional {
 	public void setAgendamentos(List<Agendamento> agendamentos) {
 		this.agendamentos = agendamentos;
 	}
-	
-	
-	
-	
-	
-	
-
-	
-	
-	
-
 }
