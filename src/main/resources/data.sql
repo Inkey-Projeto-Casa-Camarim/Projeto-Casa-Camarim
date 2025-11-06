@@ -9,7 +9,7 @@ VALUES
 INSERT INTO tb_profissional (id_profissional, cpf, telefone_profissional, senha, nome_profissional, tipo_acesso)
 VALUES
 (1, '12345678902', '11999995558', 'CasaCamarim123', 'Ionara', 'Comum');
-(2, '12345678901', '11999995555', 'CasaCamarim321', 'Michelli', 'Adim');
+(2, '12345678901', '11999995555', 'CasaCamarim321', 'Micheli', 'Adim');
 
 -- Inserindo serviços
 INSERT INTO tb_servico (id_servico, preco_servico, nome_servico, descricao_servico, tempo_servico)
