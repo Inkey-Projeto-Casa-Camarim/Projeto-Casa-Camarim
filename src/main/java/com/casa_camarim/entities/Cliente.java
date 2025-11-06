@@ -1,5 +1,6 @@
 package com.casa_camarim.entities;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 import jakarta.persistence.Column;
@@ -24,20 +25,23 @@ public class Cliente {
 
 	@Column(name = "telefone_cliente", nullable = false, length = 11)
 	private String telefone;
+	
+	@Column(name = "data_criacao")
+    private LocalDateTime dataCriacao;
 
 	@OneToMany(mappedBy = "cliente")
 	private List<Agendamento> agendamentos;
 
 	public Cliente() {
-
+		this.dataCriacao = LocalDateTime.now();
 	}
 
-	public Cliente(Long id, String nome, String telefone, List<Agendamento> agendamentos) {
-
+	public Cliente(Long id, String nome, String telefone, List<Agendamento> agendamentos, LocalDateTime dataCriacao) {
 		this.id = id;
 		this.nome = nome;
 		this.telefone = telefone;
 		this.agendamentos = agendamentos;
+		this.dataCriacao = LocalDateTime.now();
 	}
 
 	public Long getId() {
@@ -72,4 +76,11 @@ public class Cliente {
 		this.agendamentos = agendamentos;
 	}
 
+	public LocalDateTime getDataCriacao() {
+		return dataCriacao;
+	}
+
+	public void setDataCriacao(LocalDateTime dataCriacao) {
+		this.dataCriacao = dataCriacao;
+	}
 }

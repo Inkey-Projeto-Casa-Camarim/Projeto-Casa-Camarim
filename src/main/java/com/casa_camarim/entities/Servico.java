@@ -24,6 +24,12 @@ public class Servico {
 	@Column(name = "preco_servico", nullable = false)
 	private String preco;
 	
+	@Column(name = "descricao_servico", length = 255)
+    private String descricaoServico;
+
+    @Column(name = "tempo_servico", length = 50)
+    private String tempoServico;
+	
 	@OneToMany(mappedBy = "servico")
 	private List<Agendamento> agendamentos;
 
@@ -31,11 +37,13 @@ public class Servico {
 		
 	}
 
-	public Servico(Long id_servico, String nome, String preco, List<Agendamento> agendamentos) {
+	public Servico(Long id_servico, String nome, String preco, List<Agendamento> agendamentos, String descricaoServico, String tempoServico) {
 		this.id_servico = id_servico;
 		this.nome = nome;
 		this.preco = preco;
 		this.agendamentos = agendamentos;
+		this.descricaoServico = descricaoServico;
+		this.tempoServico = tempoServico;
 	}
 
 	public Long getId_servico() {
@@ -68,5 +76,21 @@ public class Servico {
 
 	public void setAgendamentos(List<Agendamento> agendamentos) {
 		this.agendamentos = agendamentos;
+	}
+
+	public String getDescricaoServico() {
+		return descricaoServico;
+	}
+
+	public void setDescricaoServico(String descricaoServico) {
+		this.descricaoServico = descricaoServico;
+	}
+
+	public String getTempoServico() {
+		return tempoServico;
+	}
+
+	public void setTempoServico(String tempoServico) {
+		this.tempoServico = tempoServico;
 	}
 }
