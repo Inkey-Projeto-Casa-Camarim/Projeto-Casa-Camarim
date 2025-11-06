@@ -11,7 +11,7 @@ document.addEventListener('DOMContentLoaded', () => {
         return;
     }
 
-    // \ Obtém o ID do serviço selecionado anteriormente
+    //  Obtém o ID do serviço selecionado anteriormente
     const servicoId = sessionStorage.getItem('servicoId');
     if (!servicoId) {
         alert("Serviço não identificado. Escolha um serviço antes de agendar.");
