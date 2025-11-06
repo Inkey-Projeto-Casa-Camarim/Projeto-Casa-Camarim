@@ -34,9 +34,6 @@ public class Profissional {
 	@Column(name = "nome_profissional", nullable = false)
 	private String nome;
 
-	@Column(name = "especialidade", nullable = false)
-	private String especialidade;
-
 	 // Enum TipoAcesso: Representa tipos fixos de acesso (ex: Comum, Administrador).
 	@Enumerated(EnumType.STRING)
 	@Column(name = "tipo_acesso", nullable = false)
@@ -50,15 +47,13 @@ public class Profissional {
 	public Profissional() {}
 	
 	// Construtor completo
-	public Profissional(Long id_profissional, String cpf, String telefone, String senha, String nome,
-			String especialidade, TipoAcesso tipoacesso, List<Agendamento> agendamentos) {
+	public Profissional(Long id_profissional, String cpf, String telefone, String senha, String nome, TipoAcesso tipoacesso, List<Agendamento> agendamentos) {
 		super();
 		this.id_profissional = id_profissional;
 		this.cpf = cpf;
 		this.telefone = telefone;
 		this.senha = senha;
 		this.nome = nome;
-		this.especialidade = especialidade;
 		this.tipoacesso = tipoacesso;
 		this.agendamentos = agendamentos;
 	}
@@ -103,15 +98,7 @@ public class Profissional {
 	public void setNome(String nome) {
 		this.nome = nome;
 	}
-
-	public String getEspecialidade() {
-		return especialidade;
-	}
-
-	public void setEspecialidade(String especialidade) {
-		this.especialidade = especialidade;
-	}
-
+	
 	public TipoAcesso getTipoacesso() {
 		return tipoacesso;
 	}
