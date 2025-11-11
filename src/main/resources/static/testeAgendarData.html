@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Agendamento - Casa Camarim</title>
+  <style>
+    body {
+      font-family: "Inter", Arial, sans-serif;
+      background: #f9fafb;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      min-height: 100vh;
+    }
+
+    .booking-container {
+      width: 90%;
+      max-width: 500px;
+      margin-top: 40px;
+      background: #fff;
+      border-radius: 16px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      padding: 24px;
+    }
+
+    h1 {
+      font-size: 1.6rem;
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    .calendar-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 8px;
+    }
+
+    .calendar-header button {
+      background: none;
+      border: none;
+      font-size: 1.2rem;
+      cursor: pointer;
+    }
+
+    .month-year {
+      font-weight: bold;
+      font-size: 1rem;
+    }
+
+    .weekdays, .days {
+      display: grid;
+      grid-template-columns: repeat(7, 1fr);
+      text-align: center;
+    }
+
+    .weekdays span {
+      font-weight: 600;
+      padding: 6px 0;
+      color: #6b7280;
+    }
+
+    .days button {
+      border: none;
+      background: #fff;
+      padding: 10px;
+      margin: 2px;
+      border-radius: 8px;
+      cursor: pointer;
+      font-weight: 500;
+      transition: 0.2s;
+    }
+
+    .days button:hover {
+      background: #e0ecff;
+    }
+
+    .days button.selected {
+      background: #2563eb;
+      color: #fff;
+    }
+
+    .days button.disabled {
+      color: #ccc;
+      cursor: not-allowed;
+    }
+
+    .time-slots {
+      margin-top: 20px;
+    }
+
+    .slots {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 8px;
+    }
+
+    .slot {
+      flex: 1 1 28%;
+      text-align: center;
+      padding: 10px 0;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      cursor: pointer;
+      background: #f9fafb;
+      transition: 0.2s;
+    }
+
+    .slot:hover {
+      background: #e0ecff;
+    }
+
+    .slot.selected {
+      background: #2563eb;
+      color: #fff;
+      border-color: #2563eb;
+    }
+
+    .confirm-booking {
+      margin-top: 24px;
+      width: 100%;
+      padding: 14px;
+      background: #10b981;
+      color: white;
+      font-size: 1rem;
+      font-weight: bold;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    .confirm-booking:hover {
+      background: #059669;
+    }
+
+    .result {
+      margin-top: 16px;
+      text-align: center;
+      font-size: 1rem;
+      color: #374151;
+      font-weight: 500;
+    }
+  </style>
+</head>
+<body>
+  <div class="booking-container">
+    <h1>Agende seu horário</h1>
+
+    <section class="date-picker">
+      <div class="calendar-header">
+        <button id="prevMonth">&lt;</button>
+        <span class="month-year" id="monthYear"></span>
+        <button id="nextMonth">&gt;</button>
+      </div>
+
+      <div class="weekdays">
+        <span>Seg</span><span>Ter</span><span>Qua</span><span>Qui</span><span>Sex</span><span>Sáb</span><span>Dom</span>
+      </div>
+      <div class="days" id="calendarDays"></div>
+    </section>
+
+    <section class="time-slots">
+      <h2>Escolha o horário</h2>
+      <div class="slots" id="timeSlots"></div>
+    </section>
+
+    <button class="confirm-booking" id="confirmBtn">Confirmar agendamento</button>
+    <div class="result" id="result"></div>
+  </div>
+
+  <script>
+    const monthYear = document.getElementById('monthYear');
+    const calendarDays = document.getElementById('calendarDays');
+    const prevMonth = document.getElementById('prevMonth');
+    const nextMonth = document.getElementById('nextMonth');
+    const timeSlotsDiv = document.getElementById('timeSlots');
+    const result = document.getElementById('result');
+    const confirmBtn = document.getElementById('confirmBtn');
+
+    let currentDate = new Date();
+    let selectedDate = null;
+    let selectedTime = null;
+
+    const timeSlots = [
+      "09:00", "09:30", "10:00", "10:30",
+      "11:00", "11:30", "13:00", "13:30",
+      "14:00", "14:30", "15:00", "15:30",
+      "16:00", "16:30", "17:00"
+    ];
+
+    function renderCalendar() {
+      const year = currentDate.getFullYear();
+      const month = currentDate.getMonth();
+
+      const firstDay = new Date(year, month, 1);
+      const lastDay = new Date(year, month + 1, 0);
+
+      monthYear.textContent = `${firstDay.toLocaleString('pt-BR', { month: 'long' })} ${year}`;
+      calendarDays.innerHTML = "";
+
+      const startDay = (firstDay.getDay() + 6) % 7; // começa na segunda
+      const totalDays = lastDay.getDate();
+
+      for (let i = 0; i < startDay; i++) {
+        const empty = document.createElement("div");
+        calendarDays.appendChild(empty);
+      }
+
+      for (let day = 1; day <= totalDays; day++) {
+        const btn = document.createElement("button");
+        btn.textContent = day;
+
+        const dateObj = new Date(year, month, day);
+        if (dateObj < new Date(new Date().setHours(0,0,0,0))) {
+          btn.classList.add("disabled");
+        } else {
+          btn.addEventListener("click", () => selectDate(dateObj, btn));
+        }
+
+        calendarDays.appendChild(btn);
+      }
+    }
+
+    function selectDate(date, btn) {
+      selectedDate = date;
+      document.querySelectorAll(".days button").forEach(b => b.classList.remove("selected"));
+      btn.classList.add("selected");
+      renderTimeSlots();
+      result.textContent = "";
+    }
+
+    function renderTimeSlots() {
+      timeSlotsDiv.innerHTML = "";
+      timeSlots.forEach(time => {
+        const slot = document.createElement("button");
+        slot.textContent = time;
+        slot.classList.add("slot");
+        slot.addEventListener("click", () => selectTime(slot, time));
+        timeSlotsDiv.appendChild(slot);
+      });
+    }
+
+    function selectTime(btn, time) {
+      selectedTime = time;
+      document.querySelectorAll(".slot").forEach(b => b.classList.remove("selected"));
+      btn.classList.add("selected");
+      result.textContent = "";
+    }
+
+    confirmBtn.addEventListener("click", () => {
+      if (!selectedDate || !selectedTime) {
+        result.textContent = "Selecione uma data e um horário primeiro!";
+        result.style.color = "red";
+        return;
+      }
+
+      const formattedDate = selectedDate.toLocaleDateString('pt-BR');
+      result.textContent = `✅ Agendamento confirmado para ${formattedDate} às ${selectedTime}`;
+      result.style.color = "#065f46";
+    });
+
+    prevMonth.addEventListener("click", () => {
+      currentDate.setMonth(currentDate.getMonth() - 1);
+      renderCalendar();
+    });
+
+    nextMonth.addEventListener("click", () => {
+      currentDate.setMonth(currentDate.getMonth() + 1);
+      renderCalendar();
+    });
+
+    renderCalendar();
+  </script>
+</body>
+</html>
