@@ -51,7 +51,7 @@ public class AgendamentoController {
     // Deletar um agendamento por ID
     @DeleteMapping("/{id}")
     public void deleteAgendamento(@PathVariable Long id) {
-    	agendamentoService.deleteAgendamento(id);
+        agendamentoService.deleteAgendamento(id);
     }
 
     // Buscar todos os agendamentos de um cliente pelo id

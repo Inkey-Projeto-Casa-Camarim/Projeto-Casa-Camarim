@@ -52,17 +52,17 @@ public class Agendamento {
     
     // Construtor padrão: usado pelo JPA para criar o objeto sem precisar de parâmetros
     public Agendamento() {
-    	
+        
     }
     
     // Construtor completo: cria o agendamento com cliente e serviço definidos
     public Agendamento(Long id_agendamento, LocalTime hora, LocalDate data, Cliente cliente, Servico servico) {
-    	this.id_agendamento = id_agendamento;
-    	this.hora = hora;
-    	this.data = data;
-    	this.cliente = cliente;
-    	this.servico = servico;
-    	this.pessoa = cliente.getNome();
+        this.id_agendamento = id_agendamento;
+        this.hora = hora;
+        this.data = data;
+        this.cliente = cliente;
+        this.servico = servico;
+        this.pessoa = cliente.getNome();
         this.telefone = cliente.getTelefone();
     }
     
@@ -77,36 +77,36 @@ public class Agendamento {
 
     // Getters e Setters: permitem acessar e modificar os atributos da classe
 
-	public Long getId_agendamento() {
-		return id_agendamento;
-	}
+    public Long getId_agendamento() {
+        return id_agendamento;
+    }
 
-	public void setId_agendamento(Long id_agendamento) {
-		this.id_agendamento = id_agendamento;
-	}
+    public void setId_agendamento(Long id_agendamento) {
+        this.id_agendamento = id_agendamento;
+    }
 
-	public LocalTime getHora() {
-		return hora;
-	}
+    public LocalTime getHora() {
+        return hora;
+    }
 
-	public void setHora(LocalTime hora) {
-		this.hora = hora;
-	}
+    public void setHora(LocalTime hora) {
+        this.hora = hora;
+    }
 
-	public LocalDate getData() {
-		return data;
-	}
+    public LocalDate getData() {
+        return data;
+    }
 
-	public void setData(LocalDate data) {
-		this.data = data;
-	}
+    public void setData(LocalDate data) {
+        this.data = data;
+    }
 
-	public Cliente getCliente() {
-		return cliente;
-	}
+    public Cliente getCliente() {
+        return cliente;
+    }
 
-	public void setCliente(Cliente cliente) {
-		this.cliente = cliente;
+    public void setCliente(Cliente cliente) {
+        this.cliente = cliente;
         // Atualiza nome e telefone automaticamente ao definir o cliente
         if(cliente != null) {
             this.pessoa = cliente.getNome();
@@ -114,43 +114,43 @@ public class Agendamento {
         }
     }
 
-	public Servico getServico() {
-		return servico;
-	}
+    public Servico getServico() {
+        return servico;
+    }
 
-	public void setServico(Servico servico) {
-		this.servico = servico;
-	}
+    public void setServico(Servico servico) {
+        this.servico = servico;
+    }
 
-	public String getPessoa() {
-		return pessoa;
-	}
+    public String getPessoa() {
+        return pessoa;
+    }
 
-	public void setPessoa(String pessoa) {
-		this.pessoa = pessoa;
-	}
+    public void setPessoa(String pessoa) {
+        this.pessoa = pessoa;
+    }
 
-	public String getTelefone() {
-		return telefone;
-	}
+    public String getTelefone() {
+        return telefone;
+    }
 
-	public void setTelefone(String telefone) {
-		this.telefone = telefone;
-	}
+    public void setTelefone(String telefone) {
+        this.telefone = telefone;
+    }
 
-	public String getStatus() {
-		return status;
-	}
+    public String getStatus() {
+        return status;
+    }
 
-	public void setStatus(String status) {
-		this.status = status;
-	}
+    public void setStatus(String status) {
+        this.status = status;
+    }
 
-	public Profissional getProfissional() {
-		return profissional;
-	}
+    public Profissional getProfissional() {
+        return profissional;
+    }
 
-	public void setProfissional(Profissional profissional) {
-		this.profissional = profissional;
-	}
+    public void setProfissional(Profissional profissional) {
+        this.profissional = profissional;
+    }
 }
