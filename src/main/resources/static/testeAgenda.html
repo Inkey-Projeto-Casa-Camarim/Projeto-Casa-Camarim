@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Casa Camarim - Serviços</title>
+
+    <!-- Ícones e fontes -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link href='https://cdn.jsdelivr.net/npm/boxicons@2.0.5/css/boxicons.min.css' rel='stylesheet'>
+
+    <!-- Estilos principais -->
+    <link rel="stylesheet" href="./css/horarios.css">
+    <link rel="shortcut icon" href="img/logo.png" type="image/x-icon">
+    <link rel="icon" href="img/logo.png" sizes="16x16">
+
+    <!-- Fontes personalizadas -->
+    <style>
+        @font-face {
+            font-family: Cormorant;
+            src: url('font/Cormorant-Medium.ttf') format('truetype');
+        }
+
+        @font-face {
+            font-family: Avenir;
+            src: url('font/AvenirLTProBook.otf');
+        }
+
+        @font-face {
+            font-family: Misswansa;
+            src: url('font/Misswansa.ttf');
+        }
+
+        body {
+            background-color: #fff3f3;
+            color: #222;
+            font-family: Avenir, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        main {
+            padding: 6rem 2rem 3rem 2rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        h1 {
+            font-family: Cormorant, serif;
+            font-size: 2rem;
+            color: #c97a7a;
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+
+        #lista-servicos {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            width: 100%;
+            max-width: 1200px;
+        }
+
+        .servico {
+            background: white;
+            border-radius: 16px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            padding: 1.5rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            transition: transform 0.2s;
+        }
+
+        .servico:hover {
+            transform: translateY(-5px);
+        }
+
+        .info h2 {
+            margin: 0.5rem 0;
+            color: #c97a7a;
+            font-family: Cormorant, serif;
+        }
+
+        .info p {
+            margin: 0.3rem 0;
+            font-family: Avenir, sans-serif;
+        }
+
+        .agendar {
+            text-align: center;
+            margin-top: 1rem;
+        }
+
+        .agendar button {
+            background-color: #c97a7a;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            padding: 0.6rem 1.2rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+
+        .agendar button:hover {
+            background-color: #b06666;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Efeitos visuais -->
+    <div id="loading"><div class="spinner"></div></div>
+    <div id="circularcursor"></div>
+    <button id="btnTopo"><i class="fa-solid fa-arrow-up"></i></button>
+
+    <!-- Cabeçalho -->
+    <header>
+        <nav>
+            <div class="navigation">
+                <ul class="menu">
+                    <i class="fa-solid fa-xmark close-btn"></i>
+                    <li class="menu-item"><a href="index.html" class="item">Início</a></li>
+                    <li class="menu-item"><a href="horarios.html" class="item">Horários</a></li>
+                    <li class="logo-container"><img class="logo" src="img/logo.png" alt="Logo"></li>
+                    <li class="menu-item"><a href="" class="item">Contatos</a></li>
+                    <li class="menu-item"><a href="agenda.html" class="item">Agenda</a></li>
+                </ul>
+            </div>
+            <img class="logo-mobile" src="img/logo.png" alt="Logo">
+            <i class="fa-solid fa-bars menu-btn"></i>
+        </nav>
+    </header>
+
+    <!-- Conteúdo principal -->
+    <main>
+        <h1>Serviços disponíveis</h1>
+        <div id="lista-servicos">
+            <p>Carregando serviços...</p>
+        </div>
+    </main>
+
+    <!-- Rodapé -->
+    <footer>
+        <div class="creditos">
+            <h1>&copy;2025 Inkey</h1>
+        </div>
+        <div class="midias">
+            <!-- redes sociais -->
+        </div>
+    </footer>
+
+    <!-- Scripts visuais -->
+    <script src="js-decoracao/loadings.js"></script>
+    <script src="js-decoracao/cursor.js"></script>
+    <script src="js-decoracao/nav.js"></script>
+    <script src="js/horarios.js"></script>
+</body>
+</html>
