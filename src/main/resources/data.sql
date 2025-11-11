@@ -6,10 +6,10 @@ VALUES
 (3, 'Denise Pinto', '10999996666');
 
 -- Inserindo profissionais
-INSERT INTO tb_profissional (id_profissional, cpf, telefone_profissional, senha, nome_profissional, tipo_acesso)
+INSERT INTO tb_profissional (cpf, telefone_profissional, senha, nome_profissional, tipo_acesso)
 VALUES
-(1, '12345678902', '11999995558', 'CasaCamarim123', 'Ionara', 'Comum');
-(2, '12345678901', '11999995555', 'CasaCamarim321', 'Micheli', 'Adim');
+('12345678902', '11999995558', 'CasaCamarim123', 'Ionara', 'Comum'),
+('12345678901', '11999995555', 'CasaCamarim321', 'Micheli', 'Admin');
 
 -- Inserindo serviços
 INSERT INTO tb_servico (id_servico, preco_servico, nome_servico, descricao_servico, tempo_servico)
@@ -68,7 +68,7 @@ VALUES
 (52, 'R$460,00', 'Pacote', '6 secagens + 2 tratamentos(qualquer tamanho de cabelo)', '120 a 180 min por sessão');
 
 -- Inserindo agendamentos
-INSERT INTO tb_agendamento (data_agenda, hora_agenda, profissional_id, servico_id, cliente_id)
+INSERT INTO tb_agenda (data_agenda, hora_agenda, profissional_id, servico_id, cliente_id)
 VALUES
 ('2025-11-12', '09:00:00', 1, 1, 1),
 ('2025-11-12', '10:30:00', 1, 2, 2);
