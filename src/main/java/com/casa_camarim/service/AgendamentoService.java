@@ -47,4 +47,3 @@ public class AgendamentoService {
         return agendamentoRepository.findByTelefone(telefone);
     }
 }
-
