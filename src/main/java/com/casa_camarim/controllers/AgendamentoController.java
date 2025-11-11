@@ -55,8 +55,15 @@ public class AgendamentoController {
     }
 
     // Buscar todos os agendamentos de um cliente pelo id
-    @GetMapping("/id/{id}")
+    @GetMapping("/telefone/{telefone}")
     public List<Agendamento> getFindByTelefone(@PathVariable String telefone) {
         return agendamentoService.getFindByTelefone(telefone);
     }
+    
+ // Buscar todos os agendamentos de uma data específica
+    @GetMapping("/data/{data}")
+    public List<Agendamento> getAgendamentosPorData(@PathVariable String data) {
+        return agendamentoService.getAgendamentosPorData(data);
+    }
+
 }

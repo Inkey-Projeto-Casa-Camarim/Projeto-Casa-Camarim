@@ -1,5 +1,6 @@
 package com.casa_camarim.service;
 
+import java.time.LocalDate;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -46,4 +47,11 @@ public class AgendamentoService {
     public List<Agendamento> getFindByTelefone(String telefone) {
         return agendamentoRepository.findByTelefone(telefone);
     }
+    
+ // Busca todos os agendamentos de uma data específica
+    public List<Agendamento> getAgendamentosPorData(String data) {
+        LocalDate localDate = LocalDate.parse(data);
+        return agendamentoRepository.findByData(localDate);
+    }
+
 }

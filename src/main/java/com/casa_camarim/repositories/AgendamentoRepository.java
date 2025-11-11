@@ -12,6 +12,9 @@ import com.casa_camarim.entities.Agendamento;
 // Classe responsável por acessar e manipular os dados da entidade Agendamento no banco de dados
 @Repository
 public interface AgendamentoRepository extends JpaRepository<Agendamento, Long> {
+	
+	// Busca todos os agendamentos de uma data específica
+	List<Agendamento> findByData(java.time.LocalDate data);
 
     // Busca todos os agendamentos filtrando pelo telefone do cliente
     List<Agendamento> findByTelefone(String telefone);
