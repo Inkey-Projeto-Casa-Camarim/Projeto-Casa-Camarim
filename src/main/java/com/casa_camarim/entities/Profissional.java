@@ -22,7 +22,7 @@ public class Profissional {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id_profissional;
 
-	@Column(name = "cpf", nullable = false, length = 11)
+	@Column(name = "cpf", nullable = false, length = 11, unique = true)
 	private String cpf;
 	
 	@Column(name = "telefone_profissional", nullable = false, length = 11)

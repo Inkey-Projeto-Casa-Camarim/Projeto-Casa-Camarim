@@ -13,10 +13,10 @@ import com.casa_camarim.entities.Agendamento;
 @Repository
 public interface AgendamentoRepository extends JpaRepository<Agendamento, Long> {
 
-	// Busca todos os agendamentos filtrando pelo telefone do cliente
-	List<Agendamento> findByTelefone(String telefone);
+    // Busca todos os agendamentos filtrando pelo telefone do cliente
+    List<Agendamento> findByTelefone(String telefone);
     
-	// Consulta personalizada (JPQL) que busca agendamentos de um cliente específico
+    // Consulta personalizada (JPQL) que busca agendamentos de um cliente específico
     @Query("SELECT a FROM Agendamento a WHERE a.cliente.id = :clienteId")
     List<Agendamento> findByClienteId(@Param("clienteId") Long clienteId);
     
