@@ -68,7 +68,7 @@ VALUES
 ('R$460,00', 'Pacote', '6 secagens + 2 tratamentos(qualquer tamanho de cabelo)', '120 a 180 min por sessão');
 
 -- Inserindo agendamentos
-INSERT INTO tb_agenda (data_agenda, hora_agenda, id_profissional, id_servico, id_cliente)
-VALUES
-('2025-11-12', '09:00:00', 1, 2, 2),
-('2025-11-12', '10:30:00', 2, 1, 1);
+-- INSERT INTO tb_agenda (data_agenda, hora_agenda, id_profissional, id_servico, id_cliente)
+-- VALUES
+-- ('2025-11-12', '09:00:00', 1, 2, 2),
+-- ('2025-11-12', '10:30:00', 2, 1, 1);
