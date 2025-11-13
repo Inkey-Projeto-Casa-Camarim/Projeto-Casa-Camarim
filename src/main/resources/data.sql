@@ -12,7 +12,7 @@ VALUES
 ('12345678901', '11999995555', 'CasaCamarim321', 'Micheli', 'Admin');
 
 -- Inserindo serviços
-INSERT INTO tb_servico (id_servico, preco_servico, nome_servico, descricao_servico, tempo_servico)
+INSERT INTO tb_servico (preco_servico, nome_servico, descricao_servico, tempo_servico)
 VALUES
 ('R$462,00', 'Cronograma Capilar Cabelo Médio', 'Pacote com 6 tratamentos', '2h a 3h por sessão'),
 ('R$535,00', 'Cronograma Capilar Cabelo Longo', 'Pacote com 4 tratamentos', '3h a 4h por sessão'),
@@ -68,7 +68,7 @@ VALUES
 ('R$460,00', 'Pacote', '6 secagens + 2 tratamentos(qualquer tamanho de cabelo)', '120 a 180 min por sessão');
 
 -- Inserindo agendamentos
-INSERT INTO tb_agenda (data_agenda, hora_agenda)
-VALUES
-('2025-11-12', '09:00:00'),
-('2025-11-12', '10:30:00');
+-- INSERT INTO tb_agenda (data_agenda, hora_agenda, id_profissional, id_servico, id_cliente)
+-- VALUES
+-- ('2025-11-12', '09:00:00', 1, 2, 2),
+-- ('2025-11-12', '10:30:00', 2, 1, 1);
