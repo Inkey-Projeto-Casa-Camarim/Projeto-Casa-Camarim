@@ -1,5 +1,6 @@
 package com.casa_camarim.repositories;
 
+import java.time.LocalDate;
 import java.util.List;
 
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -13,8 +14,8 @@ import com.casa_camarim.entities.Agendamento;
 @Repository
 public interface AgendamentoRepository extends JpaRepository<Agendamento, Long> {
 	
-	// Busca todos os agendamentos de uma data específica
-	List<Agendamento> findByData(java.time.LocalDate data);
+	// Busca todos os agendamentos de uma determinada data
+    List<Agendamento> findByData(LocalDate data);
 
     // Busca todos os agendamentos filtrando pelo telefone do cliente
     List<Agendamento> findByTelefone(String telefone);

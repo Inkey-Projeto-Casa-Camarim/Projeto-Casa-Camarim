@@ -66,9 +66,3 @@ VALUES
 ('R$170,00', 'Combo Corte', 'Corte + Hidratação', '30 a 60 min'),
 ('R$270,00', 'Combo Coloração', 'Coloração + Hidratação', '90 a 150 min'),
 ('R$460,00', 'Pacote', '6 secagens + 2 tratamentos(qualquer tamanho de cabelo)', '120 a 180 min por sessão');
-
--- Inserindo agendamentos
-INSERT INTO tb_agenda (data_agenda, hora_agenda, id_profissional, id_servico, id_cliente)
-VALUES
-('2025-11-12', '09:00:00', 1, 1, 1),
-('2025-11-12', '10:30:00', 1, 1, 1);
