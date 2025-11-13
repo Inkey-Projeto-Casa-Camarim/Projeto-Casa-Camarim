@@ -20,6 +20,7 @@ public class Agendamento {
     // ID: chave primária da tabela, gerada automaticamente pelo banco (auto incremento)
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "id_agendamento", nullable = false)
     private Long id_agendamento;
     
     @Column(name = "hora_agenda", nullable = false)

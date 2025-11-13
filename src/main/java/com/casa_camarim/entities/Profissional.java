@@ -20,6 +20,7 @@ public class Profissional {
 	// ID: chave primária gerada automaticamente (auto incremento)
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "id_profissional", nullable = false)
 	private Long id_profissional;
 
 	@Column(name = "cpf", nullable = false, length = 11, unique = true)
