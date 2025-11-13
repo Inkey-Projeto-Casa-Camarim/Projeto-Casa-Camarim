@@ -29,10 +29,10 @@ public class Servico {
 	@Column(name = "preco_servico", nullable = false)
 	private String preco;
 	
-	@Column(name = "descricao_servico", length = 255)
+	@Column(name = "descricao_servico", length = 255, nullable = false)
     private String descricaoServico;
 
-    @Column(name = "tempo_servico", length = 50)
+    @Column(name = "tempo_servico", length = 50, nullable = false)
     private String tempoServico;
 	
 	@OneToMany(mappedBy = "servico")
