@@ -7,7 +7,7 @@
         }
 
         const servicos = await response.json();
-        const container = document.getElementById("servicos-container");
+        const container = document.getElementById("servico-container");
 
         // Limpar container antes de preencher
         container.innerHTML = "";
