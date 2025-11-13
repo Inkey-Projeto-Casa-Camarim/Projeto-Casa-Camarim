@@ -3,6 +3,8 @@ package com.casa_camarim.entities;
 import java.time.LocalDateTime;
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -32,6 +34,7 @@ public class Cliente {
     private LocalDateTime dataCriacao;
 
 	@OneToMany(mappedBy = "cliente")
+	@JsonIgnore
 	private List<Agendamento> agendamentos;
 
 	// Construtor padrão: cria o cliente e define a data de criação como o momento atual

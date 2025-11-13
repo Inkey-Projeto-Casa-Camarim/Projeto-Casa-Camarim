@@ -2,6 +2,8 @@ package com.casa_camarim.entities;
 
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -34,6 +36,7 @@ public class Servico {
     private String tempoServico;
 	
 	@OneToMany(mappedBy = "servico")
+	@JsonIgnore
 	private List<Agendamento> agendamentos;
 
 	// Construtor padrão: usado pelo JPA para criar instâncias vazias

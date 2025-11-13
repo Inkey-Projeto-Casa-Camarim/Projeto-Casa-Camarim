@@ -3,6 +3,8 @@ package com.casa_camarim.entities;
 import java.time.LocalDate;
 import java.time.LocalTime;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -41,14 +43,17 @@ public class Agendamento {
     // Relacionamentos: vários agendamentos podem ter o mesmo cliente, serviço e profissional
     @ManyToOne
     @JoinColumn(name="id_cliente")
+    @JsonIgnore
     private Cliente cliente;
     
     @ManyToOne
     @JoinColumn(name="id_servico")
+    @JsonIgnore
     private Servico servico;
     
     @ManyToOne
     @JoinColumn(name="id_profissional")
+    @JsonIgnore
     private Profissional profissional;
     
     // Construtor padrão: usado pelo JPA para criar o objeto sem precisar de parâmetros
