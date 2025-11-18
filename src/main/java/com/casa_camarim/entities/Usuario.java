@@ -1,88 +1,83 @@
 package com.casa_camarim.entities;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import java.util.ArrayList;
+import java.util.List;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
-//Entidade que representa um Usuário no sistema.
-//Na tabela "tb_usuario" do banco de dados.
 @Entity
-@Table(name = "tb_usuario")
+@Table(name = "usuarios")
 public class Usuario {
-	
-	// Atributos -> são as características (ou propriedades) de uma classe.
-	
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "id_usuario", nullable = false)
-	private Long id_usuario;
-	
-	@Column(name = "nome", nullable = false, length = 100)
-	private String nome;
-	
-	@Column(name = "telefone", nullable = false, unique = false)
-	private String telefone;
-	
-	@ManyToOne
-	@JoinColumn(name = "id_tipo", nullable = false)
-	@JsonIgnoreProperties("usuarios")
-	private TipoUsuario tipoUsuario;
-	
-	//Acrescentar uma tabela manytomany para agenda
-	
-	// Construtores -> serve para inicializar os atributos do objeto (ou seja, dar valores iniciais).
-	
-	public Usuario() {
-		
-	}
 
-	public Usuario(Long id_usuario, String nome, String telefone, TipoUsuario tipoUsuario) {
-		this.id_usuario = id_usuario;
-		this.nome = nome;
-		this.telefone = telefone;
-		this.tipoUsuario = tipoUsuario;
-	}
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
 
-	// Getters e Setters -> 
-	// Getter: método que retorna (pega) o valor de um atributo.
-	// Setter: método que altera (define) o valor de um atributo.
-	
-	public Long getId_usuario() {
-		return id_usuario;
-	}
+    @Column(nullable = false)
+    private String nome;
 
-	public void setId_usuario(Long id_usuario) {
-		this.id_usuario = id_usuario;
-	}
+    @Column(nullable = false, unique = true)
+    private String telefone;
 
-	public String getNome() {
-		return nome;
-	}
+    @Column(nullable = false)
+    private String senha;
 
-	public void setNome(String nome) {
-		this.nome = nome;
-	}
+    // Correção importante:
+    // Removido CascadeType.ALL para evitar deleção acidental em efeito cascata.
+    // JsonIgnore impede loop ao serializar.
+    @OneToMany(mappedBy = "usuario")
+    @JsonIgnore
+    private List<Agendamento> agendamentos = new ArrayList<>();
 
-	public String getTelefone() {
-		return telefone;
-	}
+    public Usuario() {}
 
-	public void setTelefone(String telefone) {
-		this.telefone = telefone;
-	}
+    public Usuario(String nome, String telefone, String senha) {
+        this.nome = nome;
+        this.telefone = telefone;
+        this.senha = senha;
+    }
 
-	public TipoUsuario getTipoUsuario() {
-		return tipoUsuario;
-	}
+    // Getters e Setters
+    public Long getId() {
+        return id;
+    }
+    public void setId(Long id) {
+        this.id = id;
+    }
 
-	public void setTipoUsuario(TipoUsuario tipoUsuario) {
-		this.tipoUsuario = tipoUsuario;
-	}
+    public String getNome() {
+        return nome;
+    }
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
+
+    public String getTelefone() {
+        return telefone;
+    }
+    public void setTelefone(String telefone) {
+        this.telefone = telefone;
+    }
+
+    public String getSenha() {
+        return senha;
+    }
+    public void setSenha(String senha) {
+        this.senha = senha;
+    }
+
+    public List<Agendamento> getAgendamentos() {
+        return agendamentos;
+    }
+    public void setAgendamentos(List<Agendamento> agendamentos) {
+        this.agendamentos = agendamentos;
+    }
 }

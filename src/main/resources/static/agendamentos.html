@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+
+    <link rel="stylesheet" href="./css/agendamentos.css">
+
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons|Material+Icons+Outlined" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="img/logo.png" type="image/x-icon">
+    <link rel="icon" href="img/logo.png" sizes="16x16">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <link href='https://cdn.jsdelivr.net/npm/boxicons@2.0.5/css/boxicons.min.css' rel='stylesheet'>
+
+    <title>Meus Agendamentos</title>
+    <style>
+        @font-face {
+            font-family: Cormorant;
+            src: url('font/Cormorant-Medium.ttf') format('truetype');
+            font-weight: 700;
+            font-style: normal;
+        }
+
+        @font-face {
+            font-family: Avenir;
+            src: url('font/AvenirLTProBook.otf');
+        }
+
+        @font-face {
+            font-family: Misswansa;
+            src: url('font/Misswansa.ttf');
+        }
+    </style>
+</head>
+
+<body>
+    <div id="loading">
+        <div class="spinner"></div>
+    </div>
+
+    <nav>
+        <div class="voltar">
+            <a href="servicos.html"><span class="material-icons">arrow_back</span> </a>
+        </div>
+        <img src="img/logo.png" alt="Logo">
+        <div class="perfil">
+            <!-- ícone de perfil minimalista, apenas símbolo -->
+            <a href="perfil.html"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="white" viewBox="0 0 24 24">
+                <path
+                    d="M12 12c2.7 0 5-2.3 5-5s-2.3-5-5-5-5 2.3-5 5 2.3 5 5 5zm0 2c-3.3 0-10 1.7-10 5v3h20v-3c0-3.3-6.7-5-10-5z" />
+            </svg></a>
+    </nav>
+
+    <main>
+        <div class="agendamentos">
+
+        </div>
+    </main>
+
+     <!-- Modal de confirmação -->
+    <div id="modalConfirmacao">
+        <div class="modal-content">
+            <p>Tem certeza que deseja cancelar este agendamento?</p>
+            <button id="btnSim">Sim</button>
+            <button id="btnFecharModal">Não</button>
+        </div>
+    </div>
+
+    <footer>
+        <div class="creditos">
+            <h1>&copy;2025 Inkey</h1>
+        </div>
+        <div class="midias">
+            <a href="https://www.instagram.com/casacamarim/">
+                <svg class="midia" xmlns="http://www.w3.org/2000/svg" viewBox="12 -15 3 50" width="47px" height="47px">
+                    <circle cx="12" cy="13" r="20" fill="#FFF3F3" />
+                    <path
+                        d="M 8 3 C 5.239 3 3 5.239 3 8 L 3 16 C 3 18.761 5.239 21 8 21 L 16 21 C 18.761 21 21 18.761 21 16 L 21 8 C 21 5.239 18.761 3 16 3 L 8 3 z M 18 5 C 18.552 5 19 5.448 19 6 C 19 6.552 18.552 7 18 7 C 17.448 7 17 6.552 17 6 C 17 5.448 17.448 5 18 5 z M 12 7 C 14.761 7 17 9.239 17 12 C 17 14.761 14.761 17 12 17 C 9.239 17 7 14.761 7 12 C 7 9.239 9.239 7 12 7 z M 12 9 A 3 3 0 0 0 9 12 A 3 3 0 0 0 12 15 A 3 3 0 0 0 15 12 A 3 3 0 0 0 12 9 z" />
+                </svg>
+            </a>
+            <a href="https://api.whatsapp.com/message/ZMHKT6GKQHLRD1?autoload=1&app_absent=0">
+                <svg class="midia" xmlns="http://www.w3.org/2000/svg" viewBox="12 -15 3 50" width="47px" height="47px">
+                    <circle cx="12" cy="13" r="20" fill="#FFF3F3" />
+                    <path
+                        d="M19.077,4.928c-2.082-2.083-4.922-3.134-7.904-2.894C7.164,2.356,3.65,5.144,2.474,8.99 c-0.84,2.748-0.487,5.617,0.881,7.987L2.059,21.28c-0.124,0.413,0.253,0.802,0.67,0.691l4.504-1.207 c1.459,0.796,3.101,1.215,4.773,1.216h0.004c4.195,0,8.071-2.566,9.412-6.541C22.728,11.563,21.762,7.616,19.077,4.928z M16.898,15.554c-0.208,0.583-1.227,1.145-1.685,1.186c-0.458,0.042-0.887,0.207-2.995-0.624c-2.537-1-4.139-3.601-4.263-3.767 c-0.125-0.167-1.019-1.353-1.019-2.581S7.581,7.936,7.81,7.687c0.229-0.25,0.499-0.312,0.666-0.312c0.166,0,0.333,0,0.478,0.006 c0.178,0.007,0.375,0.016,0.562,0.431c0.222,0.494,0.707,1.728,0.769,1.853s0.104,0.271,0.021,0.437s-0.125,0.27-0.249,0.416 c-0.125,0.146-0.262,0.325-0.374,0.437c-0.125,0.124-0.255,0.26-0.11,0.509c0.146,0.25,0.646,1.067,1.388,1.728 c0.954,0.85,1.757,1.113,2.007,1.239c0.25,0.125,0.395,0.104,0.541-0.063c0.146-0.166,0.624-0.728,0.79-0.978 s0.333-0.208,0.562-0.125s1.456,0.687,1.705,0.812c0.25,0.125,0.416,0.187,0.478,0.291 C17.106,14.471,17.106,14.971,16.898,15.554z" />
+                </svg>
+            </a>
+            <a class="localizacao" href="https://maps.app.goo.gl/L74tQQYDyKFQmum37">
+                <i style='font-size:22px' class='fas'>&#xf3c5;</i>
+            </a>
+        </div>
+    </footer>
+
+    <script src="js-decoracao/loadings.js"></script>
+    <script src="js-decoracao/nav.js"></script>
+    <script src="js/auth.js"></script>
+    <script src="js/agendamento.js"></script>
+    <script src="js/usuario-servico.js"></script> 
+
+  <script>
+
+        document.addEventListener('DOMContentLoaded', function () {
+            if (!AuthService.isLoggedIn()) {
+                window.location.href = 'userLogin.html';
+            } else {
+                preencherPerfil();
+                carregarAgendamentos();
+                configurarModal();
+            }
+        });
+
+        function preencherPerfil() {
+            const usuario = AuthService.getUsuarioLogado();
+            if (!usuario) return;
+            const ola = document.querySelector(".perfil-usuario h1");
+            const nome = document.querySelector(".perfil-usuario p:nth-of-type(1)");
+            const tel = document.querySelector(".perfil-usuario p:nth-of-type(2)");
+            ola.innerHTML = `Olá, <strong>${usuario.nome}</strong>`;
+            nome.innerHTML = `Nome: <strong>${usuario.nome}</strong>`;
+            tel.innerHTML = `Telefone: <strong>${usuario.telefone}</strong>`;
+        }
+		
+        let agendamentoParaCancelar = null;
+
+        function carregarAgendamentos() {
+            const usuarioId = AuthService.getUsuarioId();
+            const container = document.querySelector(".agendamentos");
+
+            fetch(`http://localhost:8080/api/agendamentos/usuario/${usuarioId}`)
+                .then(res => res.json())
+                .then(agendamentos => {
+                    container.innerHTML = "";
+                    if (agendamentos.length === 0) {
+                        container.innerHTML = `
+                            <p class="nenhum-agendamento">Você não possui agendamentos.</p>
+                            <a href="servicos.html" class="btn-agendar">Agendar um serviço</a>
+                        `;
+                        return;
+                    }
+                    agendamentos.forEach(a => {
+                        container.innerHTML += `
+                        <div class="card-agendamento">
+                            <h2>${a.servico.nome}</h2>
+                            <p><b>Data:</b> ${a.data}</p>
+                            <p><b>Horário:</b> ${a.horario}</p>
+                            <p><b>Status:</b> <span class="${a.status === 'AGENDADO' ? 'status-ok' : 'status-cancelado'}">${a.status}</span></p>
+                            ${a.status === 'AGENDADO' ? `<button class="btn-cancelar" onclick="abrirModal(${a.id})">Cancelar</button>` : ''}
+                        </div>
+                        `;
+                    });
+                })
+                .catch(err => console.error("Erro ao carregar agendamentos:", err));
+        }
+
+        function configurarModal() {
+            const modal = document.getElementById("modalConfirmacao");
+            const btnFechar = document.getElementById("btnFecharModal");
+            const btnSim = document.getElementById("btnSim");
+
+            btnFechar.addEventListener("click", fecharModal);
+            btnSim.addEventListener("click", confirmarCancelamento);
+
+            window.addEventListener("click", e => {
+                if (e.target === modal) fecharModal();
+            });
+        }
+
+        function abrirModal(id) {
+            agendamentoParaCancelar = id;
+            document.getElementById("modalConfirmacao").style.display = "block";
+        }
+
+        function fecharModal() {
+            document.getElementById("modalConfirmacao").style.display = "none";
+            agendamentoParaCancelar = null;
+        }
+
+        function confirmarCancelamento() {
+            if (!agendamentoParaCancelar) return;
+
+            fetch(`http://localhost:8080/api/agendamentos/${agendamentoParaCancelar}/cancelar`, {
+                method: "PUT",
+                headers: { "Content-Type": "application/json" }
+            })
+            .then(res => {
+                if (!res.ok) return res.text().then(txt => { throw new Error(txt); });
+                fecharModal();
+                carregarAgendamentos();
+                alert("Agendamento cancelado com sucesso!");
+            })
+            .catch(err => alert("Erro ao cancelar: " + err.message));
+        }
+    </script>
+</body>
+
+</html>

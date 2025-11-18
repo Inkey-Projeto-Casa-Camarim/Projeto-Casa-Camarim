@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="img/logo.png" type="image/x-icon">
+    <link rel="icon" href="img/logo.png" sizes="16x16">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+
+    <link rel="stylesheet" href="css/userLogin.css">
+    <title>Login</title>
+    <style>
+        @font-face {
+            font-family: Cormorant;
+            src: url('font/Cormorant-Medium.ttf') format('truetype');
+            font-weight: 700;
+            font-style: normal;
+        }
+
+        @font-face {
+            font-family: Avenir;
+            src: url('font/AvenirLTProBook.otf');
+        }
+
+        @font-face {
+            font-family: Misswansa;
+            src: url('font/Misswansa.ttf');
+        }
+    </style>
+</head>
+
+<body>
+    <div id="loading">
+        <div class="spinner"></div>
+    </div>
+    <main>
+        <img src="img/logo.png" alt="logo">
+        <form id="formLogin">
+            <h1>Seja bem-vindo(a)!</h1>
+            <input type="text" id="telefone" maxlength="11" placeholder="Insira seu telefone" required>
+            <input type="password" id="senhaUsuario" maxlength="100" placeholder="Insira sua senha" required>
+
+            <br>
+            <p>Não tem conta? <a href="cadastroUsuario.html">Cadastre-se</a></p>
+
+            <button class="entrar" type="submit">ENTRAR</button>
+        </form>
+    </main>
+
+    <script src="js/auth.js"></script>
+    <script>
+        document.getElementById('formLogin').addEventListener('submit', async function (e) {
+            e.preventDefault();
+
+            const telefone = document.getElementById('telefone').value;
+            const senha = document.getElementById('senhaUsuario').value;
+
+            try {
+                await AuthService.login(telefone, senha);
+                alert('Login realizado com sucesso!');
+                window.location.href = 'servicos.html';
+            } catch (error) {
+                alert('Erro no login: ' + error.message);
+            }
+        });
+    </script>
+
+    <script src="js-decoracao/loadings.js"></script>
+</body>
+
+</html>

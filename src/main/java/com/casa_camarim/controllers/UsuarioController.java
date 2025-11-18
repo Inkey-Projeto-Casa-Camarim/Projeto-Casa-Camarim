@@ -1,70 +1,94 @@
 package com.casa_camarim.controllers;
 
-import java.util.List;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
-
 import com.casa_camarim.entities.Usuario;
 import com.casa_camarim.service.UsuarioService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 
-//Controller REST para gerenciar usuários.
-//Expõe endpoints para criar, listar, buscar por ID e deletar usuários.
+import java.util.List;
+import java.util.Optional;
+
 @RestController
-@RequestMapping("/usuario")
+@RequestMapping("/usuarios")
+@CrossOrigin(origins = "*")
 public class UsuarioController {
 
-	// Injeta automaticamente o service do usuário
-	@Autowired
-	private UsuarioService usuarioService;
+    @Autowired
+    private UsuarioService usuarioService;
 
-	// Endpoint para salvar um usuário
-	@PostMapping("/register")
-	public ResponseEntity<Usuario> createUsuario(@RequestBody Usuario usuario) {
-		Usuario novoUsuario = usuarioService.saveUsuario(usuario);
-		return ResponseEntity.ok(novoUsuario);
-	}
+    // Criar usuário
+    @PostMapping("/cadastro")
+    public ResponseEntity<?> criarUsuario(@RequestBody Usuario usuario) {
+        try {
+            Usuario novoUsuario = usuarioService.criarUsuario(usuario);
+            return ResponseEntity.status(201).body(novoUsuario);
+        } catch (RuntimeException e) {
+            return ResponseEntity.badRequest().body(e.getMessage());
+        }
+    }
 
-	// Endpoint para buscar um usuário
-	@GetMapping
-	public List<Usuario> getAllUsuario() {
-		return usuarioService.getAllUsuario();
-	}
+    // Login
+    @PostMapping("/login")
+    public ResponseEntity<?> login(@RequestParam String telefone, @RequestParam String senha) {
+        try {
+            Usuario usuario = usuarioService.login(telefone, senha);
+            return ResponseEntity.ok(usuario);
+        } catch (RuntimeException e) {
+            return ResponseEntity.status(401).body(e.getMessage());
+        }
+    }
 
-	// Endpoint para buscar usuário por ID
-	@GetMapping("/{id}")
-	public Usuario getUsuarioById(@PathVariable Long id) {
-		return usuarioService.getUsuarioById(id);
-	}
-	
-	// Endpoint para editar os usuários
-	@PutMapping
-	public Usuario editusuario(@RequestBody Usuario usuario) {
-		return usuarioService.saveUsuario(usuario);
-	}
-	
-	// Endpoint para deletar um usuário
-	@DeleteMapping("/{id}")
-	public void deleteUsuario(@PathVariable Long id) {
-		usuarioService.deleteUsuario(id);
-	}
+    // Buscar por ID (corrigido)
+    @GetMapping("/{id}")
+    public ResponseEntity<?> buscarPorId(@PathVariable Long id) {
+        Optional<Usuario> opt = usuarioService.buscarPorId(id);
+        if (opt.isPresent()) {
+            return ResponseEntity.ok(opt.get());
+        } else {
+            return ResponseEntity.status(404).body("Usuário não encontrado");
+        }
+    }
 
-	// Endpoint para logar o usuário
-    	@GetMapping("/login")
-        public Usuario login(@RequestBody Usuario loginRequest) {
-    		Usuario usuario = usuarioService.getUsuarioByTelefone(loginRequest.getTelefone());
-    			if(usuario != null) {
-    				return usuario;
-    			}
-    			return null;
-    	}
-    
+    // Buscar por telefone (corrigido)
+    @GetMapping("/telefone/{telefone}")
+    public ResponseEntity<?> buscarPorTelefone(@PathVariable String telefone) {
+        Optional<Usuario> opt = usuarioService.buscarPorTelefone(telefone);
+        if (opt.isPresent()) {
+            return ResponseEntity.ok(opt.get());
+        } else {
+            return ResponseEntity.status(404).body("Usuário não encontrado");
+        }
+    }
+
+    // Listar todos
+    @GetMapping
+    public ResponseEntity<List<Usuario>> listarTodos() {
+        return ResponseEntity.ok(usuarioService.listarTodos());
+    }
+
+    // Atualizar usuário
+    @PutMapping("/{id}")
+    public ResponseEntity<?> atualizarUsuario(@PathVariable Long id, @RequestBody Usuario usuarioAtualizado) {
+        try {
+            Usuario usuario = usuarioService.atualizarUsuario(id, usuarioAtualizado);
+            return ResponseEntity.ok(usuario);
+        } catch (RuntimeException e) {
+            if (e.getMessage().contains("não encontrado")) {
+                return ResponseEntity.status(404).body(e.getMessage());
+            }
+            return ResponseEntity.badRequest().body(e.getMessage());
+        }
+    }
+
+    // Deletar usuário
+    @DeleteMapping("/{id}")
+    public ResponseEntity<?> deletarUsuario(@PathVariable Long id) {
+        try {
+            usuarioService.deletarUsuario(id);
+            return ResponseEntity.noContent().build(); // 204
+        } catch (RuntimeException e) {
+            return ResponseEntity.status(404).body(e.getMessage());
+        }
+    }
 }

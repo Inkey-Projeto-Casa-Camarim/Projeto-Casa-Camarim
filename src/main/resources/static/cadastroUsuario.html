@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="img/logo.png" type="image/x-icon">
+    <link rel="icon" href="img/logo.png" sizes="16x16">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="./css/cadastroUsuario.css">
+    <title>Crie sua conta</title>
+</head>
+<body>
+	<style>
+		@font-face {
+		     font-family: Cormorant;
+		           src: url('font/Cormorant-Medium.ttf') format('truetype');
+		           font-weight: 700;
+		           font-style: normal;
+		       }
+
+		       @font-face {
+		           font-family: Avenir;
+		           src: url('font/AvenirLTProBook.otf');
+		       }
+
+		       @font-face {
+		           font-family: Misswansa;
+		           src: url('font/Misswansa.ttf');
+		       }
+	</style>
+    <main>
+        <img src="img/logo.png" alt="logo">
+        <form id="formCadastro">
+            <h1>Crie sua conta</h1>
+            <input type="text" id="nomeUsuario" maxlength="100" placeholder="Insira seu nome" required>
+            <input type="text" id="telefone" maxlength="11" placeholder="Insira seu telefone" required>
+            <input type="password" id="senhaUsuario" maxlength="100" placeholder="Senha" required>
+
+            <button class="entrar" type="submit">ENVIAR</button>
+            <p>Já tem conta? <a href="userLogin.html">Faça login</a></p>
+        </form>
+    </main>
+
+    <script src="js/auth.js"></script>
+    <script>
+        document.getElementById('formCadastro').addEventListener('submit', async function(e) {
+            e.preventDefault();
+            
+            const nome = document.getElementById('nomeUsuario').value;
+            const telefone = document.getElementById('telefone').value;
+            const senha = document.getElementById('senhaUsuario').value;
+            
+            try {
+                await AuthService.cadastrar(nome, telefone, senha);
+                alert('Cadastro realizado com sucesso!');
+                window.location.href = 'userLogin.html';
+            } catch (error) {
+                alert('Erro no cadastro: ' + error.message);
+            }
+        });
+    </script>
+</body>
+</html>

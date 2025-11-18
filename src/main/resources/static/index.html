@@ -27,6 +27,7 @@
 </head>
 
 <body>
+    <!-- fontes usadas durante a página -->
     <style>
         @font-face {
             font-family: Cormorant;
@@ -46,11 +47,10 @@
         }
     </style>
 
+    <!-- efeito de loading -->
     <div id="loading">
         <div class="spinner"></div>
     </div>
-    <div id="circularcursor"></div>
-    <button id="btnTopo"><i class="fa-solid fa-arrow-up"></i></button>
 
     <!-- cabeçalho -->
     <header>
@@ -59,12 +59,12 @@
                 <ul class="menu">
                     <i class="fa-solid fa-xmark close-btn"></i>
                     <li class="menu-item"><a href="index.html" class="item">Início</a></li>
-                    <li class="menu-item"><a href="horarios.html" class="item">Horários</a></li>
+                    <li class="menu-item"><a href="servicos.html" class="item">Serviços</a></li>
                     <li class="logo-container">
                         <img class="logo" src="img/logo.png" alt="Logo">
                     </li>
-                    <li class="menu-item"><a class="item">Contatos</a></li>
-                    <li class="menu-item"><a href="agenda.html" class="item">Agenda</a></li>
+                    <li class="menu-item"><a href="equipe.html" class="item">Nossa equipe</a></li>
+                    <li class="menu-item"><a href="agendamentos.html" class="item">Perfil</a></li>
                 </ul>
             </div>
             <img class="logo-mobile" src="img/logo.png" alt="Logo">
@@ -101,8 +101,10 @@
             </div>
         </div>
     </header>
+
     <main>
         <div class="grid-topicos">
+            <!-- marcas -->
             <div class="topico">
                 <div class="conteudo-topico">
                     <p>Marcas</p>
@@ -114,17 +116,21 @@
                     </h1>
                 </div>
             </div>
+
+            <!-- horários -->
             <div class="topico">
                 <div class="conteudo-topico">
                     <p>Horários</p>
                     <h1>Nosso horário de funcionamento é de terça a sábado, das 9h às 18h.
                         <br><br>
-                        <a href="horarios.html"><button class="botao-claro">VER MAIS...</button></a>
+                        <a href="servicos.html"><button class="botao-claro">VER MAIS...</button></a>
                     </h1>
 
                 </div>
             </div>
         </div>
+
+        <!-- introdução desktop -->
         <div class="desktop">
             <div class="introducao-desktop">
                 <h1>Casa Camarim</h1>
@@ -133,6 +139,8 @@
                     mulheres.
                 </p>
             </div>
+
+            <!-- carrossel de imagens -->
             <div class="imagem-desktop-carrossel">
                 <div class="carrossel">
                     <img src="img/salao-1.png" alt="Salão 1">
@@ -147,6 +155,7 @@
 
         </div>
 
+        <!-- introdução mobile -->
         <div class="mobile">
             <div class="introducao-mobile">
                 <h1>Casa Camarim</h1>
@@ -155,6 +164,8 @@
                     mulheres.
                 </p>
             </div>
+
+            <!-- carrossel de imagens -->
             <div class="imagem-mobile-carrossel">
                 <div class="carrossel-mobile">
                     <img src="img/salao-1.png" alt="">
@@ -168,33 +179,41 @@
             </div>
         </div>
 
-        <!-- serviços -->
+        <!-- principais serviços -->
         <div id="servicos"></div>
         <div class="servicos-introducao">
             <p>SERVIÇOS</p>
             <h1>Alguns de nossos serviços</h1>
         </div>
+
         <div class="servicos">
+            <!-- loiro -->
             <div class="servico">
-                <div class="imagem-servico"><img src="img/servico-exemplo.PNG" alt=""></div>
-                <h1>Nome </h1>
-                <p>DESCRIÇÃO DOS SERVIÇOS.</p>
-                <a href="horarios.html"><button class="botao-escuro-2">VER DETALHES</button></a>
+                <div class="imagem-servico"><img src="img/loiro.png" alt=""></div>
+                <h1>Loiros</h1>
+                <p>TONS PERSONALIZADOS PARA UM LOIRO PERFEITO.</p>
+                <a href="servicos.html"><button class="botao-escuro-2">VER MAIS...</button></a>
             </div>
+
+            <!-- morena -->
             <div class="servico">
-                <div class="imagem-servico"><img src="img/servico-exemplo.PNG" alt=""></div>
-                <h1>Nome </h1>
-                <p>DESCRIÇÃO DOS SERVIÇOS.</p>
-                <a href="horarios.html"><button class="botao-escuro-2">VER DETALHES</button></a>
+                <div class="imagem-servico"><img src="img/morena.png" alt=""></div>
+                <h1>Morenas </h1>
+                <p>ILUMINAÇÃO NATURAL QUE VALORIZA SEUS FIOS.</p>
+                <a href="servicos.html"><button class="botao-escuro-2">VER MAIS...</button></a>
             </div>
+
+            <!-- maquiagem -->
             <div class="servico">
-                <div class="imagem-servico"><img src="img/servico-exemplo.PNG" alt=""></div>
-                <h1>Nome </h1>
-                <p>DESCRIÇÃO DOS SERVIÇOS.</p>
-                <a href="horarios.html"><button class="botao-escuro-2">VER DETALHES</button></a>
+                <div class="imagem-servico"><img src="img/maquiagem.png" alt=""></div>
+                <h1>Maquiagens </h1>
+                <p>MAKE PARA QUALQUER OCASIÃO, REALÇANDO SUA BELEZA.</p>
+                <a href="servicos.html"><button class="botao-escuro-2">VER MAIS...</button></a>
             </div>
         </div>
     </main>
+
+    <!-- footer da página -->
     <footer>
         <div class="conteudo-footer">
             <div class="loc">
@@ -234,10 +253,10 @@
     </footer>
 
     <script src="js-decoracao/loadings.js"></script>
-    <script src="js-decoracao/scroll-inicio.js"></script>
-    <script src="js-decoracao/cursor.js"></script>
     <script src="js-decoracao/nav.js"></script>
     <script src="js-decoracao/scroll-nav.js"></script>
 </body>
 
 </html>
+
+

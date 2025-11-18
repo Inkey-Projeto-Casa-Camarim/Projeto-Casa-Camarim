@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Casa Camarim - Administração</title>
+
+    <!-- Favicon -->
+    <link rel="shortcut icon" href="img/logo.png" type="image/x-icon">
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="css/admin.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <link href='https://cdn.jsdelivr.net/npm/boxicons@2.0.5/css/boxicons.min.css' rel='stylesheet'>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+    <!-- Fonts internas -->
+    <style>
+        @font-face {
+            font-family: Cormorant;
+            src: url('font/Cormorant-Medium.ttf') format('truetype');
+            font-weight: 700;
+        }
+
+        @font-face {
+            font-family: Avenir;
+            src: url('font/AvenirLTProBook.otf');
+        }
+
+        @font-face {
+            font-family: Misswansa;
+            src: url('font/Misswansa.ttf');
+        }
+
+        /* Login */
+        #loginSection {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .login-container {
+            background: #fff;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+            width: 320px;
+            text-align: center;
+        }
+
+        .login-container input {
+            width: 100%;
+            padding: 8px 10px;
+            margin: 8px 0;
+            border-radius: 6px;
+            border: 1px solid #ccc;
+        }
+
+        .entrar {
+            width: 100%;
+            padding: 10px;
+            border-radius: 6px;
+            border: none;
+            background: #333;
+            color: #fff;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        /* Cards de agendamento */
+        .card-agendamento {
+            background: #fff;
+            padding: 15px;
+            margin-bottom: 15px;
+            border-radius: 12px;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+            border: 1px solid #eee;
+        }
+
+        .status-ok {
+            color: green;
+            font-weight: bold;
+        }
+
+        .status-cancelado {
+            color: red;
+            font-weight: bold;
+        }
+
+        .btn-cancelar {
+            background: #d9534f;
+            color: #fff;
+            border: none;
+            padding: 8px 14px;
+            border-radius: 6px;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+
+        .btn-cancelar:hover {
+            background: #c9302c;
+        }
+
+        /* Modal de confirmação */
+        .modal-confirmacao {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.4);
+            justify-content: center;
+            align-items: center;
+        }
+
+        .modal-content-confirmacao {
+            background: #fff;
+            padding: 20px;
+            border-radius: 12px;
+            max-width: 400px;
+            text-align: center;
+        }
+
+        .modal-btns {
+            display: flex;
+            justify-content: space-around;
+            margin-top: 15px;
+        }
+
+        .btn-sim,
+        .btn-nao {
+            padding: 8px 15px;
+            border-radius: 6px;
+            border: none;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        .btn-sim {
+            background: #d9534f;
+            color: #fff;
+        }
+
+        .btn-nao {
+            background: #6c757d;
+            color: #fff;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- LOGIN -->
+    <div id="loginSection">
+        <div class="login-container">
+            <img src="img/logo.png" alt="Logo" class="login-logo" style="width:100px; margin-bottom:10px;">
+            <h2>Administração</h2>
+            <input type="text" id="login" placeholder="Login" autocomplete="username">
+            <input type="password" id="senha" placeholder="Senha" autocomplete="current-password">
+            <button class="entrar" id="btnLogin">Entrar</button>
+        </div>
+    </div>
+
+    <!-- ADMIN -->
+    <div id="adminSection" style="display:none;">
+        <header>
+            <nav>
+                <div class="navigation">
+                    <ul class="menu">
+                        <li class="logo-container"><img class="logo" src="img/logo.png" alt="Logo"></li>
+                        <li class="menu-item">
+                            <button class="btn-logout" onclick="logout()"><i class="fa-solid fa-right-from-bracket"></i>
+                                Sair</button>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+        </header>
+
+        <main class="container">
+            <section id="agendamentos">
+                <h2>Agendamentos</h2>
+                <div id="agendamentos-admin-container">
+                    <div class="loading">Carregando agendamentos...</div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <!-- MODAL -->
+    <div class="modal-confirmacao" id="modalConfirmacaoAdmin">
+        <div class="modal-content-confirmacao">
+            <p>Tem certeza que deseja cancelar este agendamento?</p>
+            <div class="modal-btns">
+                <button class="btn-sim" id="btnSimAdmin">Sim</button>
+                <button class="btn-nao" id="btnNaoAdmin">Não</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // LOGIN
+        const btnLogin = document.getElementById('btnLogin');
+        const loginSection = document.getElementById('loginSection');
+        const adminSection = document.getElementById('adminSection');
+
+        btnLogin.addEventListener('click', () => {
+            const login = document.getElementById('login').value.trim();
+            const senha = document.getElementById('senha').value.trim();
+
+            if (login === "CasaCamarim" && senha === "12345") {
+                localStorage.setItem('adminLoggedIn', 'true');
+                loginSection.style.display = 'none';
+                adminSection.style.display = 'block';
+                carregarAgendamentosAdmin();
+            } else {
+                alert("Login ou senha incorretos!");
+            }
+        });
+
+        function logout() {
+            localStorage.removeItem('adminLoggedIn');
+            adminSection.style.display = 'none';
+            loginSection.style.display = 'flex';
+        }
+
+        // VERIFICAR LOGIN AUTOMÁTICO
+        document.addEventListener('DOMContentLoaded', () => {
+            if (localStorage.getItem('adminLoggedIn') === 'true') {
+                loginSection.style.display = 'none';
+                adminSection.style.display = 'block';
+                carregarAgendamentosAdmin();
+            }
+        });
+
+        // CARREGAR AGENDAMENTOS
+        let agendamentoParaCancelar = null;
+        const modalAdmin = document.getElementById("modalConfirmacaoAdmin");
+        const btnSimAdmin = document.getElementById("btnSimAdmin");
+        const btnNaoAdmin = document.getElementById("btnNaoAdmin");
+
+        function abrirModalAdmin(id) {
+            agendamentoParaCancelar = id;
+            modalAdmin.style.display = "flex";
+        }
+
+        function fecharModalAdmin() {
+            agendamentoParaCancelar = null;
+            modalAdmin.style.display = "none";
+        }
+
+        btnNaoAdmin.addEventListener("click", fecharModalAdmin);
+        btnSimAdmin.addEventListener("click", function () {
+            if (!agendamentoParaCancelar) return;
+            fetch(`http://localhost:8080/api/agendamentos/${agendamentoParaCancelar}/cancelar`, { method: "PUT" })
+                .then(res => { if (!res.ok) return res.text().then(txt => { throw new Error(txt) }); fecharModalAdmin(); carregarAgendamentosAdmin(); alert("Agendamento cancelado!"); })
+                .catch(err => alert("Erro: " + err.message));
+        });
+        window.addEventListener("click", e => { if (e.target === modalAdmin) fecharModalAdmin(); });
+
+        function carregarAgendamentosAdmin() {
+            const container = document.getElementById("agendamentos-admin-container");
+            container.innerHTML = '<div class="loading">Carregando agendamentos...</div>';
+            fetch("http://localhost:8080/api/agendamentos/admin")
+                .then(res => res.json())
+                .then(agendamentos => {
+                    container.innerHTML = "";
+                    if (!agendamentos || agendamentos.length === 0) {
+                        container.innerHTML = '<p>Nenhum agendamento encontrado.</p>';
+                        return;
+                    }
+                    agendamentos.forEach(a => {
+                        const card = document.createElement("div");
+                        card.classList.add("card-agendamento");
+                        card.innerHTML = `
+                        <h3>Serviço: ${a.servico.nome}</h3>
+                        <p><b>Data:</b> ${a.data}</p>
+                        <p><b>Horário:</b> ${a.horario}</p>
+                        <p><b>Telefone:</b> ${a.telefoneUsuario}</p>
+                        <p><b>Status:</b> <span class="${a.status === 'AGENDADO' ? 'status-ok' : 'status-cancelado'}">${a.status}</span></p>
+                        ${a.status === 'AGENDADO' ? `<button class="btn-cancelar" onclick="abrirModalAdmin(${a.id})">Cancelar</button>` : ''}
+                    `;
+                        container.appendChild(card);
+                    });
+                })
+                .catch(err => { container.innerHTML = '<p>Erro ao carregar agendamentos.</p>'; console.error(err); });
+        }
+    </script>
+</body>
+
+</html>

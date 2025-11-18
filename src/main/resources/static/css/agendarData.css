@@ -1,0 +1,181 @@
+* {
+    margin: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background: linear-gradient(to bottom, #FAF6F4, #DDB2B5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+/* loading */
+#loading {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: linear-gradient(to bottom, #FAF6F4, #DDB2B5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 999999;
+    opacity: 1;
+    transition: opacity 0.8s ease;
+}
+
+#loading.fade-out {
+    opacity: 0;
+    pointer-events: none;
+}
+
+.spinner {
+    border: 6px solid #f3f3f3;
+    border-top: 6px solid #A47E82;
+    border-radius: 50%;
+    width: 60px;
+    height: 60px;
+    animation: spin 0.7s linear infinite;
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+main {
+    background: white;
+    padding: 40px;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    text-align: center;
+    height: auto;
+    max-width: 500px;
+    width: 100%;
+}
+
+img {
+    width: 60px;
+    margin: 5%;
+}
+
+.form-group {
+    margin-bottom: 25px;
+    text-align: left;
+}
+
+label {
+    font-family: Avenir;
+    letter-spacing: 1px;
+    font-weight: 600;
+    color: #A47E82;
+    font-size: 20px;
+}
+
+input[type="date"] {
+    border: none;
+    background-color: #DDB2B5;
+    padding: 10px;
+    width: 100%;
+    font-family: Avenir;
+    letter-spacing: 1px;
+    font-weight: 600;
+    font-size: 1.1rem;
+    margin: 20px 0;
+    color: #FAF6F4;
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
+    transition: all 0.1s ease-in-out;
+}
+
+input[type="date"]:focus {
+    outline: none;
+}
+
+.horarios-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+    gap: 10px;
+    margin-top: 10px;
+}
+
+.horarios-grid {
+    font-family: Avenir;
+    letter-spacing: 1px;
+    font-weight: 600;
+    font-size: 0.9rem;
+    color: #5E3535;
+}
+
+.horario-option {
+    position: relative;
+}
+
+.horario-option input[type="radio"] {
+    display: none;
+}
+
+.horario-option label {
+    display: block;
+    padding: 12px;
+    background: #f8f9fa;
+    border: 2px solid #dee2e6;
+    border-radius: 8px;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.3s;
+    font-weight: normal;
+    margin: 0;
+}
+
+.horario-option input[type="radio"]:checked+label {
+    background: #667eea;
+    color: white;
+    border-color: #5a6fd8;
+}
+
+.horario-option label:hover {
+    background: #e9ecef;
+}
+
+.entrar {
+    position: relative;
+    width: 200px;
+    margin-top: 10px;
+    color: #FAF6F4;
+    letter-spacing: 2px;
+    font-family: Avenir;
+    font-weight: 600;
+    border: none;
+    font-size: 1rem;
+    border-top-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+    background-color: #A47E82;
+    padding: 15px 40px;
+    transition: all 0.1s ease-in-out;
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
+}
+
+.entrar:hover {
+    background-color: #5E3535;
+}
+
+
+@media (max-width: 600px) {
+    main {
+        width: 90%;
+        margin: 5%;
+        zoom: 1.0;
+    }
+
+    form h1 {
+        font-size: 30px;
+    }
+}

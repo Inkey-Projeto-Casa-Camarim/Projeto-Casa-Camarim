@@ -1,19 +1,30 @@
--- Inserindo serviços
-INSERT INTO tb_servico (preco, nome_servico, descricao_servico, tempo_servico) VALUES
-('50.00', 'Corte de Cabelo', 'Corte feminino ou masculino, com lavagem e finalização.', '40 minutos'),
-('35.00', 'Manicure', 'Limpeza, corte e esmaltação completa das unhas.', '30 minutos'),
-('40.00', 'Pedicure', 'Corte, lixa e esmaltação dos pés.', '30 minutos'),
-('120.00', 'Maquiagem', 'Maquiagem completa para eventos e festas.', '60 minutos'),
-('25.00', 'Sobrancelha', 'Design de sobrancelhas com pinça e finalização.', '20 minutos');
+-- Inserir serviços
+INSERT INTO servicos (nome, preco, duracao_minutos) VALUES 
+('Corte', 'R$50,00', '45 minutos'),
+('Loiro', 'R$ 150,00', '120 minutos'),
+('Morena iluminada', 'R$ 120,00', '90 minutos'),
+('Maquiagem', 'R$ 80,00', '60 minutos'),
+('Coloração', 'R$ 90,00', '90 minutos'),
+('Pedicure', 'R$ 35,00', '45 minutos'),
+('Manicure', 'R$ 25,00', '30 minutos'),
+('Sobrancelha', 'R$ 20,00', '30 minutos'),
+('Buço', 'R$ 15,00', '15 minutos'),
+('Selagem', 'R$ 100,00', '90 minutos');
 
--- Inserindo agendamentos
-INSERT INTO tb_agenda (nome_cliente, telefone, data_agendamento, hora_agendamento) VALUES
-('Rafaela Souza', '(11) 99999-1234', '2025-11-01', '14:00:00'),
-('Beatriz Lima', '(11) 98888-5678', '2025-11-02', '10:30:00'),
-('Ana Costa', '(11) 97777-2468', '2025-11-03', '16:00:00'),
-('Juliana Martins', '(11) 95555-8799', '2025-11-04', '09:00:00'),
-('Camila Alves', '(11) 96666-1111', '2025-11-04', '15:00:00');
-
--- Relacionamento Agenda ↔ Serviço
--- Atenção: aqui você precisa usar os IDs que foram gerados automaticamente pelo Hibernate
--- Se quiser popular manualmente, use IDs conhecidos após a inserção
+-- Inserir horários disponíveis para os próximos 30 dias
+INSERT INTO horarios_disponiveis (data, horario, disponivel, servico_id) 
+SELECT 
+    CURDATE() + INTERVAL n DAY as data,
+    TIME(CONCAT(h, ':00:00')) as horario,
+    TRUE as disponivel,
+    s.id as servico_id
+FROM 
+    (SELECT 0 as n UNION SELECT 1 UNION SELECT 2 UNION SELECT 3 UNION SELECT 4 UNION SELECT 5 UNION SELECT 6 
+     UNION SELECT 7 UNION SELECT 8 UNION SELECT 9 UNION SELECT 10 UNION SELECT 11 UNION SELECT 12 UNION SELECT 13 
+     UNION SELECT 14 UNION SELECT 15 UNION SELECT 16 UNION SELECT 17 UNION SELECT 18 UNION SELECT 19 UNION SELECT 20
+     UNION SELECT 21 UNION SELECT 22 UNION SELECT 23 UNION SELECT 24 UNION SELECT 25 UNION SELECT 26 UNION SELECT 27
+     UNION SELECT 28 UNION SELECT 29) days,
+    (SELECT 9 as h UNION SELECT 10 UNION SELECT 11 UNION SELECT 12 UNION SELECT 13 UNION SELECT 14 UNION SELECT 15 
+     UNION SELECT 16 UNION SELECT 17) hours,
+    servicos s
+WHERE s.id IS NOT NULL;

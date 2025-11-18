@@ -1,97 +1,85 @@
 package com.casa_camarim.entities;
 
+import java.util.ArrayList;
 import java.util.List;
+
+import com.fasterxml.jackson.annotation.JsonBackReference;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.ManyToMany;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
 @Entity
-@Table(name = "tb_servico")
+@Table(name = "servicos")
 public class Servico {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id_servico", nullable = false)
-    private Long id_servico;
+    private Long id;
 
-    @Column(name = "nome_servico", nullable = false, length = 150)
-    private String nomeServico;
+    @Column(nullable = false)
+    private String nome;
 
-    @Column(name = "preco", nullable = false)
-    private Double preco;
+    @Column(nullable = false)
+    private String preco;
 
-    @Column(name = "descricao_servico", nullable = true, length = 255)
-    private String descricaoServico;
+    @Column(nullable = false)
+    private String duracaoMinutos;
 
-    @Column(name = "tempo_servico", nullable = true, length = 50)
-    private String tempoServico;
+    @OneToMany(mappedBy = "servico")
+    @JsonBackReference
+    private List<Agendamento> agendamentos = new ArrayList<>();
 
-    // 🔗 Relacionamento ManyToMany com Agenda
-    @ManyToMany(mappedBy = "servicos")
-    private List<Agenda> agendas;
-
-    // Construtores
     public Servico() {}
 
-    public Servico(Long id_servico, String nomeServico, Double preco, String descricaoServico, String tempoServico) {
-        this.id_servico = id_servico;
-        this.nomeServico = nomeServico;
+    public Servico(String nome, String preco, String duracaoMinutos) {
+        this.nome = nome;
         this.preco = preco;
-        this.descricaoServico = descricaoServico;
-        this.tempoServico = tempoServico;
+        this.duracaoMinutos = duracaoMinutos;
     }
 
     // Getters e Setters
-    public Long getId_servico() {
-        return id_servico;
+    public Long getId() {
+        return id;
     }
 
-    public void setId_servico(Long id_servico) {
-        this.id_servico = id_servico;
+    public void setId(Long id) {
+        this.id = id;
     }
 
-    public String getNomeServico() {
-        return nomeServico;
+    public String getNome() {
+        return nome;
     }
 
-    public void setNomeServico(String nomeServico) {
-        this.nomeServico = nomeServico;
+    public void setNome(String nome) {
+        this.nome = nome;
     }
 
-    public Double getPreco() {
+    public String getPreco() {
         return preco;
     }
 
-    public void setPreco(Double preco) {
+    public void setPreco(String preco) {
         this.preco = preco;
     }
 
-    public String getDescricaoServico() {
-        return descricaoServico;
+    public String getDuracaoMinutos() {
+        return duracaoMinutos;
     }
 
-    public void setDescricaoServico(String descricaoServico) {
-        this.descricaoServico = descricaoServico;
+    public void setDuracaoMinutos(String duracaoMinutos) {
+        this.duracaoMinutos = duracaoMinutos;
     }
 
-    public String getTempoServico() {
-        return tempoServico;
+    public List<Agendamento> getAgendamentos() {
+        return agendamentos;
     }
 
-    public void setTempoServico(String tempoServico) {
-        this.tempoServico = tempoServico;
-    }
-
-    public List<Agenda> getAgendas() {
-        return agendas;
-    }
-
-    public void setAgendas(List<Agenda> agendas) {
-        this.agendas = agendas;
+    public void setAgendamentos(List<Agendamento> agendamentos) {
+        this.agendamentos = agendamentos;
     }
 }
