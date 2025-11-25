@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Gerenciar Serviços - Michele</title>
+<style>
+body{font-family:Arial, sans-serif;background:#f5f5f5;margin:0;padding:20px;}
+.container{max-width:600px;margin:0 auto;background:#fff;padding:20px;border-radius:10px;box-shadow:0 2px 6px rgba(0,0,0,0.1);}
+h2{margin-bottom:20px;text-align:center;}
+input, select{width:100%;padding:10px;margin:8px 0;border-radius:5px;border:1px solid #ccc;}
+button{padding:10px 15px;border:none;border-radius:5px;background:#333;color:#fff;cursor:pointer;margin-top:5px;}
+table{width:100%;border-collapse:collapse;margin-top:20px;}
+th,td{border:1px solid #ccc;padding:8px;text-align:left;}
+.btn-excluir{background:#d9534f;color:#fff;}
+/* Modal */
+#modalConfirmacao{display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.5);justify-content:center;align-items:center;}
+.modal-content{background:#fff;padding:20px;border-radius:10px;text-align:center;max-width:400px;margin:auto;}
+.modal-content button{margin:10px 5px;padding:8px 12px;}
+</style>
+</head>
+<body>
+
+<div class="container">
+<h2>Gerenciar Serviços</h2>
+
+<label for="nomeServico">Nome do Serviço:</label>
+<input type="text" id="nomeServico" placeholder="Ex: Selagem, Hidratação">
+
+<label for="tipoServico">Tipo do Serviço:</label>
+<select id="tipoServico">
+    <option value="Corte/Coloracao">Corte/Coloração</option>
+    <option value="Manicure">Manicure</option>
+    <option value="Estetica">Estética</option>
+</select>
+
+<button id="btnAdicionarServico">Adicionar Serviço</button>
+
+<table>
+<thead>
+<tr><th>Nome</th><th>Tipo</th><th>Ação</th></tr>
+</thead>
+<tbody id="servicosTable"></tbody>
+</table>
+</div>
+
+<!-- Modal de confirmação -->
+<div id="modalConfirmacao">
+    <div class="modal-content">
+        <p>Tem certeza que deseja excluir este serviço?</p>
+        <button id="btnSim">Sim</button>
+        <button id="btnFecharModal">Não</button>
+    </div>
+</div>
+
+<script>
+// Simula autenticação da Michele
+const adminLogado = JSON.parse(localStorage.getItem("adminLogado")) || { login:"Micheli" };
+
+// Redireciona se não for Michele
+if(adminLogado.login !== "Micheli") {
+    alert("Acesso negado. Apenas Michele pode gerenciar os serviços.");
+    window.location.href = "index.html";
+}
+
+// Inicializa lista de serviços
+if(!localStorage.getItem("servicos")) {
+    const servicos = [
+        { nome:"Coloração", tipo:"Corte/Coloracao" },
+        { nome:"Corte", tipo:"Corte/Coloracao" },
+        { nome:"Loiro", tipo:"Corte/Coloracao" },
+        { nome:"Selagem", tipo:"Corte/Coloracao" },
+        { nome:"Moreno Iluminado", tipo:"Corte/Coloracao" },
+        { nome:"Buço", tipo:"Estetica" },
+        { nome:"Sobrancelha", tipo:"Estetica" },
+        { nome:"Maquiagem", tipo:"Estetica" },
+        { nome:"Manicure", tipo:"Manicure" },
+        { nome:"Pedicure", tipo:"Manicure" }
+    ];
+    localStorage.setItem("servicos", JSON.stringify(servicos));
+}
+
+let servicoParaExcluir = null;
+
+function carregarServicos(){
+    const servicos = JSON.parse(localStorage.getItem("servicos"));
+    const tbody = document.getElementById("servicosTable");
+    tbody.innerHTML = "";
+    servicos.forEach((s, index) => {
+        const tr = document.createElement("tr");
+        tr.innerHTML = `
+            <td>${s.nome}</td>
+            <td>${s.tipo}</td>
+            <td><button class="btn-excluir">Excluir</button></td>
+        `;
+        tr.querySelector(".btn-excluir").addEventListener("click", () => abrirModal(index));
+        tbody.appendChild(tr);
+    });
+}
+
+// Adicionar novo serviço
+document.getElementById("btnAdicionarServico").addEventListener("click", () => {
+    const nome = document.getElementById("nomeServico").value.trim();
+    const tipo = document.getElementById("tipoServico").value;
+
+    if(!nome){ alert("Preencha o nome do serviço"); return; }
+
+    let servicos = JSON.parse(localStorage.getItem("servicos"));
+    if(servicos.find(s=>s.nome.toLowerCase()===nome.toLowerCase())) {
+        alert("Serviço já cadastrado");
+        return;
+    }
+
+    servicos.push({nome,tipo});
+    localStorage.setItem("servicos", JSON.stringify(servicos));
+    carregarServicos();
+    document.getElementById("nomeServico").value = "";
+});
+
+// Modal
+const modal = document.getElementById("modalConfirmacao");
+const btnFechar = document.getElementById("btnFecharModal");
+const btnSim = document.getElementById("btnSim");
+
+function abrirModal(index){
+    servicoParaExcluir = index;
+    modal.style.display = "flex";
+}
+
+function fecharModal(){
+    modal.style.display = "none";
+    servicoParaExcluir = null;
+}
+
+btnFechar.addEventListener("click", fecharModal);
+
+btnSim.addEventListener("click", () => {
+    if(servicoParaExcluir !== null){
+        let servicos = JSON.parse(localStorage.getItem("servicos"));
+        servicos.splice(servicoParaExcluir,1);
+        localStorage.setItem("servicos", JSON.stringify(servicos));
+        carregarServicos();
+        fecharModal();
+    }
+});
+
+window.addEventListener("click", e => {
+    if(e.target === modal) fecharModal();
+});
+
+// Inicializa tabela
+carregarServicos();
+</script>
+
+</body>
+</html>
